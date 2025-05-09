@@ -11,10 +11,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.devtorres.fit_app.ui.theme.FitappTheme
+import com.devtorres.fit_app.ui.theme.MaterialThemeExt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        // instalar splash screen
+        installSplashScreen()
+
+        var keepSplash = true
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {

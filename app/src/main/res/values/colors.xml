@@ -1,10 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- Colores principales -->
+    <color name="primary">#FFFCEC52</color> <!-- Amarillo -->
+    <color name="on_primary">#FF000000</color> <!-- Negro -->
+    <color name="primary_container">#FF635E21</color> <!-- Versión más oscura del amarillo -->
+    <color name="on_primary_container">#FFFCEC52</color> <!-- Amarillo -->
+
+    <color name="secondary">#FF4A90E2</color> <!-- Azul -->
+    <color name="on_secondary">#FFFFFFFF</color> <!-- Blanco -->
+    <color name="secondary_container">#FF1E3A5A</color> <!-- Versión más oscura del azul -->
+    <color name="on_secondary_container">#FF4A90E2</color> <!-- Azul -->
+
+    <color name="tertiary">#FFFF6F61</color> <!-- Coral/Rojo -->
+    <color name="on_tertiary">#FFFFFFFF</color> <!-- Blanco -->
+    <color name="tertiary_container">#FF662C27</color> <!-- Versión más oscura del coral -->
+    <color name="on_tertiary_container">#FFFF6F61</color> <!-- Coral -->
+
+    <!-- Colores de fondo y superficie -->
+    <color name="background">#FF444545</color> <!-- Gris oscuro -->
+    <color name="on_background">#FFFAFAFA</color> <!-- Casi blanco -->
+    <color name="surface">#FF4D4E4E</color> <!-- Gris oscuro (ligeramente más claro) -->
+    <color name="on_surface">#FFFAFAFA</color> <!-- Casi blanco -->
+    <color name="surface_variant">#FF333434</color> <!-- Más oscuro que la superficie -->
+    <color name="on_surface_variant">#FFE0E0E0</color> <!-- Gris claro -->
+
+    <!-- Colores adicionales -->
+    <color name="outline">#FF595959</color> <!-- Gris medio para bordes -->
+    <color name="outline_variant">#FF444444</color> <!-- Variante de contorno más oscura -->
+    <color name="muted">#FF333333</color> <!-- Gris oscuro para elementos atenuados -->
+    <color name="on_muted">#FFA3A3A3</color> <!-- Gris claro para texto atenuado -->
+
+    <!-- Colores de error -->
+    <color name="error">#FFBA1F33</color> <!-- Rojo error -->
+    <color name="on_error">#FFFFFFFF</color> <!-- Blanco sobre error -->
+    <color name="error_container">#FF5D0F19</color> <!-- Contenedor de error -->
+    <color name="on_error_container">#FFFFB3BD</color> <!-- Texto sobre contenedor de error -->
+
+    <!-- Colores inversos -->
+    <color name="inverse_surface">#FFE0E0E0</color> <!-- Superficie inversa (gris claro) -->
+    <color name="inverse_on_surface">#FF333333</color> <!-- Texto sobre superficie inversa -->
+    <color name="inverse_primary">#FF635E21</color> <!-- Primario inverso -->
+
+    <!-- Colores adicionales de Material 3 -->
+    <color name="scrim">#52000000</color> <!-- Color semitransparente -->
+    <color name="surface_tint">#FF4D4E4E</color> <!-- Tinte de superficie -->
+    <color name="surface_bright">#FF5A5B5B</color> <!-- Superficie brillante -->
+    <color name="surface_container">#FF464747</color> <!-- Contenedor de superficie -->
+    <color name="surface_container_high">#FF525353</color> <!-- Contenedor de superficie alto -->
+    <color name="surface_container_highest">#FF5F6060</color> <!-- Contenedor de superficie más alto -->
+    <color name="surface_container_low">#FF3D3E3E</color> <!-- Contenedor de superficie bajo -->
+    <color name="surface_container_lowest">#FF333434</color> <!-- Contenedor de superficie más bajo -->
+    <color name="surface_dim">#FF3A3B3B</color> <!-- Superficie tenue -->
+
+    <!-- Color extendido: Rosa -->
+    <color name="pink">#FFE91E63</color> <!-- Rosa base -->
+    <color name="on_pink">#FFFFFFFF</color> <!-- Texto sobre rosa -->
+    <color name="pink_container">#FF741042</color> <!-- Contenedor rosa -->
+    <color name="on_pink_container">#FFFFB1CF</color> <!-- Texto sobre contenedor rosa -->
+    <color name="pink_light">#FFF48FB1</color> <!-- Rosa claro -->
+    <color name="pink_dark">#FFC2185B</color> <!-- Rosa oscuro -->
+    <color name="pink_muted">#FF5C1138</color> <!-- Rosa atenuado -->
+    <color name="pink_accent">#FFFF4081</color> <!-- Rosa acento -->
+
+    <!-- Colores estándar de Android (para compatibilidad) -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

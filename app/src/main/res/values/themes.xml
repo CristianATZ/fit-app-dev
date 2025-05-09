@@ -2,4 +2,18 @@
 <resources>
 
     <style name="Theme.Fitapp" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.Fitapp.Splash" parent="Theme.SplashScreen">
+        <!-- Color de fondo del Splash Screen -->
+        <item name="windowSplashScreenBackground">@color/primary</item>
+
+        <!-- Icono animado o estático que se mostrará -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item>
+
+        <!-- Duración de la animación del icono (en milisegundos) -->
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+
+        <!-- Tema que se aplicará después del Splash Screen -->
+        <item name="postSplashScreenTheme">@style/Theme.Fitapp</item>
+    </style>
 </resources>
