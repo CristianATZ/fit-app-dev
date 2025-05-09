@@ -1,17 +1,29 @@
 package com.devtorres.fit_app
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
+import coil.request.ImageResult
 import com.devtorres.fit_app.ui.theme.FitappTheme
 import com.devtorres.fit_app.ui.theme.MaterialThemeExt
 
@@ -20,17 +32,17 @@ class MainActivity : ComponentActivity() {
         // instalar splash screen
         installSplashScreen()
 
-        var keepSplash = true
+        // setKeepSplashScreen
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             FitappTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    Box {
+                        BackgroundImage()
+                        Greeting("Android")
+                    }
                 }
             }
         }
@@ -40,15 +52,23 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = name,
         modifier = modifier
     )
 }
 
-@Preview(showBackground = true)
+
 @Composable
-fun GreetingPreview() {
-    FitappTheme {
-        Greeting("Android")
-    }
+fun BackgroundImage() {
+    val context = LocalContext.current
+
+    AsyncImage(
+        model = ImageRequest.Builder(context)
+            .data("file:///android_asset/bg-app/background.svg")
+            .decoderFactory(SvgDecoder.Factory())
+            .build(),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.fillMaxSize()
+    )
 }
