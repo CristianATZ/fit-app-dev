@@ -12,6 +12,7 @@ coreSplashscreen = "1.0.1"
 uiTextGoogleFonts = "1.8.1"
 coilSvg = "2.7.0"
 coilCompose = "2.7.0"
+desugar_jdk_libs = "2.0.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,6 +33,7 @@ androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscree
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coilSvg" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
+desugar_jdk_libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
