@@ -74,6 +74,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    // navigation
+    implementation(libs.androidx.navigation.compose)
+
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
