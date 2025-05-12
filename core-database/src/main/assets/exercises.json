@@ -1,0 +1,169 @@
+{
+  "exercises": {
+    "Barbell_Bench_Press": {
+      "name": "Barbell Bench Press",
+      "force": "push",
+      "level": "beginner",
+      "mechanic": "compound",
+      "equipment": "barbell",
+      "primaryMuscles": ["chest"],
+      "secondaryMuscles": ["shoulders", "triceps"],
+      "instructions": [
+        "Lie on a flat bench with your feet firmly on the ground.",
+        "Grip the barbell slightly wider than shoulder-width apart.",
+        "Unrack the barbell and lower it to your mid-chest.",
+        "Press the barbell back up to the starting position.",
+        "Repeat for the desired number of repetitions."
+      ],
+      "category": "strength",
+      "images": ["/barbell-bench-press.png", "/barbell-bench-press-form.png"],
+      "equipmentIds": ["olympic_barbell", "flat_bench", "weight_plates"],
+      "alternative": ["Dumbbell_Bench_Press", "Push_ups"],
+      "id": "Barbell_Bench_Press"
+    },
+    "Dumbbell_Bench_Press": {
+      "name": "Dumbbell Bench Press",
+      "force": "push",
+      "level": "beginner",
+      "mechanic": "compound",
+      "equipment": "dumbbell",
+      "primaryMuscles": ["chest"],
+      "secondaryMuscles": ["shoulders", "triceps"],
+      "instructions": [
+        "Lie on a flat bench with a dumbbell in each hand.",
+        "Start with the dumbbells at chest level with palms facing forward.",
+        "Press the dumbbells upward until your arms are fully extended.",
+        "Lower the dumbbells back to the starting position.",
+        "Repeat for the desired number of repetitions."
+      ],
+      "category": "strength",
+      "images": ["/dumbbell-bench-press.png", "/dumbbell-bench-press-form.png"],
+      "equipmentIds": ["dumbbells", "flat_bench"],
+      "alternative": ["Barbell_Bench_Press", "Push_ups"],
+      "id": "Dumbbell_Bench_Press"
+    },
+    "Push_ups": {
+      "name": "Push-ups",
+      "force": "push",
+      "level": "beginner",
+      "mechanic": "compound",
+      "equipment": "body only",
+      "primaryMuscles": ["chest"],
+      "secondaryMuscles": ["shoulders", "triceps", "core"],
+      "instructions": [
+        "Start in a plank position with your hands slightly wider than shoulder-width apart.",
+        "Keep your body in a straight line from head to heels.",
+        "Lower your body until your chest nearly touches the floor.",
+        "Push yourself back up to the starting position.",
+        "Repeat for the desired number of repetitions."
+      ],
+      "category": "strength",
+      "images": ["/push-up-exercise.png", "/proper-push-up-form.png"],
+      "equipmentIds": ["exercise_mat", "push_up_handles"],
+      "alternative": ["Barbell_Bench_Press", "Dumbbell_Bench_Press"],
+      "id": "Push_ups"
+    },
+    "Sentadilla_con_barra": {
+      "name": "Sentadilla con barra",
+      "force": "push",
+      "level": "beginner",
+      "mechanic": "compound",
+      "equipment": "barbell",
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["hamstrings", "calves", "lower back"],
+      "instructions": [
+        "Coloca la barra en los trapecios superiores y agárrala con las manos.",
+        "Mantén la espalda recta y los pies separados al ancho de los hombros.",
+        "Flexiona las rodillas y baja las caderas como si fueras a sentarte.",
+        "Baja hasta que los muslos estén paralelos al suelo o ligeramente más abajo.",
+        "Empuja a través de los talones para volver a la posición inicial."
+      ],
+      "category": "strength",
+      "images": ["/barbell-squat.png", "/barbell-squat-form.png"],
+      "equipmentIds": ["olympic_barbell", "squat_rack", "weight_plates"],
+      "alternative": ["Prensa de piernas", "Sentadilla frontal"],
+      "id": "Sentadilla_con_barra"
+    },
+    "Press_de_banca": {
+      "name": "Press de banca",
+      "force": "push",
+      "level": "beginner",
+      "mechanic": "compound",
+      "equipment": "barbell",
+      "primaryMuscles": ["chest"],
+      "secondaryMuscles": ["shoulders", "triceps"],
+      "instructions": [
+        "Acuéstate en un banco plano con los pies apoyados firmemente en el suelo.",
+        "Agarra la barra con las manos un poco más separadas que el ancho de los hombros.",
+        "Baja la barra hasta el pecho medio.",
+        "Empuja la barra hacia arriba hasta extender completamente los brazos.",
+        "Repite para el número deseado de repeticiones."
+      ],
+      "category": "strength",
+      "images": ["/bench-press-exercise.png", "/proper-bench-press-form.png"],
+      "equipmentIds": ["olympic_barbell", "flat_bench", "weight_plates"],
+      "alternative": ["Press con mancuernas", "Flexiones"],
+      "id": "Press_de_banca"
+    },
+    "Seated_Two_Arm_Palms_Up_Low_Pulley_Wrist_Curl": {
+      "name": "Seated Two-Arm Palms-Up Low-Pulley Wrist Curl",
+      "force": "pull",
+      "level": "beginner",
+      "mechanic": "isolation",
+      "equipment": "cable",
+      "primaryMuscles": ["forearms"],
+      "secondaryMuscles": [],
+      "instructions": [
+        "Put a bench in front of a low pulley machine that has a barbell or EZ Curl attachment on it.",
+        "Move the bench far enough away so that when you bring the handle to the top of your thighs tension is created on the cable due to the weight stack being moved up.",
+        "Now hold the handle with both hands, palms up, using a shoulder-width grip.",
+        "Step back and sit on the bench with your feet about shoulder width apart, firmly on the floor.",
+        "Lean forward and place the forearms on your thighs with the back of your wrists over your knees. This will be your starting position.",
+        "Lower the bar as far as possible, while inhaling and keeping a tight grip.",
+        "Now curl the bar up as high as possible while contracting the forearms. Tip: Only the wrist should move; not the forearms.",
+        "After a second contraction at the top go back to the starting position as you inhale.",
+        "Repeat for the recommended amount of repetitions."
+      ],
+      "category": "strength",
+      "images": [
+        "/placeholder.svg?height=300&width=400&query=cable wrist curl exercise",
+        "/placeholder.svg?height=300&width=400&query=cable wrist curl form"
+      ],
+      "equipmentIds": ["cable_machine", "straight_bar_attachment", "flat_bench"],
+      "alternative": ["Wrist_Roller"],
+      "id": "Seated_Two_Arm_Palms_Up_Low_Pulley_Wrist_Curl"
+    },
+    "Wrist_Roller": {
+      "name": "Wrist Roller",
+      "force": "pull",
+      "level": "beginner",
+      "mechanic": "isolation",
+      "equipment": "other",
+      "primaryMuscles": ["forearms"],
+      "secondaryMuscles": [],
+      "instructions": [
+        "Hold a wrist roller with both hands with your palms facing down.",
+        "Stand with your feet shoulder width apart and arms extended straight out, parallel to the floor.",
+        "Rotate the roller in order to raise the resistance (usually a weight tied to a rope that is attached to the roller).",
+        "Continue until the weight reaches the roller, and then reverse the motion to lower the weight."
+      ],
+      "category": "strength",
+      "images": [
+        "/wrist-roller-forearm-exercise.png",
+        "/placeholder.svg?height=300&width=400&query=wrist roller form"
+      ],
+      "equipmentIds": ["wrist_roller", "small_weight_plates"],
+      "alternative": ["Seated_Two_Arm_Palms_Up_Low_Pulley_Wrist_Curl"],
+      "id": "Wrist_Roller"
+    }
+  },
+  "muscleGroupsData": {
+    "forearms": ["Seated_Two_Arm_Palms_Up_Low_Pulley_Wrist_Curl", "Wrist_Roller"],
+    "chest": ["Barbell_Bench_Press", "Dumbbell_Bench_Press", "Push_ups", "Press_de_banca"],
+    "shoulders": ["Overhead_Press", "Lateral_Raises"],
+    "back": ["Pull_ups", "Barbell_Rows"],
+    "legs": ["Barbell_Squat", "Romanian_Deadlift", "Sentadilla_con_barra"],
+    "arms": ["Barbell_Curl", "Triceps_Pushdown"],
+    "abs": ["Crunches", "Plank"]
+  }
+}

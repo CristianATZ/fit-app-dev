@@ -21,4 +21,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "fit-app"
 include(":app")
- 
+include(":core-model")
+include(":feature-home")
+include(":feature-exercises")
+include(":feature-supplements")
+include(":core-database")
+include(":core-data")
+include(":ui-common")
+include(":feature-splash")

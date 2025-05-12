@@ -1,0 +1,236 @@
+{
+  "routines": [
+    {
+      "id": "1",
+      "name": "Full Body 3 días",
+      "description": "Rutina de cuerpo completo para principiantes",
+      "level": "principiante",
+      "goal": "fuerza",
+      "duration": "45-60 min",
+      "image": "/woman-doing-squat.png",
+      "createdBy": "coach1",
+      "createdAt": "2023-09-15T14:30:00Z",
+      "updatedAt": "2023-10-02T09:15:00Z",
+      "days": [
+        {
+          "name": "Día 1: Cuerpo Completo",
+          "exercises": [
+            {
+              "id": "Sentadilla_con_barra",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "Mantén la espalda recta y las rodillas alineadas con los pies"
+            },
+            {
+              "id": "Press_de_banca",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "Mantén los hombros hacia atrás y abajo"
+            },
+            {
+              "id": "Barbell_Rows",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "Mantén la espalda recta y tira la barra hacia el abdomen"
+            },
+            {
+              "id": "Overhead_Press",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "No arquees la espalda baja"
+            },
+            {
+              "id": "Barbell_Curl",
+              "sets": 3,
+              "reps": "10-15",
+              "rest": "60 seg",
+              "tips": "Mantén los codos pegados al cuerpo"
+            },
+            {
+              "id": "Triceps_Extension",
+              "sets": 3,
+              "reps": "10-15",
+              "rest": "60 seg",
+              "tips": "Mantén los codos cerca de la cabeza"
+            }
+          ]
+        },
+        {
+          "name": "Día 2: Descanso",
+          "exercises": []
+        },
+        {
+          "name": "Día 3: Cuerpo Completo",
+          "exercises": [
+            {
+              "id": "Deadlift",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "Mantén la espalda recta y empuja desde los talones"
+            },
+            {
+              "id": "Incline_Dumbbell_Press",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "Mantén los codos a 45 grados del cuerpo"
+            },
+            {
+              "id": "Pull_ups",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "Intenta usar la mínima asistencia posible"
+            },
+            {
+              "id": "Lateral_Raises",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seg",
+              "tips": "Mantén una ligera flexión en los codos"
+            },
+            {
+              "id": "Hammer_Curl",
+              "sets": 3,
+              "reps": "10-15",
+              "rest": "60 seg",
+              "tips": "Alterna los brazos en cada repetición"
+            },
+            {
+              "id": "Bench_Dips",
+              "sets": 3,
+              "reps": "10-15",
+              "rest": "60 seg",
+              "tips": "Mantén los codos cerca del cuerpo"
+            }
+          ]
+        },
+        {
+          "name": "Día 4: Descanso",
+          "exercises": []
+        },
+        {
+          "name": "Día 5: Cuerpo Completo",
+          "exercises": [
+            {
+              "id": "Leg_Press",
+              "sets": 3,
+              "reps": "10-15",
+              "rest": "90 seg",
+              "tips": "No bloquees completamente las rodillas al extender"
+            },
+            {
+              "id": "Close_Grip_Bench_Press",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "Mantén los codos cerca del cuerpo"
+            },
+            {
+              "id": "Dumbbell_Row",
+              "sets": 3,
+              "reps": "8-12",
+              "rest": "90 seg",
+              "tips": "Mantén la espalda paralela al suelo"
+            },
+            {
+              "id": "Arnold_Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "60 seg",
+              "tips": "Rota las palmas durante el movimiento"
+            },
+            {
+              "id": "Triceps_Pushdown",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seg",
+              "tips": "Mantén los codos fijos y cerca de la cabeza"
+            },
+            {
+              "id": "Plank",
+              "sets": 3,
+              "reps": "30-60 seg",
+              "rest": "60 seg",
+              "tips": "Mantén el cuerpo en línea recta"
+            }
+          ]
+        },
+        {
+          "name": "Día 6: Descanso",
+          "exercises": []
+        },
+        {
+          "name": "Día 7: Descanso",
+          "exercises": []
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Push Pull Legs",
+      "description": "Rutina dividida por patrones de movimiento",
+      "level": "intermedio",
+      "goal": "hipertrofia",
+      "duration": "60-75 min",
+      "image": "/barbell-deadlift.png",
+      "createdBy": "coach2",
+      "createdAt": "2023-08-20T10:45:00Z",
+      "updatedAt": "2023-11-05T16:20:00Z",
+      "days": [
+        {
+          "name": "Día 1: Push (Empuje)",
+          "exercises": [
+            {
+              "id": "Barbell_Bench_Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seg",
+              "tips": "Mantén los hombros hacia atrás y abajo"
+            },
+            {
+              "id": "Incline_Dumbbell_Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rest": "90 seg",
+              "tips": "Mantén los codos a 45 grados del cuerpo"
+            },
+            {
+              "id": "Cable_Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seg",
+              "tips": "Mantén una ligera flexión en los codos"
+            },
+            {
+              "id": "Overhead_Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rest": "90 seg",
+              "tips": "No arquees la espalda baja"
+            },
+            {
+              "id": "Lateral_Raises",
+              "sets": 3,
+              "reps": "12-15",
+              "rest": "60 seg",
+              "tips": "Eleva los brazos hasta la altura de los hombros"
+            },
+            {
+              "id": "Triceps_Pushdown",
+              "sets": 4,
+              "reps": "10-12",
+              "rest": "60 seg",
+              "tips": "Mantén los codos fijos y cerca de la cabeza"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

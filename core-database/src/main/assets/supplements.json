@@ -1,0 +1,635 @@
+{
+  "supplements": {
+    "proteinas": [
+      {
+        "id": "gold-standard-whey",
+        "name": "Gold Standard 100% Whey",
+        "description": "Proteína de suero de leche premium de rápida absorción",
+        "brand": "Optimum Nutrition",
+        "presentations": ["2 lbs (907 g)", "5 lbs (2.27 kg)", "10 lbs (4.54 kg)"],
+        "flavors": ["Chocolate", "Vainilla", "Fresa", "Cookies & Cream", "Plátano"],
+        "benefits": [
+          "Recuperación muscular acelerada",
+          "Aumento de masa muscular magra",
+          "Rápida absorción y digestión",
+          "Alto valor biológico"
+        ],
+        "usage": "Mezclar 1 scoop (30g) con 200-300ml de agua o leche. Consumir preferentemente después del entrenamiento o entre comidas.",
+        "composition": "Proteína de suero concentrada (80%), aislada (15%) e hidrolizada (5%), aminoácidos esenciales, BCAA's, glutamina.",
+        "sideEffects": [
+          "Malestar digestivo en personas intolerantes a la lactosa",
+          "Posible sobrecarga renal en personas con problemas renales preexistentes",
+          "Acné en personas susceptibles"
+        ],
+        "recommendation": "Consumir 1-2 porciones diarias para alcanzar un consumo total de proteínas de 1.6-2.2g por kg de peso corporal.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "proteinas",
+        "nutritionalInfo": {
+          "servingSize": "30g",
+          "servingsPerContainer": 74,
+          "calories": 120,
+          "protein": 24,
+          "carbs": 3,
+          "fat": 1.5,
+          "sugar": 1,
+          "sodium": 130,
+          "cholesterol": 45,
+          "calcium": 130,
+          "potassium": 150
+        }
+      },
+      {
+        "id": "impact-whey-isolate",
+        "name": "Impact Whey Isolate",
+        "description": "Proteína de suero aislada con mínimo contenido de grasa y lactosa",
+        "brand": "MyProtein",
+        "presentations": ["1 kg", "2.5 kg", "5 kg"],
+        "flavors": ["Chocolate", "Vainilla", "Fresa", "Salted Caramel", "Natural"],
+        "benefits": [
+          "90% de contenido proteico",
+          "Mínimo contenido de grasa y carbohidratos",
+          "Ideal para definición muscular",
+          "Rápida absorción y digestión"
+        ],
+        "usage": "Mezclar 1 scoop (25g) con 200-250ml de agua o leche. Consumir después del entrenamiento o entre comidas.",
+        "composition": "Proteína de suero aislada (90%), aminoácidos esenciales, BCAA's.",
+        "sideEffects": [
+          "Generalmente bien tolerada por personas con intolerancia leve a la lactosa",
+          "Posible sobrecarga renal en personas con problemas renales preexistentes"
+        ],
+        "recommendation": "Ideal para periodos de definición muscular o para personas que buscan minimizar la ingesta de grasas y carbohidratos.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "proteinas",
+        "nutritionalInfo": {
+          "servingSize": "25g",
+          "servingsPerContainer": 40,
+          "calories": 93,
+          "protein": 22,
+          "carbs": 0.6,
+          "fat": 0.3,
+          "sugar": 0.3,
+          "sodium": 100,
+          "cholesterol": 33,
+          "calcium": 120,
+          "potassium": 115
+        }
+      },
+      {
+        "id": "vegan-protein-blend",
+        "name": "Vegan Protein Blend",
+        "description": "Mezcla completa de proteínas vegetales para veganos",
+        "brand": "Vega",
+        "presentations": ["1 lb (454 g)", "2 lbs (907 g)", "4 lbs (1.8 kg)"],
+        "flavors": ["Chocolate", "Vainilla", "Frutos del bosque", "Natural"],
+        "benefits": [
+          "Alternativa completa para dietas veganas",
+          "Digestión suave",
+          "Perfil completo de aminoácidos",
+          "Libre de alérgenos comunes"
+        ],
+        "usage": "Mezclar 1 scoop (30-35g) con 300-350ml de agua o bebida vegetal. Consumir después del entrenamiento o entre comidas.",
+        "composition": "Proteína de guisante, arroz, cáñamo, chía y/o soja. Enriquecida con vitamina B12 y hierro.",
+        "sideEffects": [
+          "Gases o hinchazón en algunas personas",
+          "Sabor menos agradable que las proteínas animales",
+          "Posible presencia de antinutrientes en algunas fuentes"
+        ],
+        "recommendation": "Consumir 1-2 porciones diarias para alcanzar un consumo total de proteínas de 1.6-2.2g por kg de peso corporal.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "proteinas",
+        "nutritionalInfo": {
+          "servingSize": "33g",
+          "servingsPerContainer": 25,
+          "calories": 130,
+          "protein": 20,
+          "carbs": 6,
+          "fat": 2.5,
+          "sugar": 1,
+          "sodium": 240,
+          "iron": 5,
+          "calcium": 60,
+          "vitaminB12": 3,
+          "fiber": 3
+        }
+      }
+    ],
+    "aminoacidos": [
+      {
+        "id": "xtend-bcaa",
+        "name": "Xtend BCAA",
+        "description": "Aminoácidos de cadena ramificada con electrolitos",
+        "brand": "Scivation",
+        "presentations": ["30 servicios (400 g)", "50 servicios (700 g)", "90 servicios (1.2 kg)"],
+        "flavors": ["Sandía", "Mango", "Frutos rojos", "Blue Raspberry", "Sin sabor"],
+        "benefits": [
+          "Estimulación de la síntesis proteica muscular",
+          "Reducción de la fatiga durante el ejercicio",
+          "Prevención del catabolismo muscular",
+          "Recuperación mejorada"
+        ],
+        "usage": "Mezclar 1 scoop (14g) con 300-500ml de agua. Consumir durante el entrenamiento o entre comidas.",
+        "composition": "Leucina (7g), isoleucina (1.75g) y valina (1.75g) en proporción 4:1:1, electrolitos, vitamina B6.",
+        "sideEffects": [
+          "Posible desequilibrio de aminoácidos si se consume en exceso",
+          "Interferencia con la absorción de otros aminoácidos",
+          "Posible sobrecarga renal en personas con problemas renales"
+        ],
+        "recommendation": "Consumir durante entrenamientos intensos o en periodos de déficit calórico para preservar masa muscular.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "aminoacidos",
+        "nutritionalInfo": {
+          "servingSize": "14g",
+          "servingsPerContainer": 30,
+          "calories": 10,
+          "protein": 0,
+          "carbs": 2,
+          "fat": 0,
+          "sugar": 0,
+          "sodium": 180,
+          "bcaas": 7000,
+          "leucine": 3500,
+          "isoleucine": 1750,
+          "valine": 1750,
+          "electrolytes": 1140
+        }
+      },
+      {
+        "id": "essential-amino-energy",
+        "name": "Essential Amino Energy",
+        "description": "Aminoácidos esenciales completos con energía",
+        "brand": "Optimum Nutrition",
+        "presentations": ["30 servicios (270g)", "65 servicios (585g)", "100 servicios (948g)"],
+        "flavors": ["Limón", "Naranja", "Sandía", "Blue Raspberry", "Té verde"],
+        "benefits": [
+          "Energía y concentración durante el entrenamiento",
+          "Recuperación muscular",
+          "Versatilidad de uso",
+          "Bajo en calorías"
+        ],
+        "usage": "Mezclar 1-2 scoops (9-18g) con 300ml de agua. Consumir antes o durante el entrenamiento.",
+        "composition": "Mezcla de aminoácidos (BCAA, arginina, glutamina), cafeína (100mg por 2 scoops), taurina, vitaminas B.",
+        "sideEffects": [
+          "Nerviosismo y ansiedad por la cafeína",
+          "Insomnio si se consume tarde",
+          "Posible tolerancia a la cafeína con uso prolongado"
+        ],
+        "recommendation": "Ideal como pre-entrenamiento ligero o para momentos del día en que necesites un impulso de energía y concentración.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "aminoacidos",
+        "nutritionalInfo": {
+          "servingSize": "9g",
+          "servingsPerContainer": 30,
+          "calories": 5,
+          "protein": 0,
+          "carbs": 2,
+          "fat": 0,
+          "sugar": 0,
+          "sodium": 40,
+          "caffeine": 50,
+          "aminoBlend": 5000,
+          "taurine": 500,
+          "betaAlanine": 500
+        }
+      }
+    ],
+    "preentrenamiento": [
+      {
+        "id": "c4-original",
+        "name": "C4 Original",
+        "description": "Pre-entrenamiento clásico para energía y bombeo",
+        "brand": "Cellucor",
+        "presentations": ["30 servicios (195 g)", "60 servicios (390 g)", "90 servicios (585 g)"],
+        "flavors": ["Sandía", "Frambuesa azul", "Naranja", "Uva", "Fruit Punch"],
+        "benefits": [
+          "Aumento de energía y concentración",
+          "Mayor resistencia y fuerza",
+          "Mejor bombeo muscular",
+          "Retraso de la fatiga"
+        ],
+        "usage": "Mezclar 1 scoop (6g) con 200-300ml de agua. Consumir 20-30 minutos antes del entrenamiento.",
+        "composition": "Cafeína (150mg), beta-alanina (1.6g), creatina nitrato, arginina AKG, vitaminas B.",
+        "sideEffects": [
+          "Hormigueo por la beta-alanina",
+          "Nerviosismo y ansiedad por la cafeína",
+          "Insomnio si se consume tarde",
+          "Aumento de la presión arterial"
+        ],
+        "recommendation": "No consumir después de las 4-5 PM si eres sensible a la cafeína. Comenzar con media dosis para evaluar tolerancia.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "preentrenamiento",
+        "nutritionalInfo": {
+          "servingSize": "6g",
+          "servingsPerContainer": 30,
+          "calories": 5,
+          "carbs": 1,
+          "sugar": 0,
+          "caffeine": 150,
+          "betaAlanine": 1600,
+          "creatineNitrate": 1000,
+          "arginineAKG": 1000,
+          "vitaminC": 250,
+          "niacin": 30,
+          "vitaminB6": 500,
+          "folicAcid": 250,
+          "vitaminB12": 35
+        }
+      },
+      {
+        "id": "pre-jym",
+        "name": "Pre JYM",
+        "description": "Pre-entrenamiento completo con dosis clínicamente efectivas",
+        "brand": "JYM Supplement Science",
+        "presentations": ["20 servicios (570g)", "30 servicios (780g)"],
+        "flavors": ["Ponche de frutas", "Uva", "Cereza", "Sandía"],
+        "benefits": [
+          "Fórmula transparente con dosis completas",
+          "Energía sostenida sin crash",
+          "Mejora del rendimiento y fuerza",
+          "Bombeo muscular intenso"
+        ],
+        "usage": "Mezclar 1 scoop (26g) con 400-500ml de agua. Consumir 30-45 minutos antes del entrenamiento.",
+        "composition": "Creatina HCl (2g), beta-alanina (2g), citrulina malato (6g), BCAA (6g), cafeína (300mg), taurina, tirosina, betaína.",
+        "sideEffects": [
+          "Hormigueo intenso por la beta-alanina",
+          "Alta dosis de cafeína puede causar nerviosismo",
+          "Insomnio si se consume tarde",
+          "No recomendado para personas sensibles a estimulantes"
+        ],
+        "recommendation": "Ideal para atletas avanzados que buscan un pre-entrenamiento completo. No mezclar con otros estimulantes.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "preentrenamiento",
+        "nutritionalInfo": {
+          "servingSize": "26g",
+          "servingsPerContainer": 20,
+          "calories": 70,
+          "carbs": 6,
+          "sugar": 1,
+          "caffeine": 300,
+          "betaAlanine": 2000,
+          "creatineHCl": 2000,
+          "citrullineMalate": 6000,
+          "bcaas": 6000,
+          "taurine": 1000,
+          "tyrosine": 1500,
+          "betaine": 1500,
+          "alphaGPC": 150,
+          "huperzineA": 50
+        }
+      }
+    ],
+    "quemadores": [
+      {
+        "id": "hydroxycut-hardcore-elite",
+        "name": "Hydroxycut Hardcore Elite",
+        "description": "Quemador de grasa potente con estimulantes",
+        "brand": "MuscleTech",
+        "presentations": ["100 cápsulas", "180 cápsulas"],
+        "benefits": [
+          "Aumento del metabolismo",
+          "Supresión del apetito",
+          "Mayor energía y concentración",
+          "Termogénesis aumentada"
+        ],
+        "usage": "Tomar 1 cápsula con agua 30 minutos antes de las comidas principales, hasta 2 veces al día.",
+        "composition": "Cafeína anhidra (270mg), extracto de té verde, L-teanina, yohimbe, coleus forskohlii.",
+        "sideEffects": [
+          "Nerviosismo y ansiedad",
+          "Aumento de la frecuencia cardíaca y presión arterial",
+          "Insomnio",
+          "Posibles problemas digestivos"
+        ],
+        "recommendation": "Comenzar con dosis bajas para evaluar tolerancia. No consumir después de las 4 PM. No recomendado para personas con problemas cardíacos o hipertensión.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "quemadores",
+        "nutritionalInfo": {
+          "servingSize": "2 cápsulas",
+          "servingsPerContainer": 50,
+          "caffeine": 270,
+          "greenTeaExtract": 200,
+          "lTheanine": 100,
+          "yohimbeExtract": 40,
+          "coleusForskohlii": 100,
+          "cocoa": 100
+        }
+      },
+      {
+        "id": "carnitine-liquid",
+        "name": "L-Carnitine 3000",
+        "description": "Transportador de ácidos grasos en forma líquida",
+        "brand": "Dymatize",
+        "presentations": ["473 ml (31 porciones)", "946 ml (62 porciones)"],
+        "flavors": ["Cereza", "Limón", "Manzana verde"],
+        "benefits": [
+          "Transporte de ácidos grasos a las mitocondrias",
+          "Mejora del metabolismo de las grasas",
+          "Recuperación mejorada",
+          "Sin estimulantes"
+        ],
+        "usage": "Tomar 1 cucharada (15ml) antes del entrenamiento o con una comida alta en carbohidratos.",
+        "composition": "L-carnitina (3000mg por porción), vitamina B5.",
+        "sideEffects": [
+          "Generalmente bien tolerada",
+          "Posible olor corporal a pescado en algunas personas"
+        ],
+        "recommendation": "Ideal para personas que no toleran estimulantes o que buscan un quemador de grasa para usar a cualquier hora del día.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "quemadores",
+        "nutritionalInfo": {
+          "servingSize": "15ml",
+          "servingsPerContainer": 31,
+          "calories": 10,
+          "carbs": 2,
+          "sugar": 0,
+          "lCarnitine": 3000,
+          "vitaminB5": 10,
+          "sodium": 35
+        }
+      }
+    ],
+    "ganadores": [
+      {
+        "id": "serious-mass",
+        "name": "Serious Mass",
+        "description": "Ganador de peso con alto contenido calórico",
+        "brand": "Optimum Nutrition",
+        "presentations": ["6 lbs (2.72 kg)", "12 lbs (5.44 kg)"],
+        "flavors": ["Chocolate", "Vainilla", "Fresa", "Plátano", "Cookies & Cream"],
+        "benefits": [
+          "1250 calorías por porción",
+          "50g de proteína por porción",
+          "250g de carbohidratos por porción",
+          "Vitaminas y minerales añadidos"
+        ],
+        "usage": "Mezclar 2 scoops (334g) con 700ml de agua o leche. Consumir entre comidas o después del entrenamiento.",
+        "composition": "Mezcla de proteínas (concentrado de suero, caseína), maltodextrina, MCT, creatina monohidrato, glutamina, vitaminas y minerales.",
+        "sideEffects": [
+          "Posible malestar digestivo",
+          "Sensación de pesadez",
+          "Aumento de grasa corporal si no se combina con entrenamiento adecuado"
+        ],
+        "recommendation": "Ideal para personas con metabolismo rápido que tienen dificultad para ganar peso. Dividir en 2-3 porciones más pequeñas a lo largo del día para mejor digestión.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "ganadores",
+        "nutritionalInfo": {
+          "servingSize": "334g",
+          "servingsPerContainer": 8,
+          "calories": 1250,
+          "protein": 50,
+          "carbs": 252,
+          "fat": 4.5,
+          "sugar": 20,
+          "sodium": 410,
+          "potassium": 1560,
+          "creatine": 1000,
+          "glutamine": 500,
+          "vitamins": "100% DV de 25 vitaminas y minerales"
+        }
+      },
+      {
+        "id": "clean-gainer",
+        "name": "Clean Gainer",
+        "description": "Ganador de peso con menor contenido de azúcares",
+        "brand": "Redcon1",
+        "presentations": ["5 lbs (2.27 kg)", "10 lbs (4.54 kg)"],
+        "flavors": ["Chocolate", "Vainilla", "Cookies & Cream", "Strawberry"],
+        "benefits": [
+          "560 calorías por porción",
+          "30g de proteína por porción",
+          "Bajo contenido de azúcares",
+          "Grasas saludables añadidas"
+        ],
+        "usage": "Mezclar 4 scoops (165g) con 400ml de agua o leche. Consumir 1-3 veces al día según necesidades.",
+        "composition": "Proteína de suero, caseína, avena en polvo, aceite MCT, aceite de coco, semillas de chía, vitaminas y minerales.",
+        "sideEffects": [
+          "Generalmente bien tolerado",
+          "Menor probabilidad de aumento de grasa corporal"
+        ],
+        "recommendation": "Excelente opción para personas que buscan un aumento de peso limpio o atletas que necesitan calorías adicionales de calidad.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "ganadores",
+        "nutritionalInfo": {
+          "servingSize": "165g",
+          "servingsPerContainer": 14,
+          "calories": 560,
+          "protein": 30,
+          "carbs": 70,
+          "fat": 12,
+          "sugar": 5,
+          "fiber": 8,
+          "sodium": 220,
+          "potassium": 450,
+          "mct": 3000,
+          "chiaSeeds": 1000,
+          "vitamins": "50% DV de vitaminas y minerales esenciales"
+        }
+      }
+    ],
+    "vitaminas": [
+      {
+        "id": "opti-men",
+        "name": "Opti-Men",
+        "description": "Multivitamínico completo para hombres",
+        "brand": "Optimum Nutrition",
+        "presentations": ["90 tabletas", "150 tabletas", "240 tabletas"],
+        "benefits": [
+          "75+ ingredientes activos",
+          "Apoyo al sistema inmunológico",
+          "Optimización hormonal",
+          "Antioxidantes para recuperación"
+        ],
+        "usage": "Tomar 3 tabletas al día con las comidas.",
+        "composition": "Vitaminas A, C, D, E, K, complejo B, minerales, extractos de hierbas, enzimas digestivas, antioxidantes.",
+        "sideEffects": [
+          "Posible coloración amarilla de la orina por el exceso de vitamina B",
+          "Malestar estomacal si se toma con el estómago vacío"
+        ],
+        "recommendation": "Excelente complemento para deportistas con alta demanda nutricional o personas con dietas restrictivas.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "vitaminas",
+        "nutritionalInfo": {
+          "servingSize": "3 tabletas",
+          "servingsPerContainer": 50,
+          "vitaminA": "10000 IU (200% DV)",
+          "vitaminC": "300 mg (500% DV)",
+          "vitaminD": "1500 IU (375% DV)",
+          "vitaminE": "200 IU (667% DV)",
+          "vitaminK": "75 mcg (94% DV)",
+          "thiamin": "75 mg (5000% DV)",
+          "riboflavin": "75 mg (4412% DV)",
+          "niacin": "75 mg (375% DV)",
+          "vitaminB6": "50 mg (2500% DV)",
+          "folicAcid": "600 mcg (150% DV)",
+          "vitaminB12": "100 mcg (1667% DV)",
+          "biotin": "300 mcg (100% DV)",
+          "pantothenicAcid": "75 mg (750% DV)",
+          "calcium": "200 mg (20% DV)",
+          "iron": "18 mg (100% DV)",
+          "phosphorus": "100 mg (10% DV)",
+          "iodine": "150 mcg (100% DV)",
+          "magnesium": "100 mg (25% DV)",
+          "zinc": "30 mg (200% DV)",
+          "selenium": "200 mcg (286% DV)",
+          "copper": "2 mg (100% DV)",
+          "manganese": "5 mg (250% DV)",
+          "chromium": "120 mcg (100% DV)",
+          "molybdenum": "80 mcg (107% DV)",
+          "potassium": "50 mg (1% DV)"
+        }
+      },
+      {
+        "id": "vitamin-d3",
+        "name": "Vitamin D3 5000 IU",
+        "description": "Vitamina D3 de alta potencia",
+        "brand": "Now Foods",
+        "presentations": ["120 cápsulas blandas", "240 cápsulas blandas"],
+        "benefits": [
+          "Salud ósea óptima",
+          "Función inmunológica mejorada",
+          "Optimización hormonal",
+          "Mejora del estado de ánimo"
+        ],
+        "usage": "Tomar 1 cápsula blanda al día con una comida que contenga grasas.",
+        "composition": "Vitamina D3 (colecalciferol) 5000 UI, aceite de oliva.",
+        "sideEffects": [
+          "Generalmente bien tolerada",
+          "Posible toxicidad en dosis muy altas durante periodos prolongados"
+        ],
+        "recommendation": "Especialmente importante para personas con poca exposición solar, deportistas indoor o durante los meses de invierno.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "vitaminas",
+        "nutritionalInfo": {
+          "servingSize": "1 cápsula blanda",
+          "servingsPerContainer": 120,
+          "vitaminD3": "5000 IU (1250% DV)",
+          "olivoOil": "20 mg"
+        }
+      }
+    ],
+    "recuperacion": [
+      {
+        "id": "glutamine-recovery",
+        "name": "Glutamine Recovery",
+        "description": "Suplemento de glutamina para recuperación muscular",
+        "brand": "Optimum Nutrition",
+        "presentations": ["300g (60 porciones)", "600g (120 porciones)", "1kg (200 porciones)"],
+        "benefits": [
+          "Recuperación muscular acelerada",
+          "Reducción del catabolismo muscular",
+          "Apoyo al sistema inmunológico",
+          "Mejora de la salud intestinal"
+        ],
+        "usage": "Tomar 5g (1 cucharada) después del entrenamiento y/o antes de dormir.",
+        "composition": "L-glutamina pura (5g por porción).",
+        "sideEffects": [
+          "Generalmente bien tolerada",
+          "Posible malestar gastrointestinal en dosis altas"
+        ],
+        "recommendation": "Ideal para periodos de entrenamiento intenso o para deportistas que entrenan con alta frecuencia.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "recuperacion",
+        "nutritionalInfo": {
+          "servingSize": "5g",
+          "servingsPerContainer": 120,
+          "calories": 20,
+          "protein": 5,
+          "carbs": 0,
+          "fat": 0,
+          "lGlutamine": 5000
+        }
+      },
+      {
+        "id": "zma-recovery",
+        "name": "ZMA Recovery",
+        "description": "Fórmula de zinc, magnesio y vitamina B6 para recuperación nocturna",
+        "brand": "Universal Nutrition",
+        "presentations": ["90 cápsulas", "180 cápsulas"],
+        "benefits": [
+          "Mejora de la calidad del sueño",
+          "Recuperación muscular durante la noche",
+          "Optimización hormonal",
+          "Reducción de calambres musculares"
+        ],
+        "usage": "Tomar 3 cápsulas antes de dormir con el estómago vacío.",
+        "composition": "Zinc (30mg), magnesio (450mg), vitamina B6 (10.5mg).",
+        "sideEffects": [
+          "Sueños vívidos",
+          "Posible malestar gastrointestinal",
+          "Somnolencia"
+        ],
+        "recommendation": "Ideal para deportistas con entrenamientos intensos o problemas de sueño.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "recuperacion",
+        "nutritionalInfo": {
+          "servingSize": "3 cápsulas",
+          "servingsPerContainer": 30,
+          "zinc": "30 mg (200% DV)",
+          "magnesium": "450 mg (112% DV)",
+          "vitaminB6": "10.5 mg (525% DV)"
+        }
+      }
+    ],
+    "otros": [
+      {
+        "id": "creatine-monohydrate",
+        "name": "Creatine Monohydrate",
+        "description": "Suplemento para aumentar la fuerza y potencia muscular",
+        "brand": "Optimum Nutrition",
+        "presentations": ["300 g (60 porciones)", "600 g (120 porciones)", "2 kg (400 porciones)"],
+        "benefits": [
+          "Aumento de fuerza y potencia",
+          "Mayor capacidad para entrenamientos intensos",
+          "Recuperación mejorada entre series",
+          "Aumento de volumen muscular"
+        ],
+        "usage": "Consumir 5g diarios con agua. No es necesaria fase de carga.",
+        "composition": "Monohidrato de creatina puro (5g por porción).",
+        "sideEffects": [
+          "Retención de agua en algunos individuos",
+          "Posible malestar gastrointestinal",
+          "Calambres en casos raros"
+        ],
+        "recommendation": "Suplemento más estudiado y seguro. Efectivo para casi todos los deportes de fuerza y potencia.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "otros",
+        "nutritionalInfo": {
+          "servingSize": "5g",
+          "servingsPerContainer": 120,
+          "calories": 0,
+          "protein": 0,
+          "carbs": 0,
+          "fat": 0,
+          "creatineMonohydrate": 5000
+        }
+      },
+      {
+        "id": "ashwagandha",
+        "name": "KSM-66 Ashwagandha",
+        "description": "Adaptógeno natural para reducir el estrés y mejorar el rendimiento",
+        "brand": "NOW Foods",
+        "presentations": ["60 cápsulas", "120 cápsulas"],
+        "benefits": [
+          "Reducción del estrés y ansiedad",
+          "Mejora de la recuperación",
+          "Optimización de los niveles hormonales",
+          "Aumento de la fuerza y resistencia"
+        ],
+        "usage": "Consumir 1 cápsula 1-2 veces al día con las comidas.",
+        "composition": "Extracto de raíz de Ashwagandha KSM-66 (600mg por cápsula).",
+        "sideEffects": [
+          "Somnolencia en algunas personas",
+          "Malestar gastrointestinal",
+          "Posible interacción con medicamentos para la tiroides"
+        ],
+        "recommendation": "Ideal para personas con altos niveles de estrés o que buscan mejorar la recuperación y el rendimiento de forma natural.",
+        "image": "/placeholder.svg?height=300&width=300",
+        "category": "otros",
+        "nutritionalInfo": {
+          "servingSize": "1 cápsula",
+          "servingsPerContainer": 60,
+          "ashwagandhaExtract": "600 mg",
+          "withanolides": "30 mg"
+        }
+      }
+    ]
+  }
+}
