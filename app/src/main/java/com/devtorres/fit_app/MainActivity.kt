@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,20 +15,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.ViewModelProvider
 import com.devtorres.feature_splash.SplashViewModel
-import com.devtorres.feature_splash.SplashViewModelFactory
 import com.devtorres.fit_app.ui.theme.FitappTheme
 import com.devtorres.ui_common.BackgroundImageApp
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val splashViewModel: SplashViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        // crear fabrica
+        /*// crear fabrica
         val factory = SplashViewModelFactory()
         // crear viewmodel
-        val splashViewModel: SplashViewModel = ViewModelProvider(this, factory)[SplashViewModel::class.java]
+        val splashViewModel: SplashViewModel = ViewModelProvider(this, factory)[SplashViewModel::class.java]*/
 
         // instalar splash screen
         installSplashScreen().apply {

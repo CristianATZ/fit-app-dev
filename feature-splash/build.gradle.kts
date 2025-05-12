@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
@@ -37,6 +38,10 @@ dependencies {
 
     // splash
     implementation(libs.androidx.core.splashscreen)
+
+    // hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 
     // viewmodel
     implementation(libs.androidx.lifecycle.viewmodel)
