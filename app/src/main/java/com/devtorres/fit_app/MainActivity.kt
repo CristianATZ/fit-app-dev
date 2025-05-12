@@ -19,7 +19,9 @@ import com.devtorres.feature_splash.SplashViewModel
 import com.devtorres.feature_splash.SplashViewModelFactory
 import com.devtorres.fit_app.ui.theme.FitappTheme
 import com.devtorres.ui_common.BackgroundImageApp
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // crear fabrica

@@ -16,6 +16,12 @@ desugar_jdk_libs = "2.0.3"
 appcompat = "1.7.0"
 material = "1.12.0"
 lifecycleViewmodel = "2.9.0"
+ksp = "2.0.21-1.0.28"
+hiltAndroid = "2.50"
+hiltAndroidVersion = "2.56.2"
+hiltNavigationCompose = "1.2.0"
+hiltCompiler = "1.2.0"
+hiltAndroidCompiler = "2.56.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,10 +46,15 @@ desugar_jdk_libs = { group = "com.android.tools", name = "desugar_jdk_libs", ver
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycleViewmodel" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompiler" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-
+google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
+dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid"}

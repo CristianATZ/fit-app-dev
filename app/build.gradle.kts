@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    // ksp
+    alias(libs.plugins.google.devtools.ksp)
+    /// hilt
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -65,6 +69,10 @@ dependencies {
 
     // splash screen
     implementation(libs.androidx.core.splashscreen)
+
+    // hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
