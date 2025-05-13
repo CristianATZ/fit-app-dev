@@ -35,6 +35,7 @@ android {
 
 dependencies {
 
+    implementation(project(":core-database"))
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 

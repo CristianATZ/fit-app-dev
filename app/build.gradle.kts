@@ -8,6 +8,11 @@ plugins {
     alias(libs.plugins.dagger.hilt)
 }
 
+// Excluir globalmente el JAR conflictivo de IntelliJ
+configurations.all {
+    exclude(group = "com.intellij", module = "annotations")
+}
+
 android {
     namespace = "com.devtorres.fit_app"
     compileSdk = 35
@@ -53,6 +58,7 @@ android {
 
 dependencies {
     implementation(project(":feature-splash"))
+    implementation(project(":core-data"))
     implementation(project(":ui-common"))
 
 
