@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
@@ -34,6 +35,14 @@ android {
 }
 
 dependencies {
+
+
+    // coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // moshi
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)

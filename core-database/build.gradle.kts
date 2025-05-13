@@ -35,6 +35,14 @@ android {
 }
 
 dependencies {
+    implementation(project(":core-model"))
+
+    // coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // moshi
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
 
     // room
     implementation(libs.androidx.room.runtime)
