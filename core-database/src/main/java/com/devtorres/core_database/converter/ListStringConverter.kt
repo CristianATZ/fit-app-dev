@@ -12,14 +12,19 @@ class ListStringConverter @Inject constructor(
     private val moshi: Moshi
 ) {
 
-    private val listType = Types.newParameterizedType(List::class.java, String::class.java)
-    private val adapter: JsonAdapter<List<String>> = moshi.adapter(listType)
+    @TypeConverter
+    fun fromJson(value: String): List<String>? {
+        val listType = Types.newParameterizedType(List::class.java, String::class.java)
+        val adapter: JsonAdapter<List<String>> = moshi.adapter(listType)
+
+        return adapter.fromJson(value)
+    }
 
     @TypeConverter
-    fun fromJson(value: String?): List<String>? =
-        value?.let { adapter.fromJson(it) }
+    fun toJson(list: List<String>?): String {
+        val listType = Types.newParameterizedType(List::class.java, String::class.java)
+        val adapter: JsonAdapter<List<String>> = moshi.adapter(listType)
 
-    @TypeConverter
-    fun toJson(list: List<String>?): String =
-        adapter.toJson(list)
+        return adapter.toJson(list)
+    }
 }

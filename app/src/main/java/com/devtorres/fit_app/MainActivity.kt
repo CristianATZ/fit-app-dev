@@ -46,10 +46,10 @@ class MainActivity : ComponentActivity() {
 
             FitappTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    BackgroundImageApp()
                     Box(
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        BackgroundImageApp()
                         Greeting("Android")
                     }
                 }

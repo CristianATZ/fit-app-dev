@@ -34,6 +34,7 @@ object DatabaseModule {
     ) : FitAppDatabase {
         return Room
             .databaseBuilder(context, FitAppDatabase::class.java, "fit_app_database")
+            .fallbackToDestructiveMigration(true)
             .addTypeConverter(listStringConverter)
             .build()
     }
@@ -42,5 +43,11 @@ object DatabaseModule {
     @Singleton
     fun provideExerciseDao(fitAppDatabase: FitAppDatabase) : ExerciseDao {
         return fitAppDatabase.exerciseDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideListStringConverter(moshi: Moshi) : ListStringConverter {
+        return ListStringConverter(moshi)
     }
 }
