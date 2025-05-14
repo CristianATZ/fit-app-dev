@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Room
 import com.devtorres.core_database.FitAppDatabase
 import com.devtorres.core_database.callback.ExercisesPopulatorCallback
+import com.devtorres.core_database.callback.SupplementsPopulatorCallback
 import com.devtorres.core_database.converter.ListStringConverter
+import com.devtorres.core_database.converter.MapConverter
 import com.devtorres.core_database.dao.ExerciseDao
+import com.devtorres.core_database.dao.SupplementDao
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -33,13 +36,17 @@ object DatabaseModule {
     fun provideDatabase(
         @ApplicationContext context: Context,
         listStringConverter: ListStringConverter,
-        exercisesPopulatorCallback: ExercisesPopulatorCallback
+        mapConverter: MapConverter,
+        exercisesPopulatorCallback: ExercisesPopulatorCallback,
+        supplementsPopulatorCallback: SupplementsPopulatorCallback
     ) : FitAppDatabase {
         return Room
             .databaseBuilder(context, FitAppDatabase::class.java, "fit_app_database")
             .fallbackToDestructiveMigration(true)
             .addTypeConverter(listStringConverter)
+            .addTypeConverter(mapConverter)
             .addCallback(exercisesPopulatorCallback)
+            .addCallback(supplementsPopulatorCallback)
             .build()
     }
 
@@ -47,6 +54,12 @@ object DatabaseModule {
     @Singleton
     fun provideExerciseDao(fitAppDatabase: FitAppDatabase) : ExerciseDao {
         return fitAppDatabase.exerciseDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSupplementDao(fitAppDatabase: FitAppDatabase) : SupplementDao {
+        return fitAppDatabase.supplementDao()
     }
 
     @Provides
@@ -63,10 +76,29 @@ object DatabaseModule {
         )
     }
 
+    @Provides
+    @Singleton
+    fun provideSupplementsPopulatorCallback(
+        @ApplicationContext context: Context,
+        provider: Provider<SupplementDao>,
+        moshi: Moshi
+    ) : SupplementsPopulatorCallback {
+        return SupplementsPopulatorCallback(
+            context = context,
+            provider = provider,
+            moshi = moshi
+        )
+    }
 
     @Provides
     @Singleton
     fun provideListStringConverter(moshi: Moshi) : ListStringConverter {
         return ListStringConverter(moshi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMapConverter(moshi: Moshi) : MapConverter {
+        return MapConverter(moshi)
     }
 }

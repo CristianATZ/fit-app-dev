@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.Log
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.devtorres.core_database.dao.ExerciseDao
+import com.devtorres.core_database.dao.SupplementDao
 import com.devtorres.core_database.entity.mapper.asEntity
-import com.devtorres.core_model.ExerciseResponse
+import com.devtorres.core_model.SupplementResponse
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -17,9 +17,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
 
-class ExercisesPopulatorCallback @Inject constructor(
+
+class SupplementsPopulatorCallback @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val provider: Provider<ExerciseDao>,
+    private val provider: Provider<SupplementDao>,
     private val moshi: Moshi
 ) : RoomDatabase.Callback() {
 
@@ -29,26 +30,26 @@ class ExercisesPopulatorCallback @Inject constructor(
         super.onCreate(db)
 
         scope.launch(Dispatchers.IO) {
-            val exerciseDao = provider.get()
+            val supplementDao = provider.get()
 
-            Log.d("ExercisesPopulatorCallback", "onCreate: Inicio")
+            Log.d("SupplementsPopulatorCallback", "onCreate: Inicio")
 
-            val exercisesJsonRaw = context.assets.open("exercises.json")
+            val supplementsJsonRaw = context.assets.open("supplements.json")
                 .bufferedReader()
                 .use { it.readText() }
 
-            Log.d("ExercisesPopulatorCallback", "onCreate: Informacion parceada")
+            Log.d("SupplementsPopulatorCallback", "onCreate: Informacion parceada")
 
-            val adapter: JsonAdapter<ExerciseResponse> = moshi.adapter(ExerciseResponse::class.java)
+            val adapter: JsonAdapter<SupplementResponse> = moshi.adapter(SupplementResponse::class.java)
 
-            val wrapper = adapter.fromJson(exercisesJsonRaw)
+            val wrapper = adapter.fromJson(supplementsJsonRaw)
 
-            val exercises = wrapper?.exercises ?: emptyList()
+            val supplements = wrapper?.supplements ?: emptyList()
 
-            Log.d("ExercisesPopulatorCallback", "onCreate: $exercises")
+            Log.d("SupplementsPopulatorCallback", "onCreate: $supplements")
 
-            exerciseDao.insertExercises(
-                exercises = exercises.map { it.asEntity() }
+            supplementDao.insertSupplements(
+                supplements = supplements.map { it.asEntity() }
             )
         }
     }
