@@ -3,6 +3,7 @@ package com.devtorres.core_data
 import androidx.annotation.WorkerThread
 import com.devtorres.core_database.dao.ExerciseDao
 import com.devtorres.core_database.entity.ExerciseEntity
+import com.devtorres.core_database.entity.mapper.asDomain
 import com.devtorres.core_database.entity.mapper.asEntity
 import com.devtorres.core_model.Exercise
 import javax.inject.Inject
@@ -20,5 +21,10 @@ class ExerciseRepositoryImp @Inject constructor(
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    @WorkerThread
+    override suspend fun getExercises(): List<Exercise> {
+        return exerciseDao.getExercises().map { it.asDomain() }
     }
 }

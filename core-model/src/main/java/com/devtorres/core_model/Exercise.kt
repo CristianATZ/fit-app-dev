@@ -4,6 +4,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
+data class ExerciseResponse(
+    @field:Json(name = "exercises")
+    val exercises: List<Exercise>
+)
+
+@JsonClass(generateAdapter = true)
 data class Exercise(
     @field:Json(name = "id")
     val id: String,

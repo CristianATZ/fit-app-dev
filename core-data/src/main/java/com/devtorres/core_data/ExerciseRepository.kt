@@ -8,4 +8,7 @@ interface ExerciseRepository {
 
     @WorkerThread
     suspend fun insertExercises(exercises: List<Exercise>)
+
+    @WorkerThread
+    suspend fun getExercises(): List<Exercise>
 }

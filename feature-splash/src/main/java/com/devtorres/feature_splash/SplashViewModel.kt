@@ -21,6 +21,9 @@ class SplashViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+
+            exerciseRepository.getExercises()
+
             delay(3000) // Simulación de carga (3 segundos)
             _isReady.value = true
         }
