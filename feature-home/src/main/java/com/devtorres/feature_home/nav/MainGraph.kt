@@ -11,7 +11,7 @@ import com.devtorres.core_navigation.controller.navigateToSupplement
 import com.devtorres.feature_exercise.nav.exerciseScreen
 import com.devtorres.feature_home.homeRootScreen
 import com.devtorres.feature_routine.nav.routineScreen
-import com.devtorres.feature_supplements.nav.supplementScreen
+import com.devtorres.feature_supplement.nav.supplementScreen
 
 @Composable
 fun MainNavigation(

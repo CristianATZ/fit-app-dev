@@ -2,10 +2,11 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
-    namespace = "com.devtorres.feature_home"
+    namespace = "com.devtorres.feature_supplement"
     compileSdk = 35
 
     defaultConfig {
@@ -39,12 +40,6 @@ android {
 
 dependencies {
     implementation(project(":core-navigation"))
-    implementation(project(":feature-exercises"))
-    implementation(project(":feature-exercise"))
-    implementation(project(":feature-supplements"))
-    implementation(project(":feature-supplement"))
-    implementation(project(":feature-routines"))
-    implementation(project(":feature-routine"))
 
     // compose
     implementation(platform(libs.androidx.compose.bom))
@@ -53,8 +48,13 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    // hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
     // navigation
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)

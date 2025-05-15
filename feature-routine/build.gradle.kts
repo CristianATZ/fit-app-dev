@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.devtorres.feature_routine"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26
