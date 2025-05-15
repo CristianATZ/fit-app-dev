@@ -7,18 +7,12 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.devtorres.feature_exercises.nav.exercisesScreen
-import com.devtorres.feature_home.nav.homeRoute
-import com.devtorres.feature_home.nav.subHomeRoute
-import com.devtorres.feature_home.nav.subHomeScreen
-import com.devtorres.feature_routines.nav.routinesScreen
-import com.devtorres.feature_supplements.nav.supplementsScreen
+import com.devtorres.feature_home.nav.HomeNavigation
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
-internal fun HomeScreen(
+fun HomeScreen(
     navController: NavHostController = rememberNavController(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
@@ -32,30 +26,12 @@ internal fun HomeScreen(
 
         }
     ) {
-        NavHost(
+        HomeNavigation(
             navController = navController,
-            startDestination = subHomeRoute
-        ) {
-            subHomeScreen(
-                drawerState = drawerState,
-                onNavigateToExercise = onNavigateToExercise,
-                onNavigateToSupplement = onNavigateToSupplement
-            )
-
-            exercisesScreen(
-                drawerState = drawerState,
-                onNavigateToExercise = onNavigateToExercise
-            )
-
-            supplementsScreen(
-                drawerState = drawerState,
-                onNavigateToSupplement = onNavigateToSupplement
-            )
-
-            routinesScreen(
-                drawerState = drawerState,
-                onNavigateToRoutine = onNavigateToRoutine
-            )
-        }
+            drawerState = drawerState,
+            onNavigateToExercise = onNavigateToExercise,
+            onNavigateToSupplement = onNavigateToSupplement,
+            onNavigateToRoutine = onNavigateToRoutine
+        )
     }
 }

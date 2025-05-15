@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.devtorres.feature_home"
+    namespace = "com.devtorres.core_navigation"
     compileSdk = 35
 
     defaultConfig {
@@ -38,11 +38,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-navigation"))
-    implementation(project(":feature-exercises"))
-    implementation(project(":feature-supplements"))
-    implementation(project(":feature-routines"))
-
     // compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)

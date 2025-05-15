@@ -1,18 +1,16 @@
-package com.devtorres.fit_app
+package com.devtorres.feature_home.nav
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.devtorres.core_navigation.Screen
+import com.devtorres.core_navigation.controller.navigateToExercise
+import com.devtorres.core_navigation.controller.navigateToRoutine
+import com.devtorres.core_navigation.controller.navigateToSupplement
 import com.devtorres.feature_exercises.nav.exerciseScreen
-import com.devtorres.feature_exercises.nav.exercisesScreen
-import com.devtorres.feature_exercises.nav.navigateToExercise
-import com.devtorres.feature_home.nav.homeRoute
-import com.devtorres.feature_home.nav.homeScreen
-import com.devtorres.feature_routines.nav.navigateToRoutine
+import com.devtorres.feature_home.homeRootScreen
 import com.devtorres.feature_routines.nav.routineScreen
-import com.devtorres.feature_supplements.nav.navigateToSupplement
 import com.devtorres.feature_supplements.nav.supplementScreen
 
 @Composable
@@ -21,9 +19,9 @@ fun MainNavigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = homeRoute
+        startDestination = Screen.HomeRoot.route
     ) {
-        homeScreen(
+        homeRootScreen(
             onNavigateToExercise = {
                 navController.navigateToExercise("fakeExercise")
             },

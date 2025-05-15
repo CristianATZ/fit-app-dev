@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core-navigation"))
 
     // compose
     implementation(platform(libs.androidx.compose.bom))

@@ -1,17 +1,15 @@
-package com.devtorres.feature_home.nav
+package com.devtorres.feature_home
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.devtorres.feature_home.HomeScreen
+import com.devtorres.core_navigation.Screen
 
-const val homeRoute = "home"
-
-fun NavGraphBuilder.homeScreen(
+fun NavGraphBuilder.homeRootScreen(
     onNavigateToExercise: () -> Unit,
     onNavigateToSupplement: () -> Unit,
     onNavigateToRoutine: () -> Unit
 ) {
-    composable(route = homeRoute) {
+    composable(Screen.HomeRoot.route) {
         HomeScreen(
             onNavigateToExercise = onNavigateToExercise,
             onNavigateToSupplement = onNavigateToSupplement,
