@@ -61,6 +61,11 @@ dependencies {
     implementation(project(":core-data"))
     implementation(project(":ui-common"))
 
+    implementation(project(":feature-home"))
+    implementation(project(":feature-exercises")) // cambiar al modulo unitario
+    implementation(project(":feature-supplements")) // cambiar al modulo unitario
+    implementation(project(":feature-routines")) // cambiar al modulo unitario
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

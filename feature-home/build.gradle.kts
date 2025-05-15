@@ -38,6 +38,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature-exercises"))
+    implementation(project(":feature-supplements"))
+    implementation(project(":feature-routines"))
 
     // compose
     implementation(platform(libs.androidx.compose.bom))
@@ -45,6 +48,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // navigation
+    implementation(libs.androidx.navigation.compose)
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)

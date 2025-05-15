@@ -25,10 +25,6 @@ class MainActivity : ComponentActivity() {
     private val splashViewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        /*// crear fabrica
-        val factory = SplashViewModelFactory()
-        // crear viewmodel
-        val splashViewModel: SplashViewModel = ViewModelProvider(this, factory)[SplashViewModel::class.java]*/
 
         // instalar splash screen
         installSplashScreen().apply {
@@ -47,6 +43,7 @@ class MainActivity : ComponentActivity() {
             FitappTheme {
                 BackgroundImageApp()
 
+                MainNavigation()
             }
         }
     }
