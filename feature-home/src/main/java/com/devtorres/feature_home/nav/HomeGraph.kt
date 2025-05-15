@@ -5,6 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.devtorres.core_navigation.Screen
+import com.devtorres.core_navigation.controller.navigateToExercises
+import com.devtorres.core_navigation.controller.navigateToRoutines
+import com.devtorres.core_navigation.controller.navigateToSupplements
 import com.devtorres.feature_exercises.nav.exercisesScreen
 import com.devtorres.feature_home.subHomeScreen
 import com.devtorres.feature_routines.nav.routinesScreen
@@ -25,8 +28,9 @@ fun HomeNavigation(
     ) {
         subHomeScreen(
             drawerState = drawerState,
-            onNavigateToExercise = onNavigateToExercise,
-            onNavigateToSupplement = onNavigateToSupplement
+            onNavigateToExercises = { navController.navigateToExercises() },
+            onNavigateToSupplements = { navController.navigateToSupplements() },
+            onNavigateToRoutines = { navController.navigateToRoutines() }
         )
 
         exercisesScreen(

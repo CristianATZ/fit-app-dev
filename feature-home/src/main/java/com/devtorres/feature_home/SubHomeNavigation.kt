@@ -7,14 +7,16 @@ import com.devtorres.core_navigation.Screen
 
 fun NavGraphBuilder.subHomeScreen(
     drawerState: DrawerState,
-    onNavigateToExercise: () -> Unit,
-    onNavigateToSupplement: () -> Unit
+    onNavigateToExercises: () -> Unit,
+    onNavigateToSupplements: () -> Unit,
+    onNavigateToRoutines: () -> Unit
 ) {
     composable(Screen.HomeSub.route) {
         SubHomeScreen(
             drawerState = drawerState,
-            onNavigateToExercise = onNavigateToExercise,
-            onNavigateToSupplement = onNavigateToSupplement
+            onNavigateToExercises = onNavigateToExercises,
+            onNavigateToSupplements = onNavigateToSupplements,
+            onNavigateToRoutines = onNavigateToRoutines
         )
     }
 }

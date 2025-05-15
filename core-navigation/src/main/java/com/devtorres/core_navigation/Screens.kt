@@ -8,14 +8,17 @@ sealed class Screen(val route: String) {
     data object Supplements : Screen("supplements")
 
     data object Exercise : Screen("exercise/{exerciseId}") {
-        fun createRoute(id: String) = "${this.route}/$id"
+        private const val EXERCISE_BASE_ROUTE = "exercise"
+        fun createRoute(id: String) = "${EXERCISE_BASE_ROUTE}/$id"
     }
 
     data object Supplement : Screen("supplement/{supplementId}") {
-        fun createRoute(id: String) = "${this.route}/$id"
+        private const val SUPPLEMENT_BASE_ROUTE = "supplement"
+        fun createRoute(id: String) = "${SUPPLEMENT_BASE_ROUTE}/$id"
     }
 
     data object Routine : Screen("routine/{routineId}") {
-        fun createRoute(id: String) = "${this.route}/$id"
+        private const val ROUTINE_BASE_ROUTE = "routine"
+        fun createRoute(id: String) = "${ROUTINE_BASE_ROUTE}/$id"
     }
 }
