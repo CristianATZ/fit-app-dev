@@ -45,23 +45,9 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             FitappTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BackgroundImageApp()
-                    Box(
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        Greeting("Android")
-                    }
-                }
+                BackgroundImageApp()
+
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = name,
-        modifier = modifier
-    )
 }
