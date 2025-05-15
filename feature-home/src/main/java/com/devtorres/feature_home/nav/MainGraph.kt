@@ -8,7 +8,7 @@ import com.devtorres.core_navigation.Screen
 import com.devtorres.core_navigation.controller.navigateToExercise
 import com.devtorres.core_navigation.controller.navigateToRoutine
 import com.devtorres.core_navigation.controller.navigateToSupplement
-import com.devtorres.feature_exercises.nav.exerciseScreen
+import com.devtorres.feature_exercise.nav.exerciseScreen
 import com.devtorres.feature_home.homeRootScreen
 import com.devtorres.feature_routines.nav.routineScreen
 import com.devtorres.feature_supplements.nav.supplementScreen
