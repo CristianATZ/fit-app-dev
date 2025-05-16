@@ -39,6 +39,7 @@ android {
 
 dependencies {
     implementation(project(":core-navigation"))
+    implementation(project(":ui-common"))
     implementation(project(":feature-exercises"))
     implementation(project(":feature-exercise"))
     implementation(project(":feature-supplements"))

@@ -58,7 +58,6 @@ android {
 
 dependencies {
     implementation(project(":feature-splash"))
-    implementation(project(":ui-common"))
     implementation(project(":feature-home"))
 
 

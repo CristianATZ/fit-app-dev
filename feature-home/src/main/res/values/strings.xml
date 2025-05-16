@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lblHomeTitle">TU ENTRENAMIENTO PERSONAL CON</string>
+    <string name="lblHomeTitleDescription">La plataforma completa para gestionar tus rutinas, ejercicios y suplementos. Conecta con coaches profesionales y alcanza tus objetivos fitness.</string>
+    <string name="btnStartNow">Empezar ahora</string>
+    <string name="btnExploreExercises">Explorar ejercicios</string>
+</resources>
