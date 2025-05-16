@@ -4,5 +4,7 @@ import androidx.navigation.NavController
 import com.devtorres.core_navigation.Screen
 
 fun NavController.navigateToRoutines() {
-    this.navigate(Screen.Routines.route)
+    this.navigate(Screen.Routines.route) {
+        launchSingleTop = true
+    }
 }
