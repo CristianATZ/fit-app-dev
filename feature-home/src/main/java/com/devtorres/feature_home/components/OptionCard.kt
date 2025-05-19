@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
@@ -48,7 +47,7 @@ import com.devtorres.ui_common.typo.TitleLarge
  *
  */
 @Composable
-fun OptionCard(
+internal fun OptionCard(
     modifier: Modifier = Modifier,
     @StringRes titleResId: Int,
     @StringRes descriptionResId: Int,
@@ -119,7 +118,7 @@ fun OptionCard(
  *
  */
 @Composable
-fun BoxIcon(
+private fun BoxIcon(
     modifier: Modifier = Modifier,
     icon: ImageVector
 ) {
