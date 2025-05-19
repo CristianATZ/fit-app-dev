@@ -6,4 +6,10 @@
     <string name="btnExploreExercises">Explorar ejercicios</string>
     <string name="lblRoutines">RUTINAS</string>
     <string name="lblRoutinesDescription">Accede a rutinas prediseñadas o recibe planes personalizados de tu coach según tus objetivos específicos.</string>
+    <string name="lblExercises">EJERCICIOS</string>
+    <string name="lblExercisesDescription">Explora cientos de ejercicios con instrucciones detalladas, filtradas por grupo muscular, equipamiento o dificultad.</string>
+    <string name="btnExploreRoutines">Ver rutinas</string>
+    <string name="lblSupplements">SUPLEMENTOS</string>
+    <string name="lblSupplementsDescription">Descubre los mejores suplementos para tus objetivos, con recomendaciones basadas en evidencia científica.</string>
+    <string name="btnExploreSupplements">Ver suplementos</string>
 </resources>
