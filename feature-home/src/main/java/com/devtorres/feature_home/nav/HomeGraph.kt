@@ -18,7 +18,7 @@ import com.devtorres.ui_common.CustomTopAppBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeNavigation(
+internal fun HomeNavigation(
     navController: NavHostController,
     startDestination: String = Screen.HomeSub.route,
     drawerState: DrawerState,

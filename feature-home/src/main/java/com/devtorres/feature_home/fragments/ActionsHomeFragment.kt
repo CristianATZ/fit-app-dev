@@ -23,7 +23,7 @@ import com.devtorres.feature_home.components.OptionCard
 import com.devtorres.ui_common.util.screenHeightExcludingTopBar
 
 @Composable
-fun ActionsHomeFragment(
+internal fun ActionsHomeFragment(
     onNavigateToExercises: () -> Unit,
     onNavigateToSupplements: () -> Unit,
     onNavigateToRoutines: () -> Unit

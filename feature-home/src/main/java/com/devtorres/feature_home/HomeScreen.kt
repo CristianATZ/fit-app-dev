@@ -12,7 +12,7 @@ import com.devtorres.feature_home.nav.HomeNavigation
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
-fun HomeScreen(
+internal fun HomeScreen(
     navController: NavHostController = rememberNavController(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),

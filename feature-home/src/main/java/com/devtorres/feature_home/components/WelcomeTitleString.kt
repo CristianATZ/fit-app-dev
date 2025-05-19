@@ -11,7 +11,7 @@ import com.devtorres.feature_home.R
 import com.devtorres.ui_common.fitProString
 
 @Composable
-fun welcomeTitleString() : AnnotatedString {
+internal fun welcomeTitleString() : AnnotatedString {
     return buildAnnotatedString {
         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
             append(stringResource(R.string.lblHomeTitle))

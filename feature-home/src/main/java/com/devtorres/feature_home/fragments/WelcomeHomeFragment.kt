@@ -29,7 +29,7 @@ import com.devtorres.ui_common.typo.HeadLineLarge
 import com.devtorres.ui_common.util.screenHeightExcludingTopBar
 
 @Composable
-fun WelcomeHomeFragment(
+internal fun WelcomeHomeFragment(
     onNavigateToRoutines: () -> Unit,
     onNavigateToExercises: () -> Unit,
     onNavigateToBottom: () -> Unit
