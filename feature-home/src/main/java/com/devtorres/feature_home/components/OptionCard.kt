@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
@@ -33,6 +34,19 @@ import androidx.compose.ui.unit.dp
 import com.devtorres.ui_common.typo.LabelLarge
 import com.devtorres.ui_common.typo.TitleLarge
 
+/**
+ * Una tarjeta de opción que muestra un ícono, un título, una descripción y un botón de acción.
+ *
+ * @param modifier             Modificador de Compose para personalizar la apariencia y el comportamiento.
+ * @param titleResId           Recurso de cadena para el título principal de la tarjeta.
+ * @param descriptionResId     Recurso de cadena para la descripción detallada de la tarjeta.
+ * @param buttonResId          Recurso de cadena para el texto del botón de acción.
+ * @param boxIcon              Vector de imagen que se mostrará en el círculo superior de la tarjeta.
+ * @param cardColors           Colores que se aplican al fondo y al contenido de la [Card].
+ * @param textButtonColors     Colores que se aplican al botón de texto dentro de la tarjeta.
+ * @param onClick              Lambda que se ejecuta cuando se pulsa la tarjeta o el botón interno.
+ *
+ */
 @Composable
 fun OptionCard(
     modifier: Modifier = Modifier,
@@ -53,18 +67,9 @@ fun OptionCard(
             modifier = modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            Box(
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .background(colorScheme.onBackground.copy(0.5f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    painter = rememberVectorPainter(boxIcon),
-                    contentDescription = null,
-                    modifier = Modifier.padding(8.dp)
-                )
-            }
+            BoxIcon(
+                icon = boxIcon
+            )
 
             Column {
                 TitleLarge(
@@ -99,5 +104,35 @@ fun OptionCard(
                 )
             }
         }
+    }
+}
+
+/**
+ * Composable que renderiza un ícono dentro de un contenedor circular con fondo semitransparente.
+ *
+ * @param modifier  Modificador de Compose para ajustar tamaño, posición, etc.
+ * @param icon      Vector de imagen que se mostrará en el centro del círculo.
+ *
+ * Esta función crea un [Box] con forma de círculo (`CircleShape`) y un color de fondo
+ * semitransparente basado en el color `onBackground` del tema. Dentro de él, dibuja
+ * el ícono provisto con un padding interno de 8.dp para que quede centrado y con espacio.
+ *
+ */
+@Composable
+fun BoxIcon(
+    modifier: Modifier = Modifier,
+    icon: ImageVector
+) {
+    Box(
+        modifier = modifier
+            .clip(CircleShape)
+            .background(colorScheme.onBackground.copy(0.5f)),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            painter = rememberVectorPainter(icon),
+            contentDescription = null,
+            modifier = Modifier.padding(8.dp)
+        )
     }
 }
