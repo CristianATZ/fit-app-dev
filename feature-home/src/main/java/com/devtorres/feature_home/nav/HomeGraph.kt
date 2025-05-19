@@ -14,7 +14,7 @@ import com.devtorres.feature_exercises.nav.exercisesScreen
 import com.devtorres.feature_home.subHomeScreen
 import com.devtorres.feature_routines.nav.routinesScreen
 import com.devtorres.feature_supplements.nav.supplementsScreen
-import com.devtorres.ui_common.CustomTopAppBar
+import com.devtorres.feature_home.components.CustomTopAppBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -29,7 +29,7 @@ internal fun HomeNavigation(
     Scaffold(
         topBar = {
             CustomTopAppBar(
-                actions = {}
+                drawerState = drawerState
             )
         }
     ) { innerPadding ->

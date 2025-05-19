@@ -4,12 +4,16 @@
     <string name="lblHomeTitleDescription">La plataforma completa para gestionar tus rutinas, ejercicios y suplementos. Conecta con coaches profesionales y alcanza tus objetivos fitness.</string>
     <string name="btnStartNow">Empezar ahora</string>
     <string name="btnExploreExercises">Explorar ejercicios</string>
-    <string name="lblRoutines">RUTINAS</string>
+    <string name="lblRoutinesUpperCase">RUTINAS</string>
     <string name="lblRoutinesDescription">Accede a rutinas prediseñadas o recibe planes personalizados de tu coach según tus objetivos específicos.</string>
-    <string name="lblExercises">EJERCICIOS</string>
+    <string name="lblExercisesUpperCase">EJERCICIOS</string>
     <string name="lblExercisesDescription">Explora cientos de ejercicios con instrucciones detalladas, filtradas por grupo muscular, equipamiento o dificultad.</string>
     <string name="btnExploreRoutines">Ver rutinas</string>
-    <string name="lblSupplements">SUPLEMENTOS</string>
+    <string name="lblSupplementsUpperCase">SUPLEMENTOS</string>
     <string name="lblSupplementsDescription">Descubre los mejores suplementos para tus objetivos, con recomendaciones basadas en evidencia científica.</string>
     <string name="btnExploreSupplements">Ver suplementos</string>
+    <string name="lblHome">Inicio</string>
+    <string name="lblRoutines">Rutinas</string>
+    <string name="lblExercises">Ejercicios</string>
+    <string name="lblSupplements">Suplementos</string>
 </resources>

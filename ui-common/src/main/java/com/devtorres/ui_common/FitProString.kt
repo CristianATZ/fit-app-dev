@@ -10,17 +10,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 
 @Composable
-fun fitProString() : AnnotatedString {
+fun fitProString(
+    upperCase: Boolean = true
+) : AnnotatedString {
 
     val fitString = stringResource(R.string.lblFit)
     val proString = stringResource(R.string.lblPro)
 
     return buildAnnotatedString {
         withStyle(style = SpanStyle(color = colorScheme.primary, fontWeight = FontWeight.Bold)) {
-            append(fitString.uppercase())
+            append(
+                if(upperCase) fitString.uppercase()
+                else fitString
+            )
         }
         withStyle(style = SpanStyle(color = colorScheme.onBackground, fontWeight = FontWeight.Bold)) {
-            append(proString.uppercase())
+            append(
+                if(upperCase) proString.uppercase()
+                else proString
+            )
         }
     }
 }

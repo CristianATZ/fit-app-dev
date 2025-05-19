@@ -41,7 +41,7 @@ internal fun ActionsHomeFragment(
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             OptionCard(
-                titleResId = R.string.lblRoutines,
+                titleResId = R.string.lblRoutinesUpperCase,
                 descriptionResId = R.string.lblRoutinesDescription,
                 buttonResId = R.string.btnExploreRoutines,
                 boxIcon = Icons.Default.Bookmark,
@@ -56,7 +56,7 @@ internal fun ActionsHomeFragment(
             )
 
             OptionCard(
-                titleResId = R.string.lblExercises,
+                titleResId = R.string.lblExercisesUpperCase,
                 descriptionResId = R.string.lblExercisesDescription,
                 buttonResId = R.string.btnExploreExercises,
                 boxIcon = Icons.Default.BarChart,
@@ -71,7 +71,7 @@ internal fun ActionsHomeFragment(
             )
 
             OptionCard(
-                titleResId = R.string.lblSupplements,
+                titleResId = R.string.lblSupplementsUpperCase,
                 descriptionResId = R.string.lblSupplementsDescription,
                 buttonResId = R.string.btnExploreSupplements,
                 boxIcon = Icons.Default.BatterySaver,
