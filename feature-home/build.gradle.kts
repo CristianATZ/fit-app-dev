@@ -57,6 +57,9 @@ dependencies {
     // navigation
     implementation(libs.androidx.navigation.compose)
 
+    // icons
+    implementation(libs.androidx.material.icons.extended.android)
+
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
