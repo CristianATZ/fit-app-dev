@@ -117,6 +117,7 @@ internal fun HomeScreen(
                         }
 
                         navController.navigate(route) {
+                            popUpTo(Screen.HomeSub.route) { inclusive = false }
                             launchSingleTop = true
                         }
                     }
