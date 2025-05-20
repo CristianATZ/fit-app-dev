@@ -44,7 +44,7 @@ class SupplementsPopulatorCallback @Inject constructor(
 
             val wrapper = adapter.fromJson(supplementsJsonRaw)
 
-            val supplements = wrapper?.supplements ?: emptyList()
+            val supplements = wrapper?.supplementDtos ?: emptyList()
 
             Log.d("SupplementsPopulatorCallback", "onCreate: $supplements")
 

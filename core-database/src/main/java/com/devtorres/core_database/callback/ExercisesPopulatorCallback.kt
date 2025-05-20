@@ -43,7 +43,7 @@ class ExercisesPopulatorCallback @Inject constructor(
 
             val wrapper = adapter.fromJson(exercisesJsonRaw)
 
-            val exercises = wrapper?.exercises ?: emptyList()
+            val exercises = wrapper?.exerciseDtos ?: emptyList()
 
             Log.d("ExercisesPopulatorCallback", "onCreate: $exercises")
 

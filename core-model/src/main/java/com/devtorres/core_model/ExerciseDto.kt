@@ -6,11 +6,11 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ExerciseResponse(
     @field:Json(name = "exercises")
-    val exercises: List<Exercise>
+    val exerciseDtos: List<ExerciseDto>
 )
 
 @JsonClass(generateAdapter = true)
-data class Exercise(
+data class ExerciseDto(
     @field:Json(name = "id")
     val id: String,
     @field:Json(name = "name")
