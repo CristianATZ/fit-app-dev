@@ -46,7 +46,7 @@ internal fun HomeNavigation(
             )
 
             exercisesScreen(
-                drawerState = drawerState,
+                innerPadding = innerPadding,
                 onNavigateToExercise = onNavigateToExercise
             )
 

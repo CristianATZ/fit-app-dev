@@ -2,9 +2,9 @@ package com.devtorres.core_data
 
 import androidx.annotation.WorkerThread
 import com.devtorres.core_database.dao.ExerciseDao
-import com.devtorres.core_database.entity.ExerciseEntity
 import com.devtorres.core_database.entity.mapper.asDomain
 import com.devtorres.core_database.entity.mapper.asEntity
+import com.devtorres.core_domain.ExerciseRepository
 import com.devtorres.core_model.Exercise
 import javax.inject.Inject
 import javax.inject.Singleton

@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
-    namespace = "com.devtorres.core_data"
+    namespace = "com.devtorres.core_domain"
     compileSdk = 35
 
     defaultConfig {
@@ -35,13 +34,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-database"))
-    implementation(project(":core-domain"))
     implementation(project(":core-model"))
-
-    // hilt
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
