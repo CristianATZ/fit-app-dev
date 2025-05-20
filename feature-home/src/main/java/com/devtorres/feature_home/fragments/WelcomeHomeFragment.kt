@@ -51,7 +51,8 @@ internal fun WelcomeHomeFragment(
             HeadLineLarge(
                 text = welcomeTitleString(),
                 fontWeight = FontWeight.ExtraBold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(Modifier.size(24.dp))
@@ -59,7 +60,9 @@ internal fun WelcomeHomeFragment(
             BodyLarge(
                 stringResId = R.string.lblHomeTitleDescription,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.alpha(0.5f)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .alpha(0.5f)
             )
 
             Spacer(Modifier.size(32.dp))

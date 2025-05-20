@@ -1,6 +1,6 @@
 package com.devtorres.core_database.entity.mapper
 
-import com.devtorres.core_model.NutritionalInfo
+import com.devtorres.core_model.dto.NutritionalInfo
 
 internal fun Map<String, String>.toNutritionalInfo(): NutritionalInfo {
     return NutritionalInfo(

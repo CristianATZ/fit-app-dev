@@ -1,12 +1,12 @@
 package com.devtorres.core_data.mapper
 
 import com.devtorres.core_database.entity.ExerciseEntity
-import com.devtorres.core_model.ExerciseUI
+import com.devtorres.core_model.ui.ExerciseSummaryUI
 
 
 object ExerciseSummaryMapper {
-    fun ExerciseEntity.asUi() : ExerciseUI {
-        return ExerciseUI(
+    fun ExerciseEntity.asExerciseSummary() : ExerciseSummaryUI {
+        return ExerciseSummaryUI(
             name = this.name,
             level = this.level,
             equipment = this.equipment,

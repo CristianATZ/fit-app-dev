@@ -1,6 +1,6 @@
 package com.devtorres.core_data.di
 
-import com.devtorres.core_domain.ExerciseRepository
+import com.devtorres.core_domain.repository.ExerciseRepository
 import com.devtorres.core_data.ExerciseRepositoryImp
 import dagger.Binds
 import dagger.Module

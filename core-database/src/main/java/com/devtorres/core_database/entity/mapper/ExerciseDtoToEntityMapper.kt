@@ -1,7 +1,7 @@
 package com.devtorres.core_database.entity.mapper
 
 import com.devtorres.core_database.entity.ExerciseEntity
-import com.devtorres.core_model.ExerciseDto
+import com.devtorres.core_model.dto.ExerciseDto
 
 object ExerciseDtoToEntityMapper {
     fun asEntity(domain: ExerciseDto): ExerciseEntity {

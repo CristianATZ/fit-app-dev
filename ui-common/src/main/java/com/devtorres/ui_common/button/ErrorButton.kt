@@ -13,19 +13,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.TextUnit
+import com.devtorres.ui_common.typo.LabelLarge
 
 @Composable
 fun ErrorButton(
     modifier: Modifier = Modifier,
     @StringRes stringResId: Int,
     enabled: Boolean = true,
-    fontSize: TextUnit = TextUnit.Unspecified,
     shape: Shape = MaterialTheme.shapes.small,
     elevation: ButtonElevation? = null,
     onClick: () -> Unit
 ) {
-    val text = stringResource(stringResId)
-
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
@@ -37,9 +35,8 @@ fun ErrorButton(
         elevation = elevation ?: ButtonDefaults.buttonElevation(),
         modifier = modifier.fillMaxWidth()
     ) {
-        Text(
-            text = text,
-            fontSize = fontSize
+        LabelLarge(
+            stringResId = stringResId
         )
     }
 }

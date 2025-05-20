@@ -1,4 +1,4 @@
-package com.devtorres.core_model
+package com.devtorres.core_model.dto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

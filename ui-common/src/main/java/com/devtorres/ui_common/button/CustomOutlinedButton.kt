@@ -12,18 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.TextUnit
+import com.devtorres.ui_common.typo.LabelLarge
 
 @Composable
 fun CustomOutlinedButton(
     modifier: Modifier = Modifier,
     @StringRes stringResId: Int,
     enabled: Boolean = true,
-    fontSize: TextUnit = TextUnit.Unspecified,
     shape: Shape = MaterialTheme.shapes.small,
     onClick: () -> Unit
 ) {
-    val text = stringResource(stringResId)
-
     OutlinedButton(
         onClick = onClick,
         colors = ButtonDefaults.outlinedButtonColors(
@@ -34,9 +32,8 @@ fun CustomOutlinedButton(
         shape = shape,
         modifier = modifier.fillMaxWidth()
     ) {
-        Text(
-            text = text,
-            fontSize = fontSize
+        LabelLarge(
+            stringResId = stringResId
         )
     }
 }

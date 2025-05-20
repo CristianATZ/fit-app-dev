@@ -1,7 +1,7 @@
 package com.devtorres.core_database.entity.mapper
 
 import com.devtorres.core_database.entity.SupplementEntity
-import com.devtorres.core_model.SupplementDto
+import com.devtorres.core_model.dto.SupplementDto
 
 object SupplementDtoToEntityMapper {
     fun asEntity(domain: SupplementDto): SupplementEntity {

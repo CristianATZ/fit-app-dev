@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lblExercisesTitle1">"BIBLIOTECA DE "</string>
+    <string name="lblExercisesTitle2">EJERCICIOS</string>
+    <string name="lblExercisesTitleDescription">Explora nuestra colección completa de ejercicios organizados por grupo muscular</string>
+    <string name="btnFilter">Filtrar ejercicios</string>
+    <string name="lblNull" />
+    <string name="lblSearchExercise">Buscar ejercicio…</string>
+</resources>

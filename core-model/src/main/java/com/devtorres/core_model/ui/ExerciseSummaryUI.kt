@@ -1,6 +1,6 @@
-package com.devtorres.core_model
+package com.devtorres.core_model.ui
 
-data class ExerciseUI(
+data class ExerciseSummaryUI(
     val name: String,
     val level: String,
     val equipment: String,

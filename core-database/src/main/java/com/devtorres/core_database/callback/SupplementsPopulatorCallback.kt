@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.devtorres.core_database.dao.SupplementDao
 import com.devtorres.core_database.entity.mapper.asEntity
-import com.devtorres.core_model.SupplementResponse
+import com.devtorres.core_model.dto.SupplementResponse
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
