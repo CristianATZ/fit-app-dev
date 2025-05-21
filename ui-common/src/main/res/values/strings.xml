@@ -2,4 +2,5 @@
 <resources>
     <string name="lblFit">Fit</string>
     <string name="lblPro">Pro</string>
+    <string name="lblImageNotFound">Imagen no encontrada</string>
 </resources>

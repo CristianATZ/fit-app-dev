@@ -21,7 +21,6 @@ fun PrimaryButton(
     @StringRes stringResId: Int,
     enabled: Boolean = true,
     shape: Shape = MaterialTheme.shapes.small,
-    elevation: ButtonElevation? = null,
     onClick: () -> Unit
 ) {
     Button(
@@ -32,7 +31,6 @@ fun PrimaryButton(
         ),
         enabled = enabled,
         shape = shape,
-        elevation = elevation ?: ButtonDefaults.buttonElevation(),
         modifier = modifier.fillMaxWidth()
     ) {
         LabelLarge(

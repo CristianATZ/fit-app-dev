@@ -5,7 +5,7 @@ import androidx.navigation.compose.composable
 import com.devtorres.core_navigation.Screen
 
 internal fun NavGraphBuilder.homeRootScreen(
-    onNavigateToExercise: () -> Unit,
+    onNavigateToExercise: (String) -> Unit,
     onNavigateToSupplement: () -> Unit,
     onNavigateToRoutine: () -> Unit
 ) {

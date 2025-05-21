@@ -6,4 +6,6 @@
     <string name="btnFilter">Filtrar ejercicios</string>
     <string name="lblNull" />
     <string name="lblSearchExercise">Buscar ejercicio…</string>
+    <string name="lblExerciseInfoRow">%1$s • %2$s • %3$s</string>
+    <string name="btnDetails">Ver detalles</string>
 </resources>

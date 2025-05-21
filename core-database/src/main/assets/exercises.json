@@ -43,7 +43,7 @@
       "alternative": ["Barbell_Bench_Press", "Push_ups"]
     },
     {
-      "id": "Push_ups",
+      "id": "Push_Ups",
       "name": "Push-ups",
       "force": "push",
       "level": "beginner",
@@ -64,7 +64,7 @@
       "alternative": ["Barbell_Bench_Press", "Dumbbell_Bench_Press"]
     },
     {
-      "id": "Sentadilla_con_barra",
+      "id": "Barbell_Squat",
       "name": "Sentadilla con barra",
       "force": "push",
       "level": "beginner",

@@ -7,6 +7,7 @@ import com.devtorres.core_model.ui.ExerciseSummaryUI
 object ExerciseSummaryMapper {
     fun ExerciseEntity.asExerciseSummary() : ExerciseSummaryUI {
         return ExerciseSummaryUI(
+            id = this.id,
             name = this.name,
             level = this.level,
             equipment = this.equipment,

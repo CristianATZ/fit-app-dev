@@ -22,7 +22,7 @@ internal fun HomeNavigation(
     navController: NavHostController,
     startDestination: String = Screen.HomeSub.route,
     drawerState: DrawerState,
-    onNavigateToExercise: () -> Unit,
+    onNavigateToExercise: (String) -> Unit,
     onNavigateToSupplement: () -> Unit,
     onNavigateToRoutine: () -> Unit
 ) {

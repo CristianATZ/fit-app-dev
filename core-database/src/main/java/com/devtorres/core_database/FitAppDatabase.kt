@@ -15,8 +15,7 @@ import com.devtorres.core_database.entity.SupplementEntity
         ExerciseEntity::class,
         SupplementEntity::class
     ],
-    version = 1,
-    exportSchema = true
+    version = 1
 )
 @TypeConverters(
     value = [

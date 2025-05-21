@@ -101,7 +101,7 @@ internal fun HomeScreen(
     navController: NavHostController = rememberNavController(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-    onNavigateToExercise: () -> Unit,
+    onNavigateToExercise: (String) -> Unit,
     onNavigateToSupplement: () -> Unit,
     onNavigateToRoutine: () -> Unit
 ) {

@@ -10,7 +10,7 @@ import com.devtorres.feature_exercises.ExercisesViewModel
 
 fun NavGraphBuilder.exercisesScreen(
     innerPadding: PaddingValues,
-    onNavigateToExercise: () -> Unit
+    onNavigateToExercise: (String) -> Unit
 ) {
     composable(Screen.Exercises.route) {
         // iniciailizar viewmodel aqui con hilt

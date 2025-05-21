@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(project(":ui-common"))
+
     implementation(project(":core-navigation"))
     implementation(project(":core-domain"))
     implementation(project(":core-model"))
@@ -53,6 +54,7 @@ dependencies {
 
     // hilt
     implementation(libs.hilt.android)
+    implementation(libs.accompanist.flowlayout)
     ksp(libs.hilt.android.compiler)
 
     // navigation

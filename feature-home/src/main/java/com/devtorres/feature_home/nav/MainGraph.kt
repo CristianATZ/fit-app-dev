@@ -22,8 +22,8 @@ fun MainNavigation(
         startDestination = Screen.HomeRoot.route
     ) {
         homeRootScreen(
-            onNavigateToExercise = {
-                navController.navigateToExercise("fakeExercise")
+            onNavigateToExercise = { id ->
+                navController.navigateToExercise(exerciseId = id)
             },
             onNavigateToSupplement = {
                 navController.navigateToSupplement("fakeSupplement")

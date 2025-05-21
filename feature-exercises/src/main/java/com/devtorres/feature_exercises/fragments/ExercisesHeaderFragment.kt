@@ -16,8 +16,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.devtorres.feature_exercises.MuscleGroupTabRow
 import com.devtorres.feature_exercises.R
+import com.devtorres.feature_exercises.components.MuscleGroupTabRow
 import com.devtorres.feature_exercises.components.exercisesTitleString
 import com.devtorres.finager.core.presentation.components.typo.BodyLarge
 import com.devtorres.ui_common.button.CustomOutlinedButton
