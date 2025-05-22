@@ -42,6 +42,7 @@ dependencies {
 
     // moshi
     implementation(libs.moshi.kotlin)
+    implementation(libs.androidx.tools.core)
     ksp(libs.moshi.kotlin.codegen)
 
     // room

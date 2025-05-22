@@ -54,7 +54,6 @@ dependencies {
 
     // hilt
     implementation(libs.hilt.android)
-    implementation(libs.accompanist.flowlayout)
     ksp(libs.hilt.android.compiler)
 
     // navigation

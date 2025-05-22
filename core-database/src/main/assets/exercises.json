@@ -48,7 +48,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "body_only",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps", "core"],
       "instructions": [

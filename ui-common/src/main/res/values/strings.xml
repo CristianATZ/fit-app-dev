@@ -3,4 +3,53 @@
     <string name="lblFit">Fit</string>
     <string name="lblPro">Pro</string>
     <string name="lblImageNotFound">Imagen no encontrada</string>
+
+    <string name="lblExerciseInfoRow">%1$s • %2$s • %3$s</string>
+    <string name="btnDetails">Ver detalles</string>
+
+    // MUSCLES ---------------
+    <string name="muscle_all">Todos</string>
+    <string name="muscle_back">Espalda</string>
+    <string name="muscle_lower_back">Espalda baja</string>
+    <string name="muscle_shoulders">Hombros</string>
+    <string name="muscle_arms">Brazos</string>
+    <string name="muscle_legs">Piernas</string>
+    <string name="muscle_chest">Pecho</string>
+    <string name="muscle_calves">Pantorrilla</string>
+    <string name="muscle_forearms">Antebrazo</string>
+    <string name="muscle_abs">Abs</string>
+    <string name="muscle_neck">Cuello</string>
+    <string name="muscle_traps">Trapecios</string>
+    <string name="muscle_quadriceps">Cuadriceps</string>
+    <string name="muscle_hamstrings">Isquiotibiales</string>
+    <string name="muscle_glutes">Gluteos</string>
+    <string name="muscle_biceps">Biceps</string>
+    <string name="muscle_triceps">Triceps</string>
+    <string name="muscle_lats">Dorsales</string>
+    <string name="muscle_abductors">Abductores</string>
+    <string name="muscle_adductors">Aductores</string>
+    <string name="muscle_core">Core</string>
+
+    // EQUIPMENT ---------------
+    <string name="equipment_barbell">Barra</string>
+    <string name="equipment_dumbbell">Mancuernas</string>
+    <string name="equipment_machine">Máquina</string>
+    <string name="equipment_cable">Polea</string>
+    <string name="equipment_body_only">Solo cuerpo</string>
+    <string name="equipment_kettlebell">Pesa rusa</string>
+    <string name="equipment_band">Banda</string>
+    <string name="equipment_other">Otro</string>
+
+    // LEVEL ---------------
+    <string name="level_beginner">Principiante</string>
+    <string name="level_intermediate">Intermedio</string>
+    <string name="level_advanced">Avanzado</string>
+
+    // CATEGORY ---------------
+    <string name="category_strength">Fuerza</string>
+    <string name="category_cardio">Cardio</string>
+    <string name="category_stretching">Estiramiento</string>
+    <string name="category_plyometric">Pliometría</string>
+    <string name="category_strongman">Strongman</string>
+    <string name="category_powerlifting">Powerlifting</string>
 </resources>

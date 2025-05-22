@@ -17,12 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.devtorres.core_model.enum.MuscleGroup
+import com.devtorres.ui_common.strings.stringRes
 import com.devtorres.ui_common.typo.LabelLarge
 import kotlinx.coroutines.launch
 
 @Composable
 fun MuscleGroupTabRow() {
-    val allMuscleGroups = remember { MuscleGroup.entries.toList() }
+    val allMuscleGroups = remember { MuscleGroup.entries.toList().map { it.stringRes() } }
     val coroutineScope = rememberCoroutineScope()
 
     val pagerState = rememberPagerState(
@@ -57,7 +58,7 @@ fun MuscleGroupTabRow() {
                 },
                 text = {
                     LabelLarge(
-                        text = muscleGroup.displayName,
+                        stringResId = muscleGroup
                     )
                 },
                 selectedContentColor = colorScheme.secondary,

@@ -7,6 +7,7 @@ import com.devtorres.core_database.callback.ExercisesPopulatorCallback
 import com.devtorres.core_database.callback.SupplementsPopulatorCallback
 import com.devtorres.core_database.converter.ListStringConverter
 import com.devtorres.core_database.converter.MapConverter
+import com.devtorres.core_database.converter.MoshiConverters
 import com.devtorres.core_database.dao.ExerciseDao
 import com.devtorres.core_database.dao.SupplementDao
 import com.squareup.moshi.Moshi
@@ -35,7 +36,8 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context,
-        listStringConverter: ListStringConverter,
+        //listStringConverter: ListStringConverter,
+        moshiConverters: MoshiConverters,
         mapConverter: MapConverter,
         exercisesPopulatorCallback: ExercisesPopulatorCallback,
         supplementsPopulatorCallback: SupplementsPopulatorCallback
@@ -43,7 +45,8 @@ object DatabaseModule {
         return Room
             .databaseBuilder(context, FitAppDatabase::class.java, "fit_app_database")
             .fallbackToDestructiveMigration(true)
-            .addTypeConverter(listStringConverter)
+            //.addTypeConverter(listStringConverter)
+            .addTypeConverter(moshiConverters)
             .addTypeConverter(mapConverter)
             .addCallback(exercisesPopulatorCallback)
             .addCallback(supplementsPopulatorCallback)
@@ -90,10 +93,16 @@ object DatabaseModule {
         )
     }
 
-    @Provides
+    /*@Provides
     @Singleton
     fun provideListStringConverter(moshi: Moshi) : ListStringConverter {
         return ListStringConverter(moshi)
+    }*/
+
+    @Provides
+    @Singleton
+    fun provideMoshiConverters(moshi: Moshi) : MoshiConverters {
+        return MoshiConverters(moshi)
     }
 
     @Provides

@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core-model"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -48,6 +49,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // flowlayout
+    implementation(libs.accompanist.flowlayout)
 
     // coil
     implementation(libs.coil.svg)

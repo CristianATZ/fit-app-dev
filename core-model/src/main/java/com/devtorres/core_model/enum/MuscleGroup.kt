@@ -1,26 +1,27 @@
 package com.devtorres.core_model.enum
 
-enum class MuscleGroup(val displayName: String) {
-    ALL("Todos"),
-    CHEST("Pecho"),
-    BACK("Espalda"),
-    SHOULDERS("Hombros"),
-    ARMS("Brazos"),
-    LEGS("Piernas"),
-    CALVES("Pantorrillas"),
-    FOREARMS("Antebrazos"),
-    ABS("Abdominales"),
-    NECK("Cuello"),
-    TRAPS("Trapecios"),
-    QUADRICEPS("Cuádriceps"),
-    HAMSTRINGS("Isquiotibiales"),
-    GLUTES("Glúteos"),
-    BICEPS("Bíceps"),
-    TRICEPS("Tríceps"),
-    LATS("Dorsales"),
-    ABDUCTORS("Abductores"),
-    ADDUCTORS("Aductores"),
-    CORE("Core");
+import com.squareup.moshi.Json
 
-    override fun toString(): String = displayName
+enum class MuscleGroup {
+    ALL,
+    @Json(name = "chest")           CHEST,
+    @Json(name = "back")            BACK,
+    @Json(name = "lower back")      LOWER_BACK,
+    @Json(name = "shoulders")       SHOULDERS,
+    @Json(name = "arms")            ARMS,
+    @Json(name = "legs")            LEGS,
+    @Json(name = "calves")          CALVES,
+    @Json(name = "forearms")        FOREARMS,
+    @Json(name = "abs")             ABS,
+    @Json(name = "neck")            NECK,
+    @Json(name = "traps")           TRAPS,
+    @Json(name = "quadriceps")      QUADRICEPS,
+    @Json(name = "hamstrings")      HAMSTRINGS,
+    @Json(name = "glutes")          GLUTES,
+    @Json(name = "biceps")          BICEPS,
+    @Json(name = "triceps")         TRICEPS,
+    @Json(name = "lats")            LATS,
+    @Json(name = "abductors")       ABDUCTORS,
+    @Json(name = "adductors")       ADDUCTORS,
+    @Json(name = "core")            CORE
 }

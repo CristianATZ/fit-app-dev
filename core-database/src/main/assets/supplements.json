@@ -22,7 +22,7 @@
       ],
       "recommendation": "Consumir 1-2 porciones diarias para alcanzar un consumo total de proteínas de 1.6-2.2g por kg de peso corporal.",
       "image": "0.jpg",
-      "category": "proteinas",
+      "category": "protein",
       "nutritionalInfo": {
         "servingSize": "30g",
         "servingsPerContainer": 74,
@@ -58,7 +58,7 @@
       ],
       "recommendation": "Ideal para periodos de definición muscular o para personas que buscan minimizar la ingesta de grasas y carbohidratos.",
       "image": "0.jpg",
-      "category": "proteinas",
+      "category": "protein",
       "nutritionalInfo": {
         "servingSize": "25g",
         "servingsPerContainer": 40,
@@ -95,7 +95,7 @@
       ],
       "recommendation": "Consumir 1-2 porciones diarias para alcanzar un consumo total de proteínas de 1.6-2.2g por kg de peso corporal.",
       "image": "0.jpg",
-      "category": "proteinas",
+      "category": "protein",
       "nutritionalInfo": {
         "servingSize": "33g",
         "servingsPerContainer": 25,
@@ -133,7 +133,7 @@
       ],
       "recommendation": "Consumir durante entrenamientos intensos o en periodos de déficit calórico para preservar masa muscular.",
       "image": "0.jpg",
-      "category": "aminoacidos",
+      "category": "amino_acid",
       "nutritionalInfo": {
         "servingSize": "14g",
         "servingsPerContainer": 30,
@@ -172,7 +172,7 @@
       ],
       "recommendation": "Ideal como pre-entrenamiento ligero o para momentos del día en que necesites un impulso de energía y concentración.",
       "image": "0.jpg",
-      "category": "aminoacidos",
+      "category": "amino_acid",
       "nutritionalInfo": {
         "servingSize": "9g",
         "servingsPerContainer": 30,
@@ -211,7 +211,7 @@
       ],
       "recommendation": "No consumir después de las 4-5 PM si eres sensible a la cafeína. Comenzar con media dosis para evaluar tolerancia.",
       "image": "0.jpg",
-      "category": "preentrenamiento",
+      "category": "pre_workout",
       "nutritionalInfo": {
         "servingSize": "6g",
         "servingsPerContainer": 30,
@@ -252,7 +252,7 @@
       ],
       "recommendation": "Ideal para atletas avanzados que buscan un pre-entrenamiento completo. No mezclar con otros estimulantes.",
       "image": "0.jpg",
-      "category": "preentrenamiento",
+      "category": "pre_workout",
       "nutritionalInfo": {
         "servingSize": "26g",
         "servingsPerContainer": 20,
@@ -293,7 +293,7 @@
       ],
       "recommendation": "Comenzar con dosis bajas para evaluar tolerancia. No consumir después de las 4 PM. No recomendado para personas con problemas cardíacos o hipertensión.",
       "image": "0.jpg",
-      "category": "quemadores",
+      "category": "fat_loss",
       "nutritionalInfo": {
         "servingSize": "2 cápsulas",
         "servingsPerContainer": 50,
@@ -326,7 +326,7 @@
       ],
       "recommendation": "Ideal para personas que no toleran estimulantes o que buscan un quemador de grasa para usar a cualquier hora del día.",
       "image": "0.jpg",
-      "category": "quemadores",
+      "category": "fat_loss",
       "nutritionalInfo": {
         "servingSize": "15ml",
         "servingsPerContainer": 31,
@@ -360,7 +360,7 @@
       ],
       "recommendation": "Ideal para personas con metabolismo rápido que tienen dificultad para ganar peso. Dividir en 2-3 porciones más pequeñas a lo largo del día para mejor digestión.",
       "image": "0.jpg",
-      "category": "ganadores",
+      "category": "muscle_mass",
       "nutritionalInfo": {
         "servingSize": "334g",
         "servingsPerContainer": 8,
@@ -397,7 +397,7 @@
       ],
       "recommendation": "Excelente opción para personas que buscan un aumento de peso limpio o atletas que necesitan calorías adicionales de calidad.",
       "image": "0.jpg",
-      "category": "ganadores",
+      "category": "muscle_mass",
       "nutritionalInfo": {
         "servingSize": "165g",
         "servingsPerContainer": 14,
@@ -434,7 +434,7 @@
       ],
       "recommendation": "Excelente complemento para deportistas con alta demanda nutricional o personas con dietas restrictivas.",
       "image": "0.jpg",
-      "category": "vitaminas",
+      "category": "vitamin",
       "nutritionalInfo": {
         "servingSize": "3 tabletas",
         "servingsPerContainer": 50,
@@ -485,7 +485,7 @@
       ],
       "recommendation": "Especialmente importante para personas con poca exposición solar, deportistas indoor o durante los meses de invierno.",
       "image": "0.jpg",
-      "category": "vitaminas",
+      "category": "vitamin",
       "nutritionalInfo": {
         "servingSize": "1 cápsula blanda",
         "servingsPerContainer": 120,
@@ -513,7 +513,7 @@
       ],
       "recommendation": "Ideal para periodos de entrenamiento intenso o para deportistas que entrenan con alta frecuencia.",
       "image": "0.jpg",
-      "category": "recuperacion",
+      "category": "recovery",
       "nutritionalInfo": {
         "servingSize": "5g",
         "servingsPerContainer": 120,
@@ -545,7 +545,7 @@
       ],
       "recommendation": "Ideal para deportistas con entrenamientos intensos o problemas de sueño.",
       "image": "0.jpg",
-      "category": "recuperacion",
+      "category": "recovery",
       "nutritionalInfo": {
         "servingSize": "3 cápsulas",
         "servingsPerContainer": 30,
@@ -575,7 +575,7 @@
       ],
       "recommendation": "Suplemento más estudiado y seguro. Efectivo para casi todos los deportes de fuerza y potencia.",
       "image": "0.jpg",
-      "category": "otros",
+      "category": "creatine",
       "nutritionalInfo": {
         "servingSize": "5g",
         "servingsPerContainer": 120,
@@ -607,7 +607,7 @@
       ],
       "recommendation": "Ideal para personas con altos niveles de estrés o que buscan mejorar la recuperación y el rendimiento de forma natural.",
       "image": "0.jpg",
-      "category": "otros",
+      "category": "other",
       "nutritionalInfo": {
         "servingSize": "1 cápsula",
         "servingsPerContainer": 60,

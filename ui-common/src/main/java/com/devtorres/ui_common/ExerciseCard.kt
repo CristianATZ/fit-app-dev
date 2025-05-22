@@ -1,4 +1,4 @@
-package com.devtorres.feature_exercises.components
+package com.devtorres.ui_common
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -20,14 +20,17 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.devtorres.core_model.enum.EquipmentType
+import com.devtorres.core_model.enum.ExerciseCategoryType
+import com.devtorres.core_model.enum.LevelType
+import com.devtorres.core_model.enum.MuscleGroup
 import com.devtorres.core_model.ui.ExerciseSummaryUI
-import com.devtorres.feature_exercises.R
 import com.devtorres.ui_common.badge.SurfaceBadge
 import com.devtorres.ui_common.badge.SecondaryBadge
 import com.devtorres.ui_common.button.CustomOutlinedIconButton
-import com.devtorres.ui_common.button.PrimaryButton
 import com.devtorres.ui_common.button.SecondaryButton
 import com.devtorres.ui_common.image.AsyncImageLoader
+import com.devtorres.ui_common.strings.stringRes
 import com.devtorres.ui_common.typo.LabelLarge
 import com.devtorres.ui_common.typo.TitleMedium
 import com.google.accompanist.flowlayout.FlowRow
@@ -61,23 +64,23 @@ fun ExerciseCard(
                 modifier = Modifier.padding(16.dp)
             ) {
                 TitleMedium(
-                    text = exercise.name(),
+                    text = exercise.name,
                     fontWeight = FontWeight.Bold
                 )
 
                 Spacer(Modifier.size(8.dp))
                 
                 ExerciseBasicInformation(
-                    equipment = exercise.equipment(),
-                    level = exercise.level(),
-                    category = exercise.category()
+                    equipment = exercise.equipment,
+                    level = exercise.level,
+                    category = exercise.category
                 )
 
                 Spacer(Modifier.size(16.dp))
                 
                 ExerciseBadges(
-                    primaryMuscles = exercise.primaryMuscles(),
-                    secondaryMuscles = exercise.secondaryMuscles()
+                    primaryMuscles = exercise.primaryMuscles,
+                    secondaryMuscles = exercise.secondaryMuscles
                 )
 
                 Spacer(Modifier.size(16.dp))
@@ -109,8 +112,8 @@ fun ExerciseCard(
 
 @Composable
 private fun ExerciseBadges(
-    primaryMuscles: List<String>,
-    secondaryMuscles: List<String>
+    primaryMuscles: List<MuscleGroup>,
+    secondaryMuscles: List<MuscleGroup>
 ) {
     FlowRow(
         mainAxisSpacing = 8.dp,
@@ -118,13 +121,13 @@ private fun ExerciseBadges(
     ) {
         primaryMuscles.forEach { muscle ->
             SecondaryBadge(
-                label = muscle
+                label = stringResource(muscle.stringRes())
             )
         }
 
         secondaryMuscles.forEach { muscle ->
             SurfaceBadge(
-                label = muscle
+                label = stringResource(muscle.stringRes())
             )
         }
     }
@@ -132,12 +135,17 @@ private fun ExerciseBadges(
 
 @Composable
 private fun ExerciseBasicInformation(
-    equipment: String,
-    level: String,
-    category: String
+    equipment: EquipmentType,
+    level: LevelType,
+    category: ExerciseCategoryType
 ) {
     LabelLarge(
-        text = stringResource(R.string.lblExerciseInfoRow, equipment, level, category),
+        text = stringResource(
+            R.string.lblExerciseInfoRow,
+            stringResource(equipment.stringRes()),
+            stringResource(level.stringRes()),
+            stringResource(category.stringRes())
+        ),
         modifier = Modifier.alpha(0.5f)
     )
 }

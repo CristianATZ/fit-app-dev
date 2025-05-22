@@ -23,33 +23,34 @@ class ExercisesPopulatorCallback @Inject constructor(
     private val moshi: Moshi
 ) : RoomDatabase.Callback() {
 
-    private val scope: CoroutineScope = CoroutineScope(SupervisorJob())
+    private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
-    override fun onCreate(db: SupportSQLiteDatabase) {
+    override fun onOpen(db: SupportSQLiteDatabase) {
         super.onCreate(db)
 
-        scope.launch(Dispatchers.IO) {
+        scope.launch {
             val exerciseDao = provider.get()
 
-            Log.d("ExercisesPopulatorCallback", "onCreate: Inicio")
+            if(exerciseDao.countExercises() == 0) {
+                Log.d("ExercisesPopulatorCallback", "onCreate: Inicio")
 
-            val exercisesJsonRaw = context.assets.open("exercises.json")
-                .bufferedReader()
-                .use { it.readText() }
+                val exercisesJsonRaw = context.assets.open("exercises.json")
+                    .bufferedReader()
+                    .use { it.readText() }
 
-            Log.d("ExercisesPopulatorCallback", "onCreate: Informacion parceada")
+                Log.d("ExercisesPopulatorCallback", "onCreate: Informacion parceada")
 
-            val adapter: JsonAdapter<ExerciseResponse> = moshi.adapter(ExerciseResponse::class.java)
+                val wrapper = moshi.adapter(ExerciseResponse::class.java)
+                    .fromJson(exercisesJsonRaw)
 
-            val wrapper = adapter.fromJson(exercisesJsonRaw)
+                val exercises = wrapper?.exerciseDtos ?: emptyList()
 
-            val exercises = wrapper?.exerciseDtos ?: emptyList()
+                Log.d("ExercisesPopulatorCallback", "onCreate: $exercises")
 
-            Log.d("ExercisesPopulatorCallback", "onCreate: $exercises")
-
-            exerciseDao.insertExercises(
-                exercises = exercises.map { it.asEntity() }
-            )
+                exerciseDao.insertExercises(
+                    exercises = exercises.map { it.asEntity() }
+                )
+            }
         }
     }
 }

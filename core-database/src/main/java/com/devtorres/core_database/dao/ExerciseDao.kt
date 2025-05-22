@@ -10,6 +10,9 @@ import com.devtorres.core_database.entity.ExerciseEntity
 @Dao
 interface ExerciseDao {
 
+    @Query("SELECT COUNT(*) FROM exercises")
+    suspend fun countExercises(): Int
+
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertExercises(exercises: List<ExerciseEntity>)

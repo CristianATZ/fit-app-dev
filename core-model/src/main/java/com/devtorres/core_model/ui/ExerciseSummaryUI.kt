@@ -1,23 +1,21 @@
 package com.devtorres.core_model.ui
 
+import com.devtorres.core_model.enum.EquipmentType
+import com.devtorres.core_model.enum.ExerciseCategoryType
+import com.devtorres.core_model.enum.LevelType
+import com.devtorres.core_model.enum.MuscleGroup
+
 data class ExerciseSummaryUI(
     val id: String,
     val name: String,
-    val level: String,
-    val equipment: String,
-    val category: String,
-    val primaryMuscles: List<String>,
-    val secondaryMuscles: List<String>,
+    val level: LevelType,
+    val equipment: EquipmentType,
+    val category: ExerciseCategoryType,
+    val primaryMuscles: List<MuscleGroup>,
+    val secondaryMuscles: List<MuscleGroup>,
     val exerciseImages: List<String>
 ) {
     fun getPreviewImageUri() : String {
         return "exercises/${id.lowercase()}/${exerciseImages[0]}"
     }
-
-    fun name() : String = name.uppercase()
-    fun equipment() : String = equipment.replaceFirstChar { it.uppercase() }
-    fun level() : String = level.replaceFirstChar { it.uppercase() }
-    fun category() : String = category.replaceFirstChar { it.uppercase() }
-    fun primaryMuscles() : List<String> = primaryMuscles.map { list -> list.replaceFirstChar { it.uppercase() } }
-    fun secondaryMuscles() : List<String> = secondaryMuscles.map { list -> list.replaceFirstChar { it.uppercase() } }
 }
