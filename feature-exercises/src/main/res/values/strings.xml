@@ -6,4 +6,6 @@
     <string name="btnFilter">Filtrar ejercicios</string>
     <string name="lblNull" />
     <string name="lblSearchExercise">Buscar ejercicio…</string>
+    <string name="lblEmptyExercisesList">No hay ejercicios</string>
+    <string name="lblMuscleCount">%1$d ejercicios</string>
 </resources>

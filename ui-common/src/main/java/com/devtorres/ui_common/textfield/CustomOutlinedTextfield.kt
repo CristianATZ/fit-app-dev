@@ -30,16 +30,11 @@ import com.devtorres.ui_common.typo.LabelLarge
  * @param modifier Modificador para aplicar estilos y configuraciones externas.
  * @param value El texto actual en el campo de texto.
  * @param onValueChange Lambda que se invoca al cambiar el valor del texto.
- * @param labelResId ID del recurso de texto que se muestra como etiqueta (label).
  * @param placeholderResId ID del recurso de texto que se muestra como texto de marcador (placeholder).
  * @param leadingIcon Composable opcional para mostrar un icono al inicio del campo.
  * @param trailingIcon Composable opcional para mostrar un icono al final del campo (solo si el valor no está vacío).
- * @param isError Indica si el campo está en estado de error.
- * @param visualTransformation Transformación visual aplicada al texto (por ejemplo, para contraseñas).
  * @param keyboardOptions Opciones del teclado virtual, como tipo de entrada.
  * @param keyboardActions Acciones personalizadas para el teclado, como enviar o siguiente.
- * @param shape Forma del borde del campo de texto.
- * @param singleLine Indica si el campo de texto debe limitarse a una sola línea.
  */
 @Composable
 fun CustomOutlinedTextField(
@@ -48,6 +43,8 @@ fun CustomOutlinedTextField(
     onValueChange: (String) -> Unit,
     @StringRes placeholderResId: Int,
     leadingIcon: ImageVector,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     trailingIcon: ImageVector,
     onTrailingClick: () -> Unit
 ) {
@@ -81,6 +78,8 @@ fun CustomOutlinedTextField(
                 }
             }
         },
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions,
         shape = shapes.small,
         singleLine = true,
         modifier = modifier

@@ -4,24 +4,36 @@ import com.squareup.moshi.Json
 
 enum class MuscleGroup {
     ALL,
-    @Json(name = "chest")           CHEST,
-    @Json(name = "back")            BACK,
-    @Json(name = "lower back")      LOWER_BACK,
-    @Json(name = "shoulders")       SHOULDERS,
-    @Json(name = "arms")            ARMS,
-    @Json(name = "legs")            LEGS,
-    @Json(name = "calves")          CALVES,
-    @Json(name = "forearms")        FOREARMS,
-    @Json(name = "abs")             ABS,
+
+    // Región de la cabeza y cuello
     @Json(name = "neck")            NECK,
     @Json(name = "traps")           TRAPS,
-    @Json(name = "quadriceps")      QUADRICEPS,
-    @Json(name = "hamstrings")      HAMSTRINGS,
-    @Json(name = "glutes")          GLUTES,
+
+    // Parte superior del torso (pecho y hombros)
+    @Json(name = "shoulders")       SHOULDERS,
+    @Json(name = "chest")           CHEST,
+
+    // Espalda
+    @Json(name = "back")            BACK,
+    @Json(name = "lats")            LATS,
+    @Json(name = "lower back")      LOWER_BACK,
+
+    // Brazos
     @Json(name = "biceps")          BICEPS,
     @Json(name = "triceps")         TRICEPS,
-    @Json(name = "lats")            LATS,
+    @Json(name = "forearms")        FOREARMS,
+
+    // Zona media (core)
+    @Json(name = "abs")             ABS,
+    @Json(name = "core")            CORE,
+
+    // Caderas y glúteos
+    @Json(name = "glutes")          GLUTES,
     @Json(name = "abductors")       ABDUCTORS,
     @Json(name = "adductors")       ADDUCTORS,
-    @Json(name = "core")            CORE
+
+    // Piernas
+    @Json(name = "quadriceps")      QUADRICEPS,
+    @Json(name = "hamstrings")      HAMSTRINGS,
+    @Json(name = "calves")          CALVES
 }

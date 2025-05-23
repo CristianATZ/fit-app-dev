@@ -5,17 +5,24 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.devtorres.feature_exercises.ExercisesViewModel
 import com.devtorres.feature_exercises.R
 import com.devtorres.feature_exercises.components.MuscleGroupTabRow
 import com.devtorres.feature_exercises.components.exercisesTitleString
@@ -26,11 +33,10 @@ import com.devtorres.ui_common.typo.HeadLineLarge
 
 @Composable
 fun ExercisesHeaderFragment(
-
+    exercisesViewModel: ExercisesViewModel
 ) {
-    val (search, setSearch) = remember {
-        mutableStateOf("")
-    }
+
+    val filter by exercisesViewModel.filter.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -51,18 +57,38 @@ fun ExercisesHeaderFragment(
                 .alpha(0.5f),
         )
 
-        MuscleGroupTabRow()
+        MuscleGroupTabRow(
+            filter = filter,
+            onMuscleSelected = { selected ->
+                exercisesViewModel.updateFilter { copy(selectedMuscles = selected) }
+            }
+        )
 
         Column {
+
+            val (query, setQuery) = remember { mutableStateOf("") }
+            val keyboardController = LocalSoftwareKeyboardController.current
+
             CustomOutlinedTextField(
-                value = search,
-                onValueChange = setSearch,
+                value = query,
+                onValueChange = setQuery,
                 placeholderResId = R.string.lblSearchExercise,
                 leadingIcon = Icons.Default.Search,
                 trailingIcon = Icons.Default.Clear,
                 onTrailingClick = {
-                    setSearch("")
-                }
+                    setQuery("")
+                    exercisesViewModel.updateFilter { copy(searchQuery = "") }
+                    keyboardController?.hide() // Oculta el teclado
+                },
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Search
+                ),
+                keyboardActions = KeyboardActions(
+                    onSearch = {
+                        exercisesViewModel.updateFilter { copy(searchQuery = query) }
+                        keyboardController?.hide() // Oculta el teclado
+                    }
+                )
             )
 
             Spacer(Modifier.size(12.dp))

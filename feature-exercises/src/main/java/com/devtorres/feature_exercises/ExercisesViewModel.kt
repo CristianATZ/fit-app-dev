@@ -1,17 +1,25 @@
 package com.devtorres.feature_exercises
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devtorres.core_domain.GetExercisesUseCase
+import com.devtorres.core_model.enum.MuscleGroup
 import com.devtorres.core_model.ui.ExerciseSummaryUI
+import com.devtorres.core_model.ui.ExercisesFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,39 +28,49 @@ class ExercisesViewModel @Inject constructor(
     private val getExercisesUseCase: GetExercisesUseCase
 ) : ViewModel() {
 
-    // 1. Estado de carga
+    // Estado de filtros
+    private val _filter = MutableStateFlow(ExercisesFilter(selectedMuscles = setOf(MuscleGroup.ALL)))
+    val filter: StateFlow<ExercisesFilter> = _filter.asStateFlow()
+
+    // Estado de carga
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
-    // 2. Mensajes de error/toast: un SharedFlow para eventos únicos
-    private val _toastMessage = MutableSharedFlow<String?>(
-        replay = 0,             // no reemite al suscriptor
-        extraBufferCapacity = 1 // buffer para lanzar sin suspender
-    )
-    val toastMessage: SharedFlow<String?> = _toastMessage.asSharedFlow()
-
     // Estado de lista de ejercicios
     private val _exerciseList = MutableStateFlow<List<ExerciseSummaryUI>>(emptyList())
-    val exerciseList: StateFlow<List<ExerciseSummaryUI>> = _exerciseList.asStateFlow()
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val filteredExercises: StateFlow<List<ExerciseSummaryUI>> =
+        _filter.flatMapLatest { filter ->
+             _isLoading.update { true }
+
+            flow {
+                delay(1000)
+
+                val result = _exerciseList.value.filter { exercise ->
+                    exercise.name.contains(filter.searchQuery, ignoreCase = true) &&
+                            (filter.levels.isEmpty() || exercise.level in filter.levels) &&
+                            (filter.mechanics.isEmpty() || exercise.mechanic in filter.mechanics) &&
+                            (filter.equipment.isEmpty() || exercise.equipment in filter.equipment) &&
+                            (filter.categories.isEmpty() || exercise.category in filter.categories) &&
+                                (filter.selectedMuscles.any { it == MuscleGroup.ALL } ||
+                                exercise.primaryMuscles.any { it in filter.selectedMuscles } ||
+                                exercise.secondaryMuscles.any { it in filter.selectedMuscles })
+                }
+
+                emit(result)
+            }.onCompletion { _isLoading.update { false } }
+        }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     init {
-        fetchAllExercises()
+        viewModelScope.launch {
+            _exerciseList.value = getExercisesUseCase()
+        }
     }
 
-    private fun fetchAllExercises() {
-        viewModelScope.launch {
-            _isLoading.value = true
-
-            delay(1000)
-
-            try {
-                val exercises = getExercisesUseCase()
-                _exerciseList.value = exercises
-            } catch (e: Exception) {
-                _toastMessage.emit(e.message)
-            } finally {
-                _isLoading.value = false
-            }
-        }
+    /** Actualiza un filtro individual */
+    fun updateFilter(update: ExercisesFilter.() -> ExercisesFilter) {
+        _filter.update(update)
     }
 }

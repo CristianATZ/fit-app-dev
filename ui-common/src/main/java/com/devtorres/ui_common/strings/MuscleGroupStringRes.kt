@@ -11,8 +11,6 @@ fun MuscleGroup.stringRes(): Int = when (this) {
     MuscleGroup.BACK          -> R.string.muscle_back
     MuscleGroup.LOWER_BACK    -> R.string.muscle_lower_back
     MuscleGroup.SHOULDERS     -> R.string.muscle_shoulders
-    MuscleGroup.ARMS          -> R.string.muscle_arms
-    MuscleGroup.LEGS          -> R.string.muscle_legs
     MuscleGroup.CALVES        -> R.string.muscle_calves
     MuscleGroup.FOREARMS      -> R.string.muscle_forearms
     MuscleGroup.ABS           -> R.string.muscle_abs

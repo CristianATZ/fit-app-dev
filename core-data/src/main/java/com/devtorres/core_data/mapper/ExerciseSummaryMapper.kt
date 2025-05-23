@@ -10,6 +10,7 @@ object ExerciseSummaryMapper {
             id = this.id,
             name = this.name,
             level = this.level,
+            mechanic = this.mechanic,
             equipment = this.equipment,
             category = this.category,
             primaryMuscles = this.primaryMuscles,
