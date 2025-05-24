@@ -1,6 +1,6 @@
 package com.devtorres.core_model.dto
 
-import com.devtorres.core_model.enum.ExerciseCategoryType
+import com.devtorres.core_model.enum.ExerciseCategory
 import com.devtorres.core_model.enum.EquipmentType
 import com.devtorres.core_model.enum.ForceType
 import com.devtorres.core_model.enum.LevelType
@@ -45,7 +45,7 @@ data class ExerciseDto(
     val instructions: List<String>,
 
     @field:Json(name = "category")
-    val category: ExerciseCategoryType,
+    val category: ExerciseCategory,
 
     @field:Json(name = "exerciseImages")
     val exerciseImages: List<String>,

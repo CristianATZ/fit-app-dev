@@ -1,9 +1,12 @@
 package com.devtorres.feature_exercises
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devtorres.core_domain.GetExercisesUseCase
+import com.devtorres.core_model.enum.EquipmentType
+import com.devtorres.core_model.enum.ExerciseCategory
+import com.devtorres.core_model.enum.LevelType
+import com.devtorres.core_model.enum.MechanicType
 import com.devtorres.core_model.enum.MuscleGroup
 import com.devtorres.core_model.ui.ExerciseSummaryUI
 import com.devtorres.core_model.ui.ExercisesFilter
@@ -14,7 +17,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onCompletion
@@ -29,7 +31,15 @@ class ExercisesViewModel @Inject constructor(
 ) : ViewModel() {
 
     // Estado de filtros
-    private val _filter = MutableStateFlow(ExercisesFilter(selectedMuscles = setOf(MuscleGroup.ALL)))
+    private val _filter = MutableStateFlow(
+        ExercisesFilter(
+            selectedMuscles = setOf(MuscleGroup.ALL),
+            levels = setOf(LevelType.ALL),
+            equipment = setOf(EquipmentType.ALL),
+            mechanics = setOf(MechanicType.ALL),
+            categories = setOf(ExerciseCategory.ALL)
+        )
+    )
     val filter: StateFlow<ExercisesFilter> = _filter.asStateFlow()
 
     // Estado de carga
@@ -38,6 +48,9 @@ class ExercisesViewModel @Inject constructor(
 
     // Estado de lista de ejercicios
     private val _exerciseList = MutableStateFlow<List<ExerciseSummaryUI>>(emptyList())
+
+    private val _showFilterDialog = MutableStateFlow(false)
+    val showFilterDialog: StateFlow<Boolean> = _showFilterDialog.asStateFlow()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val filteredExercises: StateFlow<List<ExerciseSummaryUI>> =
@@ -49,10 +62,10 @@ class ExercisesViewModel @Inject constructor(
 
                 val result = _exerciseList.value.filter { exercise ->
                     exercise.name.contains(filter.searchQuery, ignoreCase = true) &&
-                            (filter.levels.isEmpty() || exercise.level in filter.levels) &&
-                            (filter.mechanics.isEmpty() || exercise.mechanic in filter.mechanics) &&
-                            (filter.equipment.isEmpty() || exercise.equipment in filter.equipment) &&
-                            (filter.categories.isEmpty() || exercise.category in filter.categories) &&
+                            (filter.levels.any { it == LevelType.ALL } || exercise.level in filter.levels) &&
+                            (filter.mechanics.any { it == MechanicType.ALL } || exercise.mechanic in filter.mechanics) &&
+                            (filter.equipment.any { it == EquipmentType.ALL } || exercise.equipment in filter.equipment) &&
+                            (filter.categories.any { it == ExerciseCategory.ALL } || exercise.category in filter.categories) &&
                                 (filter.selectedMuscles.any { it == MuscleGroup.ALL } ||
                                 exercise.primaryMuscles.any { it in filter.selectedMuscles } ||
                                 exercise.secondaryMuscles.any { it in filter.selectedMuscles })
@@ -72,5 +85,10 @@ class ExercisesViewModel @Inject constructor(
     /** Actualiza un filtro individual */
     fun updateFilter(update: ExercisesFilter.() -> ExercisesFilter) {
         _filter.update(update)
+    }
+
+    /** Abre el dialog para los filtros*/
+    fun showFilterDialog() {
+        _showFilterDialog.value = !_showFilterDialog.value
     }
 }

@@ -6,6 +6,7 @@ import com.devtorres.ui_common.R
 
 @StringRes
 fun EquipmentType.stringRes(): Int = when (this) {
+    EquipmentType.ALL          -> R.string.lblAll
     EquipmentType.BARBELL      -> R.string.equipment_barbell
     EquipmentType.DUMBELL      -> R.string.equipment_dumbbell
     EquipmentType.MACHINE      -> R.string.equipment_machine

@@ -37,3 +37,22 @@ enum class MuscleGroup {
     @Json(name = "hamstrings")      HAMSTRINGS,
     @Json(name = "calves")          CALVES
 }
+
+/**
+ * Alterna la presencia de [item] en el set, con reglas especiales para ALL:
+ * - Si seleccionas ALL → solo ALL.
+ * - Si seleccionas otro músculo → elimina ALL, añade o quita el músculo.
+ * - Si tras quitar no queda ningún músculo → vuelve a ALL.
+ */
+fun Set<MuscleGroup>.addMuscleFilter(item: MuscleGroup): Set<MuscleGroup> =
+    when (item) {
+        MuscleGroup.ALL -> setOf(MuscleGroup.ALL)
+        else -> {
+            // 1) Partimos de la colección sin ALL
+            val withoutAll = this - MuscleGroup.ALL
+            // 2) Alternamos el músculo
+            val toggled = if (item in withoutAll) withoutAll - item else withoutAll + item
+            // 3) Si queda vacío, retorno ALL; si no, el set toggled
+            toggled.ifEmpty { setOf(MuscleGroup.ALL) }
+        }
+    }

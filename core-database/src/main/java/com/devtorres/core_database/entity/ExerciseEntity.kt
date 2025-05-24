@@ -3,7 +3,7 @@ package com.devtorres.core_database.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.devtorres.core_model.enum.EquipmentType
-import com.devtorres.core_model.enum.ExerciseCategoryType
+import com.devtorres.core_model.enum.ExerciseCategory
 import com.devtorres.core_model.enum.ForceType
 import com.devtorres.core_model.enum.LevelType
 import com.devtorres.core_model.enum.MechanicType
@@ -20,7 +20,7 @@ data class ExerciseEntity(
     val primaryMuscles:     List<MuscleGroup>,
     val secondaryMuscles:   List<MuscleGroup>,
     val instructions:       List<String>,
-    val category:           ExerciseCategoryType,
+    val category:           ExerciseCategory,
     val exerciseImages:     List<String>,
     val equipmentIds:       List<String>,
     val alternative:        List<String>

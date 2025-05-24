@@ -2,16 +2,14 @@ package com.devtorres.core_model.enum
 
 import com.squareup.moshi.Json
 
-enum class EquipmentType {
+enum class ExerciseCategory {
     ALL,
-    @Json(name = "barbell")         BARBELL,
-    @Json(name = "dumbbell")        DUMBELL,
-    @Json(name = "machine")         MACHINE,
-    @Json(name = "cable")           CABLE,
-    @Json(name = "body_only")       BODY_ONLY,
-    @Json(name = "kattlelbell")     KATTLELBELL,
-    @Json(name = "band")            BAND,
-    @Json(name = "other")           OTHER
+    @Json(name = "strength")        STRENGTH,
+    @Json(name = "cardio")          CARDIO,
+    @Json(name = "stretching")      STRETCHING,
+    @Json(name = "plyometric")      PLYOMETRIC,
+    @Json(name = "strongman")       STRONGMAN,
+    @Json(name = "powerlifting")    POWERLIFTING
 }
 
 /**
@@ -20,15 +18,15 @@ enum class EquipmentType {
  * - Si seleccionas otro nivel → elimina ALL, añade o quita el nivel.
  * - Si tras quitar no queda ningún nivel → vuelve a ALL.
  */
-fun Set<EquipmentType>.addEquipmentFilter(item: EquipmentType): Set<EquipmentType> =
+fun Set<ExerciseCategory>.addExerciseCategoryFilter(item: ExerciseCategory): Set<ExerciseCategory> =
     when (item) {
-        EquipmentType.ALL -> setOf(EquipmentType.ALL)
+        ExerciseCategory.ALL -> setOf(ExerciseCategory.ALL)
         else -> {
             // 1) Partimos de la colección sin ALL
-            val withoutAll = this - EquipmentType.ALL
+            val withoutAll = this - ExerciseCategory.ALL
             // 2) Alternamos el nivel
             val toggled = if (item in withoutAll) withoutAll - item else withoutAll + item
             // 3) Si queda vacío, retorno ALL; si no, el set toggled
-            toggled.ifEmpty { setOf(EquipmentType.ALL) }
+            toggled.ifEmpty { setOf(ExerciseCategory.ALL) }
         }
     }

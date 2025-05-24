@@ -6,6 +6,7 @@ import com.devtorres.ui_common.R
 
 @StringRes
 fun LevelType.stringRes(): Int = when (this) {
+    LevelType.ALL          -> R.string.lblAll
     LevelType.BEGINNER     -> R.string.level_beginner
     LevelType.INTERMEDIATE -> R.string.level_intermediate
     LevelType.ADVANCED     -> R.string.level_advanced

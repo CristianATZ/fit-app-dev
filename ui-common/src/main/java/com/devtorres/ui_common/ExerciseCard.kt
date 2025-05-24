@@ -21,7 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.devtorres.core_model.enum.EquipmentType
-import com.devtorres.core_model.enum.ExerciseCategoryType
+import com.devtorres.core_model.enum.ExerciseCategory
 import com.devtorres.core_model.enum.LevelType
 import com.devtorres.core_model.enum.MuscleGroup
 import com.devtorres.core_model.ui.ExerciseSummaryUI
@@ -137,7 +137,7 @@ private fun ExerciseBadges(
 private fun ExerciseBasicInformation(
     equipment: EquipmentType,
     level: LevelType,
-    category: ExerciseCategoryType
+    category: ExerciseCategory
 ) {
     LabelLarge(
         text = stringResource(

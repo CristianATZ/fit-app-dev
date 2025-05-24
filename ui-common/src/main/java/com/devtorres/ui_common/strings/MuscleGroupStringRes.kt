@@ -6,7 +6,7 @@ import com.devtorres.ui_common.R
 
 @StringRes
 fun MuscleGroup.stringRes(): Int = when (this) {
-    MuscleGroup.ALL           -> R.string.muscle_all
+    MuscleGroup.ALL           -> R.string.lblAll
     MuscleGroup.CHEST         -> R.string.muscle_chest
     MuscleGroup.BACK          -> R.string.muscle_back
     MuscleGroup.LOWER_BACK    -> R.string.muscle_lower_back

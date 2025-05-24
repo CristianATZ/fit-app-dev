@@ -8,7 +8,7 @@
     <string name="btnDetails">Ver detalles</string>
 
     // MUSCLES ---------------
-    <string name="muscle_all">Todos</string>
+    <string name="lblAll">Todos</string>
     <string name="muscle_back">Espalda</string>
     <string name="muscle_lower_back">Espalda baja</string>
     <string name="muscle_shoulders">Hombros</string>
@@ -52,4 +52,8 @@
     <string name="category_plyometric">Pliometría</string>
     <string name="category_strongman">Strongman</string>
     <string name="category_powerlifting">Powerlifting</string>
+    <string name="btnRestart">Restablecer</string>
+    <string name="btnSave">Guardar</string>
+    <string name="mechanic_isolation">Aislado</string>
+    <string name="mechanic_compound">Compuesto</string>
 </resources>

@@ -8,4 +8,12 @@
     <string name="lblSearchExercise">Buscar ejercicio…</string>
     <string name="lblEmptyExercisesList">No hay ejercicios</string>
     <string name="lblMuscleCount">%1$d ejercicios</string>
+    <string name="lblFiltersUpperCase">FILTROS</string>
+    <string name="lblExercisesFilters">Aplica filtros para refinar la lista de ejercicios.</string>
+    <string name="lblMuscleGroups">Grupos musculares</string>
+    <string name="lblLevelType">Tipo de nivel</string>
+    <string name="lblEquipmentType">Tipo de equipamiento</string>
+    <string name="lblMechanicType">Tipo de mecánica</string>
+    <string name="lblExerciseCategory">Categorias</string>
+    <string name="btnReset">Restablecer</string>
 </resources>
