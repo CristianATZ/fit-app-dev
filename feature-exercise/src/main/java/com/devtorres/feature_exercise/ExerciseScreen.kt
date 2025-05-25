@@ -5,7 +5,9 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun ExerciseScreen(
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    exerciseDetailViewModel: ExerciseDetailViewModel
 ) {
+    val exercise = exerciseDetailViewModel
     Text("exerciseScreen")
 }
