@@ -9,13 +9,14 @@ import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.devtorres.ui_common.typo.LabelLarge
 
 @Composable
 fun CustomScrollableTab(
     modifier: Modifier = Modifier,
-    tabList: List<String>,
+    tabList: List<Int>,
     selectedTabIndex: Int,
     onSelectedTab: (Int) -> Unit
 ) {
@@ -39,7 +40,7 @@ fun CustomScrollableTab(
                 },
                 text = {
                     LabelLarge(
-                        text = tabName
+                        text = stringResource(tabName)
                     )
                 },
                 selectedContentColor = colorScheme.secondary,

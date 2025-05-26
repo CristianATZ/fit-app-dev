@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.devtorres.core_model.ui.ExerciseDetail
 import com.devtorres.feature_exercise.R
 import com.devtorres.finager.core.presentation.components.typo.BodySmall
+import com.devtorres.ui_common.ImageTitleCard
 import com.devtorres.ui_common.badge.ErrorBadge
 import com.devtorres.ui_common.badge.SecondaryBadge
 import com.devtorres.ui_common.badge.SurfaceBadge
@@ -33,7 +34,7 @@ import com.devtorres.ui_common.typo.TitleMedium
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
-fun ExerciseDescriptionFragment(
+internal fun ExerciseDescriptionFragment(
     details: ExerciseDetail,
     navigateToExerciseVariant: (String) -> Unit
 ) {
@@ -103,40 +104,16 @@ fun ExerciseDescriptionFragment(
                 crossAxisSpacing = 8.dp
             ) {
                 details.alternative.forEach { exercise ->
-                    OutlinedCard (
-                        colors = CardDefaults.outlinedCardColors(
-                            containerColor = colorScheme.surface
-                        ),
+                    ImageTitleCard(
+                        folderPath = exercise.getPreviewImageUri(),
+                        title = exercise.name,
                         onClick = {
                             navigateToExerciseVariant(exercise.id)
-                        },
-                        border = BorderStroke(
-                            width = 1.dp,
-                            color = colorScheme.outline
-                        ),
-                        shape = shapes.medium
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .width(175.dp)
-                                .heightIn(min = 175.dp)
-                        ) {
-                            AsyncImageLoader(
-                                folderPath = exercise.getPreviewImageUri(),
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(125.dp)
-                            )
-
-                            LabelLarge(
-                                text = exercise.name,
-                                modifier = Modifier
-                                    .padding(8.dp)
-                            )
                         }
-                    }
+                    )
                 }
             }
         }
     }
 }
+

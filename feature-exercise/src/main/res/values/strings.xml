@@ -10,4 +10,5 @@
     <string name="lblSecondaryMusclesUpperCase">MUSCULOS SECUNDARIOS</string>
     <string name="lblAlternativeExercisesUpperCase">EJERCICIOS ALTERNATIVOS</string>
     <string name="empty_muscle_list">Ninguno</string>
+    <string name="tab_equipment">Equipo</string>
 </resources>

@@ -9,7 +9,8 @@ object EquipmentItemMapper {
         return domain.map {
             EquipmentDetail(
                 id = it.id,
-                name = it.name
+                name = it.name,
+                imageUri = it.imageUri
             )
         }
     }
