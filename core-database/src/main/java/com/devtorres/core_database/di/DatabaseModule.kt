@@ -3,11 +3,12 @@ package com.devtorres.core_database.di
 import android.content.Context
 import androidx.room.Room
 import com.devtorres.core_database.FitAppDatabase
+import com.devtorres.core_database.callback.EquipmentPopulatorCallback
 import com.devtorres.core_database.callback.ExercisesPopulatorCallback
 import com.devtorres.core_database.callback.SupplementsPopulatorCallback
-import com.devtorres.core_database.converter.ListStringConverter
 import com.devtorres.core_database.converter.MapConverter
 import com.devtorres.core_database.converter.MoshiConverters
+import com.devtorres.core_database.dao.EquipmentDao
 import com.devtorres.core_database.dao.ExerciseDao
 import com.devtorres.core_database.dao.SupplementDao
 import com.squareup.moshi.Moshi
@@ -67,6 +68,12 @@ object DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideEquipmentDao(fitAppDatabase: FitAppDatabase) : EquipmentDao {
+        return fitAppDatabase.equipmentDao()
+    }
+
+    @Provides
+    @Singleton
     fun provideExercisesPopulatorCallback(
         @ApplicationContext context: Context,
         provider: Provider<ExerciseDao>,
@@ -93,11 +100,19 @@ object DatabaseModule {
         )
     }
 
-    /*@Provides
+    @Provides
     @Singleton
-    fun provideListStringConverter(moshi: Moshi) : ListStringConverter {
-        return ListStringConverter(moshi)
-    }*/
+    fun provideEquipmentsPopulatorCallback(
+        @ApplicationContext context: Context,
+        provider: Provider<EquipmentDao>,
+        moshi: Moshi
+    ) : EquipmentPopulatorCallback {
+        return EquipmentPopulatorCallback(
+            context = context,
+            provider = provider,
+            moshi = moshi
+        )
+    }
 
     @Provides
     @Singleton

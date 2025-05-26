@@ -7,17 +7,20 @@ import com.devtorres.core_database.converter.Converters
 import com.devtorres.core_database.converter.ListStringConverter
 import com.devtorres.core_database.converter.MapConverter
 import com.devtorres.core_database.converter.MoshiConverters
+import com.devtorres.core_database.dao.EquipmentDao
 import com.devtorres.core_database.dao.ExerciseDao
 import com.devtorres.core_database.dao.SupplementDao
+import com.devtorres.core_database.entity.EquipmentEntity
 import com.devtorres.core_database.entity.ExerciseEntity
 import com.devtorres.core_database.entity.SupplementEntity
 
 @Database(
     entities = [
         ExerciseEntity::class,
-        SupplementEntity::class
+        SupplementEntity::class,
+        EquipmentEntity::class
     ],
-    version = 1
+    version = 2
 )
 @TypeConverters(
     value = [
@@ -31,4 +34,5 @@ abstract class FitAppDatabase : RoomDatabase() {
 
     abstract fun exerciseDao(): ExerciseDao
     abstract fun supplementDao(): SupplementDao
+    abstract fun equipmentDao(): EquipmentDao
 }

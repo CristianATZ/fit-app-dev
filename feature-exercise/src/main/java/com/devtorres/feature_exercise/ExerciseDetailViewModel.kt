@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devtorres.core_domain.BreadcrumbsManager
 import com.devtorres.core_domain.GetExerciseDetailUseCase
-import com.devtorres.core_model.dto.BreadcrumbItem
+import com.devtorres.core_model.ui.BreadcrumbItem
 import com.devtorres.core_model.ui.ExerciseDetail
 import com.devtorres.feature_exercise.nav.ExerciseArgs
 import dagger.hilt.android.lifecycle.HiltViewModel

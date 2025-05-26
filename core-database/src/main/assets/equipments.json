@@ -1,0 +1,56 @@
+{
+  "equipments": [
+    {
+      "olympic_barbell": {
+        "id": "olympic_barbell",
+        "name": "Barra Olímpica",
+        "imageUri": "olympic-barbell.jpg"
+      },
+      "flat_bench": {
+        "id": "flat_bench",
+        "name": "Banco Plano",
+        "imageUri": "flat-bench-press.jpg"
+      },
+      "weight_plates": {
+        "id": "weight_plates",
+        "name": "Discos de Peso",
+        "imageUri": "weight-plates.jpg"
+      },
+      "dumbbells": {
+        "id": "dumbbells",
+        "name": "Mancuernas",
+        "imageUri": "pair-of-dumbbells.jpg"
+      },
+      "exercise_mat": {
+        "id": "exercise_mat",
+        "name": "Colchoneta",
+        "imageUri": "exercise-mat.jpg"
+      },
+      "push_up_handles": {
+        "id": "push_up_handles",
+        "name": "Soportes para Flexiones",
+        "imageUri": "push-up-handles.jpg"
+      },
+      "squat_rack": {
+        "id": "squat_rack",
+        "name": "Rack de Sentadillas",
+        "imageUri": "squat-rack.jpg"
+      },
+      "cable_machine": {
+        "id": "cable_machine",
+        "name": "Máquina de Poleas",
+        "imageUri": "cable-machine.jpg"
+      },
+      "straight_bar_attachment": {
+        "id": "straight_bar_attachment",
+        "name": "Accesorio de Barra Recta",
+        "imageUri": "cable-machine-straight-bar.jpg"
+      },
+      "wrist_roller": {
+        "id": "wrist_roller",
+        "name": "Rodillo para Muñecas",
+        "imageUri": "wrist-roller.jpg"
+      }
+    }
+  ]
+}

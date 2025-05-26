@@ -1,6 +1,6 @@
 package com.devtorres.core_domain
 
-import com.devtorres.core_model.dto.BreadcrumbItem
+import com.devtorres.core_model.ui.BreadcrumbItem
 import kotlinx.coroutines.flow.StateFlow
 
 interface BreadcrumbsManager {

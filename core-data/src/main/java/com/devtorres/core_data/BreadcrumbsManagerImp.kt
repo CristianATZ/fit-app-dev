@@ -2,7 +2,7 @@ package com.devtorres.core_data
 
 import android.util.Log
 import com.devtorres.core_domain.BreadcrumbsManager
-import com.devtorres.core_model.dto.BreadcrumbItem
+import com.devtorres.core_model.ui.BreadcrumbItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject

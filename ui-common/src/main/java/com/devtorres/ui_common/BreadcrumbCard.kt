@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import com.devtorres.core_model.dto.BreadcrumbItem
+import com.devtorres.core_model.ui.BreadcrumbItem
 import com.devtorres.finager.core.presentation.components.typo.BodySmall
 
 @Composable
