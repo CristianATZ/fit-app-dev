@@ -47,6 +47,7 @@ dependencies {
 
     // navigation
     implementation(libs.androidx.navigation.compose)
+    implementation(project(":core-domain"))
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)

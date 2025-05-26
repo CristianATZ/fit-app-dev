@@ -10,7 +10,7 @@ import com.devtorres.core_navigation.Screen
 import com.devtorres.feature_exercise.ExerciseScreen
 import com.devtorres.feature_exercise.ExerciseDetailViewModel
 
-private const val exerciseIdArg = "exerciseId"
+const val exerciseIdArg = "exerciseId"
 
 internal class ExerciseArgs(val exerciseId: String) {
     constructor(savedStateHandle: SavedStateHandle) :
@@ -34,6 +34,7 @@ fun NavGraphBuilder.exerciseScreen(
     ) { backStackEntry ->
         // inicializar viewmodel aqui
         val exerciseDetailViewModel: ExerciseDetailViewModel = hiltViewModel(backStackEntry)
+
         ExerciseScreen(
             exerciseDetailViewModel = exerciseDetailViewModel,
             onNavigateBack = onNavigateBack

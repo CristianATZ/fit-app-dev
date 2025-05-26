@@ -40,6 +40,9 @@ android {
 
 dependencies {
     implementation(project(":core-navigation"))
+    implementation(project(":core-domain"))
+    implementation(project(":core-model"))
+    implementation(project(":ui-common"))
 
     // compose
     implementation(platform(libs.androidx.compose.bom))
