@@ -19,4 +19,10 @@ interface ExerciseDao {
 
     @Query("SELECT * FROM exercises")
     suspend fun getExercises(): List<ExerciseEntity>
+
+    @Query("SELECT * FROM exercises WHERE id = :exerciseId")
+    suspend fun getExerciseById(exerciseId: String): ExerciseEntity
+
+    @Query("SELECT * FROM exercises WHERE id IN (:exerciseIds)")
+    suspend fun getAlternativeNames(exerciseIds: List<String>): List<ExerciseEntity>
 }

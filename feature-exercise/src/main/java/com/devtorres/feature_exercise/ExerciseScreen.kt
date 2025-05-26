@@ -1,42 +1,44 @@
 package com.devtorres.feature_exercise
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkHorizontally
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material3.Button
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.InputChip
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.devtorres.core_model.dto.BreadcrumbItem
-import com.devtorres.finager.core.presentation.components.typo.BodySmall
+import com.devtorres.core_model.enum.EquipmentType
+import com.devtorres.core_model.enum.ExerciseCategory
+import com.devtorres.core_model.enum.ForceType
+import com.devtorres.core_model.enum.LevelType
+import com.devtorres.core_model.enum.MechanicType
+import com.devtorres.feature_exercise.fragments.ExerciseDescriptionFragment
+import com.devtorres.ui_common.BreadcrumbCard
+import com.devtorres.ui_common.CustomScrollableTab
+import com.devtorres.ui_common.badge.LevelBadge
+import com.devtorres.ui_common.badge.SurfaceBadge
+import com.devtorres.ui_common.button.CustomOutlinedButton
+import com.devtorres.ui_common.strings.stringRes
+import com.devtorres.ui_common.typo.HeadLineSmall
+import com.google.accompanist.flowlayout.FlowRow
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ExerciseScreen(
     onNavigateBack: () -> Unit,
@@ -44,21 +46,24 @@ fun ExerciseScreen(
 ) {
     val breadcrumbs by exerciseDetailViewModel.breadcrumbs.collectAsStateWithLifecycle()
     val exerciseId by exerciseDetailViewModel.exerciseId.collectAsStateWithLifecycle()
+    val exerciseDetail by exerciseDetailViewModel.exerciseDetail.collectAsStateWithLifecycle()
     val isLoading by exerciseDetailViewModel.isLoading.collectAsStateWithLifecycle()
 
     BackHandler {
         if(breadcrumbs.size > 1) {
             exerciseDetailViewModel.changeExercise(breadcrumbs.toList()[breadcrumbs.toList().lastIndex - 1].id)
         } else {
-            exerciseDetailViewModel.clearBreadcrumbs()
-            onNavigateBack()
+            if(!isLoading) {
+                exerciseDetailViewModel.clearBreadcrumbs()
+                onNavigateBack()
+            }
         }
     }
 
     Scaffold {  innerPadding ->
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
                 .padding(24.dp)
         ) {
@@ -69,7 +74,7 @@ fun ExerciseScreen(
                     items = breadcrumbs.toList(),
                     key = { _, breadcrumb -> breadcrumb.id }
                 ) { index, breadcrumb ->
-                    BradcrumbCard(
+                    BreadcrumbCard(
                         exerciseId = exerciseId,
                         breadcrumb = breadcrumb,
                         onClickItem = {
@@ -91,41 +96,62 @@ fun ExerciseScreen(
                 }
             }
 
+            Spacer(Modifier.size(24.dp))
+
             if(isLoading) {
                 CircularProgressIndicator(
                     color = colorScheme.secondary
                 )
             } else {
-                Button(
-                    onClick = {
-                        exerciseDetailViewModel.changeExercise("Barbell_Squat")
-                    }
-                ) {
-                    Text(text = "Variant")
-                }
+                exerciseDetail?.let { details ->
+                    Row {
+                        HeadLineSmall(
+                            text = details.name.uppercase(),
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.weight(0.6f)
+                        )
 
-                Button(
-                    onClick = {
-                        exerciseDetailViewModel.changeExercise("Barbell_Bench_Press")
-                    }
-                ) {
-                    Text(text = "Variant")
-                }
+                        Spacer(Modifier.size(12.dp))
 
-                Button(
-                    onClick = {
-                        exerciseDetailViewModel.changeExercise("asdasd")
-                    }
-                ) {
-                    Text(text = "Variant")
-                }
+                        CustomOutlinedButton(
+                            stringResId = R.string.btnShare,
+                            onClick = {
 
-                Button(
-                    onClick = {
-                        exerciseDetailViewModel.changeExercise("oskok")
+                            },
+                            modifier = Modifier.weight(0.4f)
+                        )
                     }
-                ) {
-                    Text(text = "Variant")
+
+                    Spacer(Modifier.size(16.dp))
+
+                    ExerciseBasicInformation(
+                        level = details.level,
+                        equipment = details.equipment,
+                        mechanic = details.mechanic,
+                        force = details.force,
+                        category = details.category
+                    )
+
+                    val (selectedTabIndex, setTabIndex) = remember { mutableIntStateOf(0) }
+
+                    CustomScrollableTab(
+                        tabList = listOf(
+                            stringResource(R.string.tab_description),
+                            stringResource(R.string.tab_instructions),
+                            stringResource(R.string.tab_images),
+                            stringResource(R.string.tab_progress)
+                        ),
+                        selectedTabIndex = selectedTabIndex,
+                        onSelectedTab = setTabIndex,
+                        modifier = Modifier.padding(bottom = 32.dp, top = 24.dp)
+                    )
+
+                    ExerciseDescriptionFragment(
+                        details = details,
+                        navigateToExerciseVariant = { exerciseId ->
+                            exerciseDetailViewModel.changeExercise(exerciseId)
+                        }
+                    )
                 }
             }
         }
@@ -133,45 +159,35 @@ fun ExerciseScreen(
 }
 
 @Composable
-fun BradcrumbCard(
-    modifier: Modifier,
-    exerciseId: String,
-    breadcrumb: BreadcrumbItem,
-    onClickItem: () -> Unit,
-    isLoading: Boolean
+fun ExerciseBasicInformation(
+    level: LevelType,
+    equipment: EquipmentType,
+    mechanic: MechanicType,
+    force: ForceType,
+    category: ExerciseCategory
 ) {
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+    FlowRow (
+        mainAxisSpacing = 8.dp,
+        crossAxisSpacing = 8.dp
     ) {
-        InputChip(
-            selected = exerciseId == breadcrumb.id,
-            colors = FilterChipDefaults.filterChipColors(
-                selectedContainerColor = colorScheme.secondary,
-                selectedLabelColor = colorScheme.onSecondary,
-                containerColor = colorScheme.outline
-            ),
-            onClick = onClickItem,
-            enabled = !isLoading,
-            label = {
-                BodySmall(
-                    text = breadcrumb.name,
-                    modifier = Modifier
-                        .alpha(
-                            if (exerciseId == breadcrumb.id) 1f else 0.5f
-                        )
-                )
-            }
+        LevelBadge(
+            level = level
         )
 
-        Spacer(Modifier.size(8.dp))
-        Icon(
-            imageVector = Icons.Default.PlayArrow,
-            contentDescription = null,
-            modifier = Modifier
-                .size(16.dp)
-                .alpha(0.5f)
+        SurfaceBadge(
+            label = stringResource(equipment.stringRes())
         )
-        Spacer(Modifier.size(8.dp))
+
+        SurfaceBadge(
+            label = stringResource(mechanic.stringRes())
+        )
+
+        SurfaceBadge(
+            label = stringResource(force.stringRes())
+        )
+
+        SurfaceBadge(
+            label = stringResource(category.stringRes())
+        )
     }
 }

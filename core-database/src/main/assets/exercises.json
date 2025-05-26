@@ -19,7 +19,7 @@
       "category": "strength",
       "exerciseImages": ["0.jpg", "1.jpg"],
       "equipmentIds": ["olympic_barbell", "flat_bench", "weight_plates"],
-      "alternative": ["Dumbbell_Bench_Press", "Push_ups"]
+      "alternative": ["Dumbbell_Bench_Press", "Push_Ups"]
     },
     {
       "id": "Dumbbell_Bench_Press",
@@ -40,7 +40,7 @@
       "category": "strength",
       "exerciseImages": ["0.jpg", "1.jpg"],
       "equipmentIds": ["dumbbells", "flat_bench"],
-      "alternative": ["Barbell_Bench_Press", "Push_ups"]
+      "alternative": ["Barbell_Bench_Press", "Push_Ups"]
     },
     {
       "id": "Push_Ups",

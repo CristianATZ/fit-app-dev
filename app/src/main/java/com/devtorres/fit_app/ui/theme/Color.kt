@@ -61,6 +61,6 @@ val OnPinkContainer = Color(0xFFFFB1CF) // Texto sobre contenedor rosa (versión
 
 // Colores extendidos verde
 val Green = Color(0xFF03CEA4) // Rosa base (equivalente a Pink 500 en Material)
-val OnGreen = Color(0xFFFFFFFF) // Texto sobre rosa
+val OnGreen = Color(0xFF000000) // Texto sobre rosa
 val GreenContainer = Color(0xFF0A8C71) // Contenedor rosa (versión más oscura)
 val OnGreenContainer = Color(0xFF63EAD3) // Texto sobre contenedor rosa (versión más clara)

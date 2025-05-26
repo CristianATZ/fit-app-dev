@@ -64,7 +64,7 @@ fun ExerciseCard(
                 modifier = Modifier.padding(16.dp)
             ) {
                 TitleMedium(
-                    text = exercise.name,
+                    text = exercise.name.uppercase(),
                     fontWeight = FontWeight.Bold
                 )
 

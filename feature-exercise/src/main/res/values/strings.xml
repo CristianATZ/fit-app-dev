@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnShare">Compartir</string>
+    <string name="lblError">Error al cargar la informacion</string>
+    <string name="tab_description">Descripción</string>
+    <string name="tab_instructions">Instrucciones</string>
+    <string name="tab_images">Imágenes</string>
+    <string name="tab_progress">Progreso</string>
+    <string name="lblPrimaryMusclesUpperCase">MUSCULOS PRINCIPALES</string>
+    <string name="lblSecondaryMusclesUpperCase">MUSCULOS SECUNDARIOS</string>
+    <string name="lblAlternativeExercisesUpperCase">EJERCICIOS ALTERNATIVOS</string>
+</resources>

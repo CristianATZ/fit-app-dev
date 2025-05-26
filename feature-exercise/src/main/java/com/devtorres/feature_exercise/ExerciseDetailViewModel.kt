@@ -5,7 +5,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devtorres.core_domain.BreadcrumbsManager
+import com.devtorres.core_domain.GetExerciseDetailUseCase
 import com.devtorres.core_model.dto.BreadcrumbItem
+import com.devtorres.core_model.ui.ExerciseDetail
 import com.devtorres.feature_exercise.nav.ExerciseArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -19,12 +21,12 @@ import javax.inject.Inject
 @HiltViewModel
 class ExerciseDetailViewModel @Inject constructor(
     private val breadcrumbsManager: BreadcrumbsManager,
+    private val getExerciseDetailUseCase: GetExerciseDetailUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     // `MutableStateFlow` reactiva que reemplaza el valor fijo
-    private val _exerciseId = MutableStateFlow(ExerciseArgs(savedStateHandle).exerciseId)
-    val exerciseId: StateFlow<String> = _exerciseId.asStateFlow()
+    val exerciseId = MutableStateFlow(ExerciseArgs(savedStateHandle).exerciseId)
 
     val breadcrumbs: StateFlow<Set<BreadcrumbItem>> = breadcrumbsManager.getHistory()
 
@@ -32,8 +34,10 @@ class ExerciseDetailViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
+    private val _exerciseDetail = MutableStateFlow<ExerciseDetail?>(null)
+    val exerciseDetail: StateFlow<ExerciseDetail?> = _exerciseDetail.asStateFlow()
+
     init {
-        Log.d("ExerciseDetailViewModel", "ExerciseId: $exerciseId")
         viewModelScope.launch {
             exerciseId.collect { exerciseId ->
                 fetchDetailInfo(exerciseId)
@@ -47,20 +51,25 @@ class ExerciseDetailViewModel @Inject constructor(
 
             delay(1000)
 
+            _exerciseDetail.update {
+                getExerciseDetailUseCase(exerciseId = exerciseId)
+            }
+
             breadcrumbsManager.addItem(
-                item = BreadcrumbItem(id = exerciseId, name = "sisoy")
+                item = BreadcrumbItem(id = exerciseId, name = exerciseDetail.value?.name ?: "Error")
             )
             popUpToBreadcrumbs(exerciseId)
 
+            Log.d("ExerciseDetailViewModel", "ExerciseDetail: ${exerciseDetail.value}")
             _isLoading.update { false }
         }
     }
 
     fun changeExercise(newId: String) {
-        if(_exerciseId.value == newId) return
+        if(exerciseId.value == newId) return
 
         viewModelScope.launch {
-            _exerciseId.update { newId }
+            exerciseId.update { newId }
         }
     }
 
