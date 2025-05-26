@@ -56,7 +56,7 @@
     <string name="btnSave">Guardar</string>
     <string name="mechanic_isolation">Aislado</string>
     <string name="mechanic_compound">Compuesto</string>
-    <string name="force_pull">Empuje</string>
+    <string name="force_pull">Jalon</string>
     <string name="force_push">Empuje</string>
     <string name="force_static">Estatico</string>
 </resources>

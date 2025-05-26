@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.devtorres.core_domain.GetExercisesUseCase
 import com.devtorres.core_model.enum.EquipmentType
 import com.devtorres.core_model.enum.ExerciseCategory
+import com.devtorres.core_model.enum.ForceType
 import com.devtorres.core_model.enum.LevelType
 import com.devtorres.core_model.enum.MechanicType
 import com.devtorres.core_model.enum.MuscleGroup
@@ -37,6 +38,7 @@ class ExercisesViewModel @Inject constructor(
             levels = setOf(LevelType.ALL),
             equipment = setOf(EquipmentType.ALL),
             mechanics = setOf(MechanicType.ALL),
+            forces = setOf(ForceType.ALL),
             categories = setOf(ExerciseCategory.ALL)
         )
     )
@@ -64,6 +66,7 @@ class ExercisesViewModel @Inject constructor(
                     exercise.name.contains(filter.searchQuery, ignoreCase = true) &&
                             (filter.levels.any { it == LevelType.ALL } || exercise.level in filter.levels) &&
                             (filter.mechanics.any { it == MechanicType.ALL } || exercise.mechanic in filter.mechanics) &&
+                            (filter.forces.any { it == ForceType.ALL } || exercise.force in filter.forces) &&
                             (filter.equipment.any { it == EquipmentType.ALL } || exercise.equipment in filter.equipment) &&
                             (filter.categories.any { it == ExerciseCategory.ALL } || exercise.category in filter.categories) &&
                                 (filter.selectedMuscles.any { it == MuscleGroup.ALL } ||

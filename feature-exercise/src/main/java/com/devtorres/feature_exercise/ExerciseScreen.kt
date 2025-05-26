@@ -104,6 +104,7 @@ fun ExerciseScreen(
                 )
             } else {
                 exerciseDetail?.let { details ->
+                    // header
                     Row {
                         HeadLineSmall(
                             text = details.name.uppercase(),
@@ -124,6 +125,7 @@ fun ExerciseScreen(
 
                     Spacer(Modifier.size(16.dp))
 
+                    // information badges
                     ExerciseBasicInformation(
                         level = details.level,
                         equipment = details.equipment,
@@ -134,6 +136,7 @@ fun ExerciseScreen(
 
                     val (selectedTabIndex, setTabIndex) = remember { mutableIntStateOf(0) }
 
+                    // tabrow
                     CustomScrollableTab(
                         tabList = listOf(
                             stringResource(R.string.tab_description),
@@ -146,6 +149,7 @@ fun ExerciseScreen(
                         modifier = Modifier.padding(bottom = 32.dp, top = 24.dp)
                     )
 
+                    // description
                     ExerciseDescriptionFragment(
                         details = details,
                         navigateToExerciseVariant = { exerciseId ->

@@ -20,11 +20,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.devtorres.core_model.enum.EquipmentType
 import com.devtorres.core_model.enum.ExerciseCategory
+import com.devtorres.core_model.enum.ForceType
 import com.devtorres.core_model.enum.LevelType
 import com.devtorres.core_model.enum.MechanicType
 import com.devtorres.core_model.enum.MuscleGroup
 import com.devtorres.core_model.enum.addEquipmentFilter
 import com.devtorres.core_model.enum.addExerciseCategoryFilter
+import com.devtorres.core_model.enum.addForceFilter
 import com.devtorres.core_model.enum.addLevelTypeFilter
 import com.devtorres.core_model.enum.addMechanicTypeFilter
 import com.devtorres.core_model.enum.addMuscleFilter
@@ -53,6 +55,7 @@ fun ExercisesFilterDialog(
     val levelTypeList = remember { LevelType.entries.toList() }
     val equipmentTypeList = remember { EquipmentType.entries.toList() }
     val exerciseCategoryList = remember { ExerciseCategory.entries.toList() }
+    val forceTypeList = remember { ForceType.entries.toList() }
     val mechanicTypeList = remember { MechanicType.entries.toList() }
 
     ListDialogContainer(
@@ -231,6 +234,51 @@ fun ExercisesFilterDialog(
                         label = {
                             LabelLarge(
                                 text = stringResource(mechanicType.stringRes())
+                            )
+                        }
+                    )
+                }
+            }
+
+            SecondaryTextButton(
+                stringResId = R.string.btnReset,
+                onClick = {
+                    newFilters = newFilters.copy(
+                        mechanics = newFilters.mechanics.addMechanicTypeFilter(MechanicType.ALL)
+                    )
+                },
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        // force type chips
+        Column {
+            LabelLarge(
+                stringResId = R.string.lblForceType,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.alpha(0.5f)
+            )
+
+            FlowRow(
+                mainAxisSpacing = 8.dp
+            ) {
+                forceTypeList.forEach { forceType ->
+                    FilterChip(
+                        selected = forceType in newFilters.forces,
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = colorScheme.secondary,
+                            selectedLabelColor = colorScheme.onSecondary,
+                            containerColor = colorScheme.surfaceVariant
+                        ),
+                        onClick = {
+                            // Un único operador de toggle
+                            newFilters = newFilters.copy(
+                                forces = newFilters.forces.addForceFilter(forceType)
+                            )
+                        },
+                        label = {
+                            LabelLarge(
+                                text = stringResource(forceType.stringRes())
                             )
                         }
                     )

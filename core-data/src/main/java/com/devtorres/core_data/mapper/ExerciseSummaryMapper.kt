@@ -13,6 +13,7 @@ object ExerciseSummaryMapper {
             mechanic = this.mechanic,
             equipment = this.equipment,
             category = this.category,
+            force = this.force,
             primaryMuscles = this.primaryMuscles,
             secondaryMuscles = this.secondaryMuscles,
             exerciseImages = this.exerciseImages

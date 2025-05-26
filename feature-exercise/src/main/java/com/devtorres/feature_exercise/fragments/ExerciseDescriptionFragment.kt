@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Badge
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.shapes
@@ -21,6 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.devtorres.core_model.ui.ExerciseDetail
 import com.devtorres.feature_exercise.R
+import com.devtorres.finager.core.presentation.components.typo.BodySmall
+import com.devtorres.ui_common.badge.ErrorBadge
 import com.devtorres.ui_common.badge.SecondaryBadge
 import com.devtorres.ui_common.badge.SurfaceBadge
 import com.devtorres.ui_common.image.AsyncImageLoader
@@ -68,15 +71,21 @@ fun ExerciseDescriptionFragment(
 
             Spacer(Modifier.size(8.dp))
 
-            FlowRow(
-                mainAxisSpacing = 8.dp,
-                crossAxisSpacing = 8.dp
-            ) {
-                details.secondaryMuscles.forEach { muscle ->
-                    SurfaceBadge(
-                        label = stringResource(muscle.stringRes())
-                    )
+            if(details.secondaryMuscles.isNotEmpty()) {
+                FlowRow(
+                    mainAxisSpacing = 8.dp,
+                    crossAxisSpacing = 8.dp
+                ) {
+                    details.secondaryMuscles.forEach { muscle ->
+                        SurfaceBadge(
+                            label = stringResource(muscle.stringRes())
+                        )
+                    }
                 }
+            } else {
+                ErrorBadge(
+                    label = stringResource(R.string.empty_muscle_list)
+                )
             }
         }
 

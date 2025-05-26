@@ -16,4 +16,5 @@
     <string name="lblMechanicType">Tipo de mecánica</string>
     <string name="lblExerciseCategory">Categorias</string>
     <string name="btnReset">Restablecer</string>
+    <string name="lblForceType">Tipo de esfuerzo</string>
 </resources>
