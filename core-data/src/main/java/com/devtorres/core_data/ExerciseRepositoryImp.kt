@@ -2,7 +2,9 @@ package com.devtorres.core_data
 
 import androidx.annotation.WorkerThread
 import com.devtorres.core_data.mapper.ExerciseSummaryMapper.asExerciseSummary
+import com.devtorres.core_database.dao.EquipmentDao
 import com.devtorres.core_database.dao.ExerciseDao
+import com.devtorres.core_database.entity.mapper.asDomain
 import com.devtorres.core_database.entity.mapper.asExerciseAlternative
 import com.devtorres.core_domain.repository.ExerciseRepository
 import com.devtorres.core_model.ui.EquipmentDetail
@@ -14,7 +16,8 @@ import javax.inject.Singleton
 
 @Singleton
 class ExerciseRepositoryImp @Inject constructor(
-    private val exerciseDao: ExerciseDao
+    private val exerciseDao: ExerciseDao,
+    private val equipmentDao: EquipmentDao
 ) : ExerciseRepository {
 
     @WorkerThread
@@ -28,8 +31,13 @@ class ExerciseRepositoryImp @Inject constructor(
         val exerciseEntity = exerciseDao.getExerciseById(exerciseId = exerciseId)
 
         // 2. Mapeamos equipmentsIds -> List<EquipmentDetail>
-        // obtenemos de la base de datos
-        val equipmentDetails = emptyList<EquipmentDetail>()
+        val equipments = if(exerciseEntity.equipmentIds.isNotEmpty()) {
+            equipmentDao.getEquipmentsByIds(equipmentIds = exerciseEntity.equipmentIds)
+        } else {
+            emptyList()
+        }
+
+        val equipmentDetails = equipments.asDomain()
 
         // 3. Mapeamos alternative -> List<ExerciseAlternative>
         val alternativeExercises = if(exerciseEntity.alternative.isNotEmpty()) {
@@ -38,9 +46,7 @@ class ExerciseRepositoryImp @Inject constructor(
             emptyList()
         }
 
-        val alternativeDetails = alternativeExercises.map {
-            it.asExerciseAlternative()
-        }
+        val alternativeDetails = alternativeExercises.asExerciseAlternative()
 
         // 4. Construimos el objeto ExerciseDetail
         return ExerciseDetail(

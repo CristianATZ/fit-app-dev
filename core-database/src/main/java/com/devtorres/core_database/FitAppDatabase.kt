@@ -27,7 +27,6 @@ import com.devtorres.core_database.entity.SupplementEntity
         Converters::class,
         MoshiConverters::class,
         MapConverter::class
-        //ListStringConverter::class,
     ]
 )
 abstract class FitAppDatabase : RoomDatabase() {

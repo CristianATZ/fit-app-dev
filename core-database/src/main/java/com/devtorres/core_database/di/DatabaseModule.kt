@@ -37,20 +37,20 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context,
-        //listStringConverter: ListStringConverter,
         moshiConverters: MoshiConverters,
         mapConverter: MapConverter,
         exercisesPopulatorCallback: ExercisesPopulatorCallback,
-        supplementsPopulatorCallback: SupplementsPopulatorCallback
+        supplementsPopulatorCallback: SupplementsPopulatorCallback,
+        equipmentPopulatorCallback: EquipmentPopulatorCallback
     ) : FitAppDatabase {
         return Room
             .databaseBuilder(context, FitAppDatabase::class.java, "fit_app_database")
             .fallbackToDestructiveMigration(true)
-            //.addTypeConverter(listStringConverter)
             .addTypeConverter(moshiConverters)
             .addTypeConverter(mapConverter)
             .addCallback(exercisesPopulatorCallback)
             .addCallback(supplementsPopulatorCallback)
+            .addCallback(equipmentPopulatorCallback)
             .build()
     }
 

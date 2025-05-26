@@ -14,4 +14,8 @@ interface EquipmentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEquipments(equipments: List<EquipmentEntity>)
+
+    @Query("SELECT * FROM equipments WHERE id IN (:equipmentIds)")
+    suspend fun getEquipmentsByIds(equipmentIds: List<String>): List<EquipmentEntity>
+
 }
