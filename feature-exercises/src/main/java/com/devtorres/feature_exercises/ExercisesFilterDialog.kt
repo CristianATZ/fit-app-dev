@@ -289,7 +289,7 @@ fun ExercisesFilterDialog(
                 stringResId = R.string.btnReset,
                 onClick = {
                     newFilters = newFilters.copy(
-                        mechanics = newFilters.mechanics.addMechanicTypeFilter(MechanicType.ALL)
+                        forces = newFilters.forces.addForceFilter(ForceType.ALL)
                     )
                 },
                 modifier = Modifier.fillMaxWidth()
