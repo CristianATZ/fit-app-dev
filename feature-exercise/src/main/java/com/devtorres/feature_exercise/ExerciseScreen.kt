@@ -1,37 +1,37 @@
 package com.devtorres.feature_exercise
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
+import androidx.annotation.StringRes
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.shapes
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.devtorres.core_model.enum.EquipmentType
@@ -39,20 +39,22 @@ import com.devtorres.core_model.enum.ExerciseCategory
 import com.devtorres.core_model.enum.ForceType
 import com.devtorres.core_model.enum.LevelType
 import com.devtorres.core_model.enum.MechanicType
-import com.devtorres.core_model.ui.EquipmentDetail
 import com.devtorres.core_model.ui.ExerciseDetail
 import com.devtorres.feature_exercise.fragments.ExerciseDescriptionFragment
+import com.devtorres.feature_exercise.fragments.ExerciseEquiptmentFragment
 import com.devtorres.feature_exercise.fragments.ExerciseImagesFragment
 import com.devtorres.feature_exercise.fragments.ExerciseInstructionsFragment
+import com.devtorres.feature_exercise.fragments.ProgressFragment
 import com.devtorres.ui_common.BreadcrumbCard
 import com.devtorres.ui_common.CustomScrollableTab
-import com.devtorres.ui_common.ImageTitleCard
 import com.devtorres.ui_common.badge.LevelBadge
 import com.devtorres.ui_common.badge.SurfaceBadge
 import com.devtorres.ui_common.button.CustomOutlinedButton
-import com.devtorres.ui_common.image.AsyncImageLoader
 import com.devtorres.ui_common.strings.stringRes
 import com.devtorres.ui_common.typo.HeadLineSmall
+import com.devtorres.ui_common.typo.LabelLarge
+import com.devtorres.ui_common.typo.TitleLarge
+import com.devtorres.ui_common.typo.TitleMedium
 import com.google.accompanist.flowlayout.FlowRow
 import kotlinx.coroutines.launch
 
@@ -210,42 +212,55 @@ private fun ExerciseContent(
                 )
             }
             4 -> {
-                ProgressFragment(
-
-                )
+                ProgressFragment()
             }
         }
     }
 }
 
 @Composable
-fun ExerciseEquiptmentFragment(
-    equipments: List<EquipmentDetail>
+fun InformationCard(
+    modifier: Modifier = Modifier,
+    @StringRes titleResId: Int,
+    description: String,
+    text: String
 ) {
-    FlowRow(
-        mainAxisSpacing = 8.dp,
-        crossAxisSpacing = 8.dp,
+    OutlinedCard (
+        colors = CardDefaults.outlinedCardColors(
+            containerColor = colorScheme.surface
+        ),
+        border = BorderStroke(
+            width = 1.dp,
+            color = colorScheme.outline
+        ),
+        shape = shapes.medium,
+        modifier = modifier
     ) {
-        equipments.forEach { equipment ->
-            Log.d("imageURi", equipment.getPreviewImageUri())
-            ImageTitleCard(
-                folderPath = equipment.getPreviewImageUri(),
-                title = equipment.name,
-                onClick = {
-                    // abrir dialogo
+        Column(
+            modifier = Modifier.padding(12.dp)
+        ) {
+            TitleMedium(
+                stringResId = titleResId,
+                fontWeight = FontWeight.Bold
+            )
 
-                }
+            Spacer(Modifier.size(8.dp))
+
+            TitleLarge(
+                text = text,
+                fontWeight = FontWeight.Bold
+            )
+
+            LabelLarge(
+                text = description,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.alpha(0.5f)
             )
         }
     }
 }
 
-@Composable
-fun ProgressFragment() {
-    Text(
-        text = "progress"
-    )
-}
 
 @Composable
 private fun ExerciseHeader(

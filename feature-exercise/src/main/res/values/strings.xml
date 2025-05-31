@@ -11,4 +11,10 @@
     <string name="lblAlternativeExercisesUpperCase">EJERCICIOS ALTERNATIVOS</string>
     <string name="empty_muscle_list">Ninguno</string>
     <string name="tab_equipment">Equipo</string>
+    <string name="lblTotalSeriesUpperCase">TOTAL DE SERIES</string>
+    <string name="lblTotalSeriesDescription">series registradas</string>
+    <string name="lblRmEstimatedUpperCase">1RM ESTIMADO</string>
+    <string name="lblRmEstimatedDescription">Máximo: %1$dkg × %2$dreps</string>
+    <string name="lblRecentlyProgressUpperCase">PROGRESO RECIENTE</string>
+    <string name="lblRecentlyProgressDescription">vs. entrenamiento anterior</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 
 @Composable
 fun LabelLarge(
@@ -16,6 +17,8 @@ fun LabelLarge(
     text: String,
     color: Color = Color.Unspecified,
     textAlign: TextAlign? = null,
+    maxLines: Int = Int.MAX_VALUE,
+    overflow: TextOverflow = TextOverflow.Clip,
     fontWeight: FontWeight = FontWeight.Normal
 ) {
     Text(
@@ -23,6 +26,8 @@ fun LabelLarge(
         fontWeight = fontWeight,
         color = color,
         style = typography.labelLarge,
+        maxLines = maxLines,
+        overflow = overflow,
         textAlign = textAlign,
         modifier = modifier
     )
