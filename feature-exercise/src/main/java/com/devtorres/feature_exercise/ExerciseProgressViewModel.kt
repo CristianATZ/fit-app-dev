@@ -2,6 +2,7 @@ package com.devtorres.feature_exercise
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devtorres.core_utils.Validators
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -36,7 +37,8 @@ class ExerciseProgressViewModel @Inject constructor(
         viewModelScope.launch {
             _progressStateForm.update {
                 it.copy(
-                    weight = weight
+                    weight = if(Validators.isDigitValid(weight)) weight else it.weight,
+                    isWeightError = !Validators.isDigitValid(weight)
                 )
             }
         }
@@ -72,6 +74,8 @@ sealed class ProgressEvent {
 
 data class ProgressForm(
     val weight: String = "",
+    val isWeightError: Boolean = false,
     val reps: String = "",
+    val isRepsError: Boolean = false,
     val notes: String = ""
 )

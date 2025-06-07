@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -83,6 +84,7 @@ fun ProgressAddSerieTab(
                                 ProgressEvent.OnWeightChange(weight = weight)
                             )
                         },
+                        isError = progressFormState.isWeightError,
                         placeholderResId = R.string.placeholder_weight,
                         leadingIcon = Icons.Default.Build,
                         trailingIcon = Icons.Default.Clear,

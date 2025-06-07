@@ -39,6 +39,7 @@ fun CustomOutlinedTextField(
     onValueChange: (String) -> Unit,
     @StringRes placeholderResId: Int,
     leadingIcon: ImageVector,
+    isError: Boolean = false,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
@@ -49,6 +50,7 @@ fun CustomOutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         label = null,
+        isError = isError,
         placeholder = {
             LabelLarge(
                 stringResId = placeholderResId,
