@@ -20,10 +20,14 @@
     <string name="tab_add_serie">Agregar</string>
     <string name="tab_chart">Grafico</string>
     <string name="tab_historical">Historial</string>
-    <string name="lblAddSerieUpperCase">REGISTRAR NUEVA SERIE</string>
-    <string name="lblAddSerieDescription">Agrega el peso y repeticiones de tu ultima serie de %1$s</string>
+    <string name="add_serie_title_upper">REGISTRAR NUEVA SERIE</string>
+    <string name="add_serie_description">Agrega el peso y repeticiones de tu ultima serie de %1$s</string>
     <string name="placeholder_weight">Peso (kg)</string>
     <string name="placeholder_reps">Repeticiones</string>
     <string name="placeholder_notes">Notas (Opcional)</string>
     <string name="btnAdd">Agregar</string>
+    <string name="chart_title_upper">PROGRESO EN EL TIEMPO</string>
+    <string name="chart_description">Visualización grafica de tu progreso en %1$s</string>
+    <string name="historical_title_upper">SENTADILLA CON BARRA</string>
+    <string name="historical_description"><![CDATA[Registro detallado de todas tus series de %1$s]]></string>
 </resources>

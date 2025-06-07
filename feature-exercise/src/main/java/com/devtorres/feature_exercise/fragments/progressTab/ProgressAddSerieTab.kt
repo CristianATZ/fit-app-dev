@@ -22,7 +22,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -58,14 +57,14 @@ fun ProgressAddSerieTab(
             modifier = Modifier.padding(12.dp)
         ) {
             HeadLineSmall(
-                stringResId = R.string.lblAddSerieUpperCase,
+                stringResId = R.string.add_serie_title_upper,
                 fontWeight = FontWeight.Bold
             )
 
             Spacer(Modifier.size(8.dp))
 
             LabelLarge(
-                text = stringResource(R.string.lblAddSerieDescription, exerciseName),
+                text = stringResource(R.string.add_serie_description, exerciseName),
                 modifier = Modifier.alpha(0.5f)
             )
 

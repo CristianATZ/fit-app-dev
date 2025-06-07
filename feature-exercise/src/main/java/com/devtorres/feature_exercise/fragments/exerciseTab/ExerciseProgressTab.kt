@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -20,6 +21,8 @@ import com.devtorres.feature_exercise.ExerciseProgressViewModel
 import com.devtorres.feature_exercise.R
 import com.devtorres.feature_exercise.components.InformationCard
 import com.devtorres.feature_exercise.fragments.progressTab.ProgressAddSerieTab
+import com.devtorres.feature_exercise.fragments.progressTab.ProgressChartTab
+import com.devtorres.feature_exercise.fragments.progressTab.ProgressHistoricalTab
 import com.devtorres.ui_common.tab.CustomTabRow
 import kotlinx.coroutines.launch
 
@@ -83,7 +86,8 @@ fun ExerciseProgressTab(
         )
 
         HorizontalPager(
-            state = pagerState
+            state = pagerState,
+            verticalAlignment = Alignment.Top
         ) { page ->
             when(page) {
                 0 -> {
@@ -93,10 +97,14 @@ fun ExerciseProgressTab(
                     )
                 }
                 1 -> {
-                    Text("graficos")
+                    ProgressChartTab(
+                        exerciseName = exerciseName
+                    )
                 }
                 2 -> {
-                    Text("hisotrial")
+                    ProgressHistoricalTab(
+                        exerciseName = exerciseName
+                    )
                 }
             }
         }
