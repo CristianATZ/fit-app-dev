@@ -61,6 +61,9 @@ dependencies {
     // icons
     implementation(libs.androidx.material.icons.extended.android)
 
+    // graficos
+    implementation(libs.jaikeerthick.compoasble.graphs)
+
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 

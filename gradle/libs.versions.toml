@@ -32,6 +32,7 @@ kotlinxCoroutinesAndroid = "1.10.2"
 materialIconsExtendedAndroid = "1.7.8"
 accompanistFlowlayout = "0.36.0"
 toolsCore = "1.0.0-alpha13"
+composableGraph = "1.2.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -69,6 +70,7 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 androidx-material-icons-extended-android = { group = "androidx.compose.material", name = "material-icons-extended-android", version.ref = "materialIconsExtendedAndroid" }
 accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanistFlowlayout" }
 androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
+jaikeerthick-compoasble-graphs = { group = "com.github.jaikeerthick", name = "Composable-Graphs", version.ref = "composableGraph"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
