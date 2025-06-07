@@ -1,20 +1,9 @@
-package com.devtorres.feature_exercise.fragments
+package com.devtorres.feature_exercise.fragments.exerciseTab
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Badge
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme.colorScheme
-import androidx.compose.material3.MaterialTheme.shapes
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -22,19 +11,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.devtorres.core_model.ui.ExerciseDetail
 import com.devtorres.feature_exercise.R
-import com.devtorres.finager.core.presentation.components.typo.BodySmall
 import com.devtorres.ui_common.ImageTitleCard
 import com.devtorres.ui_common.badge.ErrorBadge
 import com.devtorres.ui_common.badge.SecondaryBadge
 import com.devtorres.ui_common.badge.SurfaceBadge
-import com.devtorres.ui_common.image.AsyncImageLoader
 import com.devtorres.ui_common.strings.stringRes
-import com.devtorres.ui_common.typo.LabelLarge
 import com.devtorres.ui_common.typo.TitleMedium
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
-internal fun ExerciseDescriptionFragment(
+internal fun ExerciseDescriptionTab(
     details: ExerciseDetail,
     navigateToExerciseVariant: (String) -> Unit
 ) {

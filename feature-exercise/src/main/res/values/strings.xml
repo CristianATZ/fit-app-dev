@@ -17,4 +17,13 @@
     <string name="lblRmEstimatedDescription">Máximo: %1$dkg × %2$dreps</string>
     <string name="lblRecentlyProgressUpperCase">PROGRESO RECIENTE</string>
     <string name="lblRecentlyProgressDescription">vs. entrenamiento anterior</string>
+    <string name="tab_add_serie">Agregar</string>
+    <string name="tab_chart">Grafico</string>
+    <string name="tab_historical">Historial</string>
+    <string name="lblAddSerieUpperCase">REGISTRAR NUEVA SERIE</string>
+    <string name="lblAddSerieDescription">Agrega el peso y repeticiones de tu ultima serie de %1$s</string>
+    <string name="placeholder_weight">Peso (kg)</string>
+    <string name="placeholder_reps">Repeticiones</string>
+    <string name="placeholder_notes">Notas (Opcional)</string>
+    <string name="btnAdd">Agregar</string>
 </resources>

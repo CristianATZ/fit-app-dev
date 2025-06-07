@@ -66,6 +66,9 @@ dependencies {
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
+    // icons
+    implementation(libs.androidx.material.icons.extended.android)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

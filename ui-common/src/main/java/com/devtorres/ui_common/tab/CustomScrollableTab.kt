@@ -1,4 +1,4 @@
-package com.devtorres.ui_common
+package com.devtorres.ui_common.tab
 
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.shapes

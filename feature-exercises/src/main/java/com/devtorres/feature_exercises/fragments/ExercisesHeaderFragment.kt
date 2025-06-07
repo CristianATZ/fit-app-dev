@@ -10,6 +10,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.MaterialTheme.colorScheme
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -98,6 +100,9 @@ fun ExercisesHeaderFragment(
                 },
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Search
+                ),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = colorScheme.secondary
                 ),
                 keyboardActions = KeyboardActions(
                     onSearch = {

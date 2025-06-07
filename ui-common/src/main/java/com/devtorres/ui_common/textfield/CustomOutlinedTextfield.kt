@@ -2,26 +2,22 @@ package com.devtorres.ui_common.textfield
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.style.TextOverflow
 import com.devtorres.ui_common.typo.LabelLarge
 
 /**
@@ -45,6 +41,7 @@ fun CustomOutlinedTextField(
     leadingIcon: ImageVector,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
     trailingIcon: ImageVector,
     onTrailingClick: () -> Unit
 ) {
@@ -54,7 +51,9 @@ fun CustomOutlinedTextField(
         label = null,
         placeholder = {
             LabelLarge(
-                stringResId = placeholderResId
+                stringResId = placeholderResId,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1
             )
         },
         textStyle = TextStyle(
@@ -78,6 +77,7 @@ fun CustomOutlinedTextField(
                 }
             }
         },
+        colors = colors,
         keyboardActions = keyboardActions,
         keyboardOptions = keyboardOptions,
         shape = shapes.small,

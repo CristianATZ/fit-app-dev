@@ -1,4 +1,4 @@
-package com.devtorres.feature_exercise.fragments
+package com.devtorres.feature_exercise.fragments.exerciseTab
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.devtorres.ui_common.image.AsyncImageLoader
 
 @Composable
-fun ExerciseImagesFragment(
+fun ExerciseImagesTab(
     imageUris: List<String>
 ) {
     Column(

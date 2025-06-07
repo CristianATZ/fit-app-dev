@@ -1,4 +1,4 @@
-package com.devtorres.feature_exercise.fragments
+package com.devtorres.feature_exercise.fragments.exerciseTab
 
 import android.util.Log
 import androidx.compose.runtime.Composable
@@ -8,7 +8,7 @@ import com.devtorres.ui_common.ImageTitleCard
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
-fun ExerciseEquiptmentFragment(
+fun ExerciseEquiptmentTab(
     equipments: List<EquipmentDetail>
 ) {
     FlowRow(

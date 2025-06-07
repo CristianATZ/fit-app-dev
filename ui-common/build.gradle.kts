@@ -58,6 +58,9 @@ dependencies {
     implementation(libs.coil.svg)
     implementation(libs.coil.compose)
 
+    // icons
+    implementation(libs.androidx.material.icons.extended.android)
+
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 

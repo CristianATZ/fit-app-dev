@@ -38,6 +38,8 @@ fun LabelLarge(
     modifier: Modifier = Modifier,
     @StringRes stringResId: Int,
     color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
+    overflow: TextOverflow = TextOverflow.Clip,
     textAlign: TextAlign = TextAlign.Unspecified,
     fontWeight: FontWeight = FontWeight.Normal
 ) {
@@ -48,6 +50,8 @@ fun LabelLarge(
         fontWeight = fontWeight,
         color = color,
         textAlign = textAlign,
+        overflow = overflow,
+        maxLines = maxLines,
         style = typography.labelLarge,
         modifier = modifier
     )
