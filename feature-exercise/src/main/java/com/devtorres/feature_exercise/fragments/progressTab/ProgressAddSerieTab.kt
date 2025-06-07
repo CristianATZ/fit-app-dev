@@ -77,6 +77,7 @@ fun ProgressAddSerieTab(
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
+                    // peso
                     CustomOutlinedTextField(
                         value = progressFormState.weight,
                         onValueChange = {  weight ->
@@ -105,6 +106,7 @@ fun ProgressAddSerieTab(
                         modifier = Modifier.weight(1f)
                     )
 
+                    // repeticiones
                     CustomOutlinedTextField(
                         value = progressFormState.reps,
                         onValueChange = { reps ->
@@ -112,6 +114,7 @@ fun ProgressAddSerieTab(
                                 ProgressEvent.OnRepsChange(reps = reps)
                             )
                         },
+                        isError = progressFormState.isRepsError,
                         placeholderResId = R.string.placeholder_reps,
                         leadingIcon = Icons.Default.Repeat,
                         trailingIcon = Icons.Default.Clear,
@@ -133,6 +136,7 @@ fun ProgressAddSerieTab(
                     )
                 }
 
+                // notas
                 CustomOutlinedTextField(
                     value = progressFormState.notes,
                     onValueChange = { notes ->
@@ -160,6 +164,11 @@ fun ProgressAddSerieTab(
 
             SecondaryButton(
                 stringResId = R.string.btnAdd,
+                enabled = !progressFormState.isWeightError &&
+                        !progressFormState.isRepsError &&
+                        progressFormState.weight.isNotEmpty() &&
+                        progressFormState.reps.isNotEmpty()
+                ,
                 onClick = {
                     exerciseProgressViewModel.onEvent(
                         ProgressEvent.OnAddProgress

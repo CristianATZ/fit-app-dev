@@ -37,8 +37,8 @@ class ExerciseProgressViewModel @Inject constructor(
         viewModelScope.launch {
             _progressStateForm.update {
                 it.copy(
-                    weight = if(Validators.isDigitValid(weight)) weight else it.weight,
-                    isWeightError = !Validators.isDigitValid(weight)
+                    weight = weight,
+                    isWeightError = !Validators.isWeightValid(weight)
                 )
             }
         }
@@ -48,7 +48,8 @@ class ExerciseProgressViewModel @Inject constructor(
         viewModelScope.launch {
             _progressStateForm.update {
                 it.copy(
-                    reps = reps
+                    reps = reps,
+                    isRepsError = !Validators.isRepsValid(reps)
                 )
             }
         }
