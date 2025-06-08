@@ -87,6 +87,7 @@ fun ExerciseProgressTab(
 
         HorizontalPager(
             state = pagerState,
+            userScrollEnabled = false,
             verticalAlignment = Alignment.Top
         ) { page ->
             when(page) {

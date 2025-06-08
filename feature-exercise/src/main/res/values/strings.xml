@@ -30,4 +30,7 @@
     <string name="chart_description">Visualización grafica de tu progreso en %1$s</string>
     <string name="historical_title_upper">SENTADILLA CON BARRA</string>
     <string name="historical_description"><![CDATA[Registro detallado de todas tus series de %1$s]]></string>
+    <string name="lblWeight">Peso:</string>
+    <string name="lblReps">Reps:</string>
+    <string name="lblKg">%1$s kg</string>
 </resources>

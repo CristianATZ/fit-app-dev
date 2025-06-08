@@ -174,6 +174,7 @@ private fun ExerciseContent(
 
     HorizontalPager(
         state = pagerState,
+        userScrollEnabled = false,
         verticalAlignment = Alignment.Top
     ) { page ->
         when (page) {
