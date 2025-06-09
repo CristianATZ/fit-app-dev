@@ -175,7 +175,7 @@ private fun CardSelectedInformation(
 
             Row {
                 LabelLarge(
-                    stringResId = R.string.lblReps,
+                    stringResId = R.string.lblRepetitions,
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(Modifier.size(4.dp))

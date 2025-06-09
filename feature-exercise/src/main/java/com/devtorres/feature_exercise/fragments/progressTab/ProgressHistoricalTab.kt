@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.devtorres.feature_exercise.R
+import com.devtorres.feature_exercise.components.ProgressCard
 import com.devtorres.ui_common.typo.HeadLineSmall
 import com.devtorres.ui_common.typo.LabelLarge
 
@@ -47,6 +48,10 @@ fun ProgressHistoricalTab(
                 text = stringResource(R.string.historical_description, exerciseName),
                 modifier = Modifier.alpha(0.5f)
             )
+
+            Spacer(Modifier.size(16.dp))
+
+            ProgressCard()
         }
     }
 }
