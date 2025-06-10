@@ -12,15 +12,18 @@ import com.devtorres.core_database.dao.ExerciseDao
 import com.devtorres.core_database.dao.SupplementDao
 import com.devtorres.core_database.entity.EquipmentEntity
 import com.devtorres.core_database.entity.ExerciseEntity
+import com.devtorres.core_database.entity.ProgressEntity
 import com.devtorres.core_database.entity.SupplementEntity
+
 
 @Database(
     entities = [
         ExerciseEntity::class,
         SupplementEntity::class,
-        EquipmentEntity::class
+        EquipmentEntity::class,
+        ProgressEntity::class
     ],
-    version = 2
+    version = 1
 )
 @TypeConverters(
     value = [
