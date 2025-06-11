@@ -4,18 +4,22 @@ import com.devtorres.core_model.ui.BreadcrumbItem
 import kotlinx.coroutines.flow.StateFlow
 
 interface BreadcrumbsManager {
+
+    /** Obtiene el historial completo en orden de visita */
+    fun getHistory(): StateFlow<Set<BreadcrumbItem>>
+
+    /** Obtiene el ID del ultimo ítem del historial */
+    fun getLastItemId(): StateFlow<String?>
+
     /** Añade un ítem al final, evitando duplicados consecutivos */
     fun addItem(item: BreadcrumbItem)
 
-    /** Recorta todo el historial **por encima** de [itemId], dejándolo a tope */
+    /** Recorta los item del historial **por encima** de [itemId], dejándolo a tope */
     fun popUpTo(itemId: String)
 
     /** Elimina únicamente el último ítem del historial */
     fun pop()
 
-    /** Obtiene el historial completo en orden de visita */
-    fun getHistory(): StateFlow<Set<BreadcrumbItem>>
-
-    /** Limpia todo el historial */
+    /** Limpia el historial */
     fun clear()
 }

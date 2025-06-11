@@ -1,5 +1,6 @@
 package com.devtorres.feature_exercise
 
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,9 +19,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -37,23 +37,20 @@ class ExerciseProgressViewModel @Inject constructor(
 
     private val currentFetchingMonth = MutableStateFlow<Long>(0)
 
+    var isLoading by mutableStateOf(true)
+        private set
+
+    var toastMessage by mutableStateOf<String?>(null)
+        private set
+
     /**
      * Se alimenta del historial del [BreadcrumbsManager].
      *
      * Obtiene el ultimo de la lista para obtener el ID del ejercicio.
      */
     private val exerciseIdFlow: Flow<String> = breadcrumbsManager
-        .getHistory()
-        .map { history ->
-            history.last().id
-        }
-        .distinctUntilChanged()
-
-    var isLoading by mutableStateOf(true)
-        private set
-
-    var toastMessage by mutableStateOf<String?>(null)
-        private set
+        .getLastItemId()
+        .filterNotNull()
 
     /**
      * Utiliza dos Flows combinados.
@@ -69,6 +66,7 @@ class ExerciseProgressViewModel @Inject constructor(
         ) { exerciseId, currentFetchingMonth ->
             exerciseId to currentFetchingMonth
         }.flatMapLatest { (exerciseId, minusMonth) ->
+            Log.d("ExerciseProgressViewModel", "exerciseId: $exerciseId, minusMonth: $minusMonth")
             getProgressListUseCase(
                 minusMonth = minusMonth,
                 exerciseId = exerciseId,
