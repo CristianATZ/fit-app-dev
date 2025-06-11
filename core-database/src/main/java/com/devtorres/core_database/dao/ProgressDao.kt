@@ -32,5 +32,5 @@ interface ProgressDao {
         FROM progress
         WHERE id = :progressId
     """)
-    suspend fun deleteProgress(progressId: String) : Boolean
+    suspend fun deleteProgress(progressId: String)
 }

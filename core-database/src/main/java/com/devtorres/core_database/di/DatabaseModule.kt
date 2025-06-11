@@ -10,6 +10,7 @@ import com.devtorres.core_database.converter.MapConverter
 import com.devtorres.core_database.converter.MoshiConverters
 import com.devtorres.core_database.dao.EquipmentDao
 import com.devtorres.core_database.dao.ExerciseDao
+import com.devtorres.core_database.dao.ProgressDao
 import com.devtorres.core_database.dao.SupplementDao
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -70,6 +71,12 @@ object DatabaseModule {
     @Singleton
     fun provideEquipmentDao(fitAppDatabase: FitAppDatabase) : EquipmentDao {
         return fitAppDatabase.equipmentDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideProgressDao(fitAppDatabase: FitAppDatabase) : ProgressDao {
+        return fitAppDatabase.progressDao()
     }
 
     @Provides

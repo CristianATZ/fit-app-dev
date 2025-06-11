@@ -1,4 +1,4 @@
-package com.devtorres.core_data.mapper
+package com.devtorres.core_database.entity.mapper
 
 interface EntityMapper<Entity, Domain> {
 
