@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.devtorres.core_navigation.Screen
 import com.devtorres.feature_exercise.ExerciseScreen
 import com.devtorres.feature_exercise.ExerciseDetailViewModel
+import com.devtorres.feature_exercise.ExerciseProgressViewModel
 
 const val exerciseIdArg = "exerciseId"
 

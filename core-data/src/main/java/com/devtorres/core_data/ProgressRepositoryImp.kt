@@ -1,14 +1,10 @@
 package com.devtorres.core_data
 
-import android.util.Log
 import androidx.annotation.WorkerThread
-import com.devtorres.core_data.dispatcher.Dispatcher
-import com.devtorres.core_data.dispatcher.FitAppDispatchers
 import com.devtorres.core_database.dao.ProgressDao
 import com.devtorres.core_database.entity.mapper.asDomain
 import com.devtorres.core_domain.repository.ProgressRepository
 import com.devtorres.core_model.ui.ProgressSummary
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -27,18 +23,18 @@ class ProgressRepositoryImp @Inject constructor(
     @WorkerThread
     override fun fetchProgressList(
         date: Long,
+        exerciseId: String,
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit
     ) : Flow<List<ProgressSummary>> = flow {
+
         val progressList = progressDao
             .getAllProgressList(
                 date = date,
-                exerciseId = "Barbell_Bench_Press"
+                exerciseId = exerciseId
             )
             .map { it.asDomain() }
-
-        Log.d("ProgressRepositoryImp", "fetchProgressList: $progressList")
 
         emit(progressList)
     }

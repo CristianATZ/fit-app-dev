@@ -35,10 +35,24 @@ fun ExerciseProgressTab(
     exerciseName: String
 ) {
     val progressList by exerciseProgressViewModel.progressList.collectAsStateWithLifecycle()
+
     val isLoading by exerciseProgressViewModel::isLoading
     val toastMessage by exerciseProgressViewModel::toastMessage
 
+    val tabList = remember {
+        listOf(
+            R.string.tab_add_serie,
+            R.string.tab_chart,
+            R.string.tab_historical
+        )
+    }
 
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        pageCount = { tabList.size }
+    )
+
+    val coroutineScope = rememberCoroutineScope()
 
     if(isLoading) {
         CircularProgressIndicator(
@@ -72,21 +86,6 @@ fun ExerciseProgressTab(
                 text = "0%",
                 modifier = Modifier.fillMaxWidth()
             )
-
-            val tabList = remember {
-                listOf(
-                    R.string.tab_add_serie,
-                    R.string.tab_chart,
-                    R.string.tab_historical
-                )
-            }
-
-            val pagerState = rememberPagerState(
-                initialPage = 0,
-                pageCount = { tabList.size }
-            )
-
-            val coroutineScope = rememberCoroutineScope()
 
             CustomTabRow (
                 tabList = tabList,

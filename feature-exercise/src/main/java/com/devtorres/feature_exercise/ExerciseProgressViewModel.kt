@@ -1,22 +1,26 @@
 package com.devtorres.feature_exercise
 
-import android.util.Log
 import androidx.annotation.MainThread
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devtorres.core_domain.BreadcrumbsManager
 import com.devtorres.core_domain.GetProgressListUseCase
 import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.core_utils.Validators
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -24,11 +28,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExerciseProgressViewModel @Inject constructor(
+    breadcrumbsManager: BreadcrumbsManager,
     private val getProgressListUseCase: GetProgressListUseCase
 ) : ViewModel() {
 
     private val _progressStateForm = MutableStateFlow(ProgressForm())
     val progressStateForm: StateFlow<ProgressForm> = _progressStateForm.asStateFlow()
+
+    private val currentFetchingMonth = MutableStateFlow<Long>(0)
+
+    /**
+     * Se alimenta del historial del [BreadcrumbsManager].
+     *
+     * Obtiene el ultimo de la lista para obtener el ID del ejercicio.
+     */
+    private val exerciseIdFlow: Flow<String> = breadcrumbsManager
+        .getHistory()
+        .map { history ->
+            history.last().id
+        }
+        .distinctUntilChanged()
 
     var isLoading by mutableStateOf(true)
         private set
@@ -36,18 +55,32 @@ class ExerciseProgressViewModel @Inject constructor(
     var toastMessage by mutableStateOf<String?>(null)
         private set
 
-    private val currentFetchingMonth = MutableStateFlow<Long>(0)
-
+    /**
+     * Utiliza dos Flows combinados.
+     *
+     * [exerciseIdFlow] para obtener el ID del ejercicio.
+     * [currentFetchingMonth] para obtener la cantidad de meses a restar.
+     */
     @OptIn(ExperimentalCoroutinesApi::class)
-    private val progressListFlow = currentFetchingMonth.flatMapLatest { minusMonth ->
-        Log.d("ProgressViewModel", "progressListFlow: $minusMonth")
-        getProgressListUseCase(
-            minusMonth = minusMonth,
-            onStart = { isLoading = true },
-            onComplete = { isLoading = false },
-            onError = { toastMessage = it }
-        )
-    }
+    private val progressListFlow: Flow<List<ProgressSummary>> =
+        combine(
+            exerciseIdFlow,
+            currentFetchingMonth
+        ) { exerciseId, currentFetchingMonth ->
+            exerciseId to currentFetchingMonth
+        }.flatMapLatest { (exerciseId, minusMonth) ->
+            getProgressListUseCase(
+                minusMonth = minusMonth,
+                exerciseId = exerciseId,
+                onStart = { isLoading = true },
+                onComplete = { isLoading = false },
+                onError = { toastMessage = it }
+            )
+        }
+
+    /**
+     * Lista de progreso del ejercicio, depende directamente del Flow de [progressListFlow]
+     */
     val progressList: StateFlow<List<ProgressSummary>> = progressListFlow.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),

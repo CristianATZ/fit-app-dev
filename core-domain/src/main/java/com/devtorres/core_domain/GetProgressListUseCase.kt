@@ -12,6 +12,7 @@ class GetProgressListUseCase @Inject constructor(
 ) {
     operator fun invoke(
         minusMonth: Long,
+        exerciseId: String,
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit
@@ -27,6 +28,7 @@ class GetProgressListUseCase @Inject constructor(
 
         return progressRepository.fetchProgressList(
             date = fetchingMonth,
+            exerciseId = exerciseId,
             onStart = onStart,
             onComplete = onComplete,
             onError = onError
