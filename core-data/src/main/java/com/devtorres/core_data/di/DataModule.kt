@@ -3,7 +3,9 @@ package com.devtorres.core_data.di
 import com.devtorres.core_data.BreadcrumbsManagerImp
 import com.devtorres.core_domain.repository.ExerciseRepository
 import com.devtorres.core_data.ExerciseRepositoryImp
+import com.devtorres.core_data.ProgressRepositoryImp
 import com.devtorres.core_domain.BreadcrumbsManager
+import com.devtorres.core_domain.repository.ProgressRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,4 +20,7 @@ internal interface DataModule {
 
     @Binds
     fun bindsBreadcrumbsManagerImp(breadcrumbsManagerImp: BreadcrumbsManagerImp): BreadcrumbsManager
+
+    @Binds
+    fun bindsProgressRepositoryImp(progressRepositoryImp: ProgressRepositoryImp): ProgressRepository
 }

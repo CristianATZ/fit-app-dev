@@ -1,0 +1,40 @@
+package com.devtorres.core_data
+
+import androidx.annotation.WorkerThread
+import com.devtorres.core_data.dispatcher.Dispatcher
+import com.devtorres.core_data.dispatcher.FitAppDispatchers
+import com.devtorres.core_database.dao.ProgressDao
+import com.devtorres.core_database.entity.mapper.asDomain
+import com.devtorres.core_domain.repository.ProgressRepository
+import com.devtorres.core_model.ui.ProgressSummary
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class ProgressRepositoryImp @Inject constructor(
+    private val progressDao: ProgressDao,
+    @Dispatcher(FitAppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
+) : ProgressRepository {
+
+    @WorkerThread
+    override fun fetchProgressList(
+        date: Long,
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit
+    ) : Flow<List<ProgressSummary>> = flow {
+        val progressList = progressDao
+            .getAllProgressList(date = date)
+            .map { it.asDomain() }
+
+        emit(progressList)
+    }.onStart { onStart() }.onCompletion { onComplete() }.catch { onError(it.message) }.flowOn(ioDispatcher)
+
+}

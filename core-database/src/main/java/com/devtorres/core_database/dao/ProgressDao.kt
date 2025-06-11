@@ -1,7 +1,6 @@
 package com.devtorres.core_database.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -24,8 +23,6 @@ interface ProgressDao {
      * Elimina un progreso de la base de datos.
      *
      * @property progressId Identificador del progreso a eliminar.
-     *
-     * @return Booleano indicando si se eliminó el progreso.
      */
     @Query("""
         DELETE 
@@ -33,4 +30,18 @@ interface ProgressDao {
         WHERE id = :progressId
     """)
     suspend fun deleteProgress(progressId: String)
+
+    /**
+     * Obtiene todos los progreso de la base de datos.
+     *
+     * @property date Fecha de inicio del progreso (convertiro en Long).
+     *
+     * @return Lista de objetos ProgressEntity.
+     */
+    @Query("""
+        SELECT * 
+        FROM progress
+        WHERE date >= :date
+    """)
+    fun getAllProgressList(date: Long) : List<ProgressEntity>
 }
