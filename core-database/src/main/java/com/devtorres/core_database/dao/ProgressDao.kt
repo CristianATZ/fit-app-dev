@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.devtorres.core_database.entity.ProgressEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProgressDao {
@@ -42,6 +43,10 @@ interface ProgressDao {
         SELECT * 
         FROM progress
         WHERE date >= :date
+        AND exerciseId = :exerciseId
     """)
-    fun getAllProgressList(date: Long) : List<ProgressEntity>
+    suspend fun getAllProgressList(
+        date: Long,
+        exerciseId: String
+    ) : List<ProgressEntity>
 }

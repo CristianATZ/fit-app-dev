@@ -1,23 +1,58 @@
 package com.devtorres.feature_exercise
 
+import android.util.Log
+import androidx.annotation.MainThread
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devtorres.core_domain.GetProgressListUseCase
+import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.core_utils.Validators
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ExerciseProgressViewModel @Inject constructor(
-
+    private val getProgressListUseCase: GetProgressListUseCase
 ) : ViewModel() {
 
     private val _progressStateForm = MutableStateFlow(ProgressForm())
     val progressStateForm: StateFlow<ProgressForm> = _progressStateForm.asStateFlow()
+
+    var isLoading by mutableStateOf(true)
+        private set
+
+    var toastMessage by mutableStateOf<String?>(null)
+        private set
+
+    private val currentFetchingMonth = MutableStateFlow<Long>(0)
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val progressListFlow = currentFetchingMonth.flatMapLatest { minusMonth ->
+        Log.d("ProgressViewModel", "progressListFlow: $minusMonth")
+        getProgressListUseCase(
+            minusMonth = minusMonth,
+            onStart = { isLoading = true },
+            onComplete = { isLoading = false },
+            onError = { toastMessage = it }
+        )
+    }
+    val progressList: StateFlow<List<ProgressSummary>> = progressListFlow.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = emptyList()
+    )
 
     fun onEvent(event: ProgressEvent) {
         when (event) {
@@ -33,6 +68,16 @@ class ExerciseProgressViewModel @Inject constructor(
 
     }
 
+    @MainThread
+    private fun setFetchingMonth(month: Long) {
+        viewModelScope.launch {
+            if(!isLoading) {
+                currentFetchingMonth.value++
+            }
+        }
+    }
+
+    @MainThread
     private fun updateWeight(weight: String) {
         viewModelScope.launch {
             _progressStateForm.update {
@@ -44,6 +89,7 @@ class ExerciseProgressViewModel @Inject constructor(
         }
     }
 
+    @MainThread
     private fun updateReps(reps: String) {
         viewModelScope.launch {
             _progressStateForm.update {
@@ -55,6 +101,7 @@ class ExerciseProgressViewModel @Inject constructor(
         }
     }
 
+    @MainThread
     private fun updateNotes(notes: String) {
         viewModelScope.launch {
             _progressStateForm.update {
