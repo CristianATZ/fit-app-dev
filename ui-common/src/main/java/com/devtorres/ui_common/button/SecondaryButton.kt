@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
+import com.devtorres.core_designsystem.MaterialThemeExt
 import com.devtorres.ui_common.typo.LabelLarge
 
 @Composable
@@ -57,8 +58,8 @@ fun SecondaryStateButton(
 ) {
     val colors = when {
         isCompleted -> ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF03CEA4),
-            contentColor = Color(0xFF000000)
+            containerColor = MaterialThemeExt.colors.green.color,
+            contentColor = MaterialThemeExt.colors.green.onColor
         )
         isError -> ButtonDefaults.buttonColors(
             containerColor = colorScheme.error,

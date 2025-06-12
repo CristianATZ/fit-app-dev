@@ -1,4 +1,4 @@
-package com.devtorres.fit_app.ui.theme
+package com.devtorres.core_designsystem
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme

@@ -77,6 +77,7 @@ dependencies {
 
     // hilt
     implementation(libs.hilt.android)
+    implementation(project(":core-designsystem"))
     ksp(libs.hilt.android.compiler)
 
     // navigation
@@ -84,9 +85,6 @@ dependencies {
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
-
-    // google fonts
-    implementation(libs.androidx.ui.text.google.fonts)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

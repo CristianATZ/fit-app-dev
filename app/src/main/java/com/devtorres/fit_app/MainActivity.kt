@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.devtorres.feature_home.nav.MainNavigation
 import com.devtorres.feature_splash.SplashViewModel
-import com.devtorres.fit_app.ui.theme.FitappTheme
+import com.devtorres.core_designsystem.FitappTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

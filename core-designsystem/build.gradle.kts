@@ -5,8 +5,8 @@ plugins {
 }
 
 android {
-    namespace = "com.devtorres.ui_common"
-    compileSdk = 35
+    namespace = "com.devtorres.core_designsystem"
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 26
@@ -38,13 +38,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-model"))
-    implementation(project(":core-designsystem"))
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-
     // compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -52,23 +45,15 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // flowlayout
-    implementation(libs.accompanist.flowlayout)
-
-    // coil
-    implementation(libs.coil.svg)
-    implementation(libs.coil.compose)
-
-    // icons
-    implementation(libs.androidx.material.icons.extended.android)
-
-    // graficos
-    implementation(libs.jaikeerthick.compoasble.graphs)
-
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
-    // unit test
+    // google fonts
+    implementation(libs.androidx.ui.text.google.fonts)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
