@@ -6,6 +6,7 @@ data class ProgressSummary(
     val id:                 String,
     val exerciseId:         String,
     val weight:             Float,
+    val notes:              String,
     val reps:               Int,
     val date:               LocalDateTime
 ) {

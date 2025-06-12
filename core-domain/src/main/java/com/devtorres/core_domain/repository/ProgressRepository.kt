@@ -5,6 +5,7 @@ import com.devtorres.core_model.ui.ProgressSummary
 import kotlinx.coroutines.flow.Flow
 
 interface ProgressRepository {
+
     @WorkerThread
     fun fetchProgressList(
         date: Long,
@@ -13,4 +14,12 @@ interface ProgressRepository {
         onComplete: () -> Unit,
         onError: (String?) -> Unit
     ) : Flow<List<ProgressSummary>>
+
+    @WorkerThread
+    suspend fun addProgress(
+        progressSummary: ProgressSummary,
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit
+    )
 }

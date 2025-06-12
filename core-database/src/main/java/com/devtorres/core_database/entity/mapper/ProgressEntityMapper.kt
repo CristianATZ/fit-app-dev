@@ -10,6 +10,7 @@ object ProgressEntityMapper : EntityMapper<ProgressEntity, ProgressSummary> {
             id = domain.id,
             exerciseId = domain.exerciseId,
             weight = domain.weight,
+            notes = domain.notes,
             reps = domain.reps,
             date = domain.date
         )
@@ -20,6 +21,7 @@ object ProgressEntityMapper : EntityMapper<ProgressEntity, ProgressSummary> {
             id = entity.id,
             exerciseId = entity.exerciseId,
             weight = entity.weight,
+            notes = entity.notes,
             reps = entity.reps,
             date = entity.date
         )

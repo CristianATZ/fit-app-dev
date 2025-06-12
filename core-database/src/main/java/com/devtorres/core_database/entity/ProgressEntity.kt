@@ -11,6 +11,7 @@ import java.time.LocalDateTime
  * @property exerciseId Identificador del ejercicio al que pertenece el progreso.
  * @property weight Peso del progreso (Kgs).
  * @property reps Número de repeticiones del progreso.
+ * @property notes Notas adicionales del progreso.
  * @property date Fecha del progreso.
  */
 @Entity(
@@ -21,5 +22,6 @@ data class ProgressEntity (
     val exerciseId:             String,
     val weight:                 Float,
     val reps:                   Int,
+    val notes:                  String,
     val date:                   LocalDateTime
 )

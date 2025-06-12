@@ -9,7 +9,7 @@ interface BreadcrumbsManager {
     fun getHistory(): StateFlow<Set<BreadcrumbItem>>
 
     /** Obtiene el ID del ultimo ítem del historial */
-    fun getLastItemId(): StateFlow<String?>
+    fun getLastIem(): StateFlow<BreadcrumbItem?>
 
     /** Añade un ítem al final, evitando duplicados consecutivos */
     fun addItem(item: BreadcrumbItem)

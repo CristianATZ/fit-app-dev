@@ -23,7 +23,7 @@ import com.devtorres.core_database.entity.SupplementEntity
         EquipmentEntity::class,
         ProgressEntity::class
     ],
-    version = 1
+    version = 2
 )
 @TypeConverters(
     value = [

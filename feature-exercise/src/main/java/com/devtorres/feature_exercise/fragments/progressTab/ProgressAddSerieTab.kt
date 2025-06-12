@@ -32,6 +32,7 @@ import com.devtorres.feature_exercise.ExerciseProgressViewModel
 import com.devtorres.feature_exercise.ProgressEvent
 import com.devtorres.feature_exercise.R
 import com.devtorres.ui_common.button.SecondaryButton
+import com.devtorres.ui_common.button.SecondaryStateButton
 import com.devtorres.ui_common.textfield.CustomOutlinedTextField
 import com.devtorres.ui_common.typo.HeadLineSmall
 import com.devtorres.ui_common.typo.LabelLarge
@@ -161,13 +162,15 @@ fun ProgressAddSerieTab(
 
             Spacer(Modifier.size(16.dp))
 
-            SecondaryButton(
+            SecondaryStateButton(
                 stringResId = R.string.btnAdd,
                 enabled = !progressFormState.isWeightError &&
                         !progressFormState.isRepsError &&
                         progressFormState.weight.isNotEmpty() &&
-                        progressFormState.reps.isNotEmpty()
-                ,
+                        progressFormState.reps.isNotEmpty(),
+                isLoading = progressFormState.isLoading,
+                isCompleted = progressFormState.isComplete,
+                isError = progressFormState.isError,
                 onClick = {
                     exerciseProgressViewModel.onEvent(
                         ProgressEvent.OnAddProgress

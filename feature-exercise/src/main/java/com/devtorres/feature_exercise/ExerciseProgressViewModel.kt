@@ -7,12 +7,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devtorres.core_domain.AddProgressUseCase
 import com.devtorres.core_domain.BreadcrumbsManager
 import com.devtorres.core_domain.GetProgressListUseCase
+import com.devtorres.core_model.ui.BreadcrumbItem
 import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.core_utils.Validators
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -29,7 +32,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ExerciseProgressViewModel @Inject constructor(
     breadcrumbsManager: BreadcrumbsManager,
-    private val getProgressListUseCase: GetProgressListUseCase
+    private val getProgressListUseCase: GetProgressListUseCase,
+    private val addProgressUseCase: AddProgressUseCase
 ) : ViewModel() {
 
     private val _progressStateForm = MutableStateFlow(ProgressForm())
@@ -48,20 +52,25 @@ class ExerciseProgressViewModel @Inject constructor(
      *
      * Obtiene el ultimo de la lista para obtener el ID del ejercicio.
      */
-    private val exerciseIdFlow: Flow<String> = breadcrumbsManager
-        .getLastItemId()
+    val exerciseBreadCrumb: StateFlow<BreadcrumbItem?> = breadcrumbsManager
+        .getLastIem()
         .filterNotNull()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = null
+        )
 
     /**
      * Utiliza dos Flows combinados.
      *
-     * [exerciseIdFlow] para obtener el ID del ejercicio.
+     * [exerciseBreadCrumb] para obtener el ID del ejercicio.
      * [currentFetchingMonth] para obtener la cantidad de meses a restar.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     private val progressListFlow: Flow<List<ProgressSummary>> =
         combine(
-            exerciseIdFlow,
+            exerciseBreadCrumb,
             currentFetchingMonth
         ) { exerciseId, currentFetchingMonth ->
             exerciseId to currentFetchingMonth
@@ -69,7 +78,7 @@ class ExerciseProgressViewModel @Inject constructor(
             Log.d("ExerciseProgressViewModel", "exerciseId: $exerciseId, minusMonth: $minusMonth")
             getProgressListUseCase(
                 minusMonth = minusMonth,
-                exerciseId = exerciseId,
+                exerciseId = exerciseId?.id ?: "",
                 onStart = { isLoading = true },
                 onComplete = { isLoading = false },
                 onError = { toastMessage = it }
@@ -96,7 +105,48 @@ class ExerciseProgressViewModel @Inject constructor(
 
     // guardarlo en room
     private fun addProgress() {
+        viewModelScope.launch {
+            exerciseBreadCrumb.value?.let { breadcrumbItem ->
+                Log.d("ExerciseProgressViewModel", "boton picado")
+                addProgressUseCase(
+                    exerciseId = breadcrumbItem.id,
+                    weight = progressStateForm.value.weight.trim(),
+                    reps = progressStateForm.value.reps.trim(),
+                    notes = progressStateForm.value.notes.trim(),
+                    onStart = {
+                        _progressStateForm.update {
+                            it.copy(
+                                isLoading = true
+                            )
+                        }
+                    },
+                    onComplete = {
+                        _progressStateForm.update {
+                            it.copy(
+                                isLoading = false,
+                                isComplete = true
+                            )
+                        }
+                    },
+                    onError = {
+                        _progressStateForm.update {
+                            it.copy(
+                                isLoading = false,
+                                isComplete = false,
+                                isError = true
+                            )
+                        }
+                        toastMessage = it
+                    }
+                )
 
+                if(_progressStateForm.value.isComplete) {
+                    delay(1500)
+
+                    _progressStateForm.update { ProgressForm() }
+                }
+            }
+        }
     }
 
     @MainThread
@@ -156,5 +206,9 @@ data class ProgressForm(
     val isWeightError: Boolean = false,
     val reps: String = "",
     val isRepsError: Boolean = false,
-    val notes: String = ""
+    val notes: String = "",
+    // estados al guardar un progreso
+    val isLoading: Boolean = false,
+    val isComplete: Boolean = false,
+    val isError: Boolean = false
 )

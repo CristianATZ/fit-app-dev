@@ -21,8 +21,8 @@ class BreadcrumbsManagerImp @Inject constructor(
     private val _history = MutableStateFlow<Set<BreadcrumbItem>>(emptySet())
     override fun getHistory(): StateFlow<Set<BreadcrumbItem>> = _history
 
-    override fun getLastItemId(): StateFlow<String?> =
-        _history.map { it.lastOrNull()?.id }
+    override fun getLastIem(): StateFlow<BreadcrumbItem?> =
+        _history.map { it.lastOrNull() }
             .stateIn(
                 scope = CoroutineScope(SupervisorJob() + Dispatchers.Default),
                 started = SharingStarted.Eagerly,
