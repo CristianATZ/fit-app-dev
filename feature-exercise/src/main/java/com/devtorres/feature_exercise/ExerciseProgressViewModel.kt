@@ -14,6 +14,7 @@ import com.devtorres.core_model.ui.BreadcrumbItem
 import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.core_utils.Validators
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -27,6 +28,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -52,14 +54,9 @@ class ExerciseProgressViewModel @Inject constructor(
      *
      * Obtiene el ultimo de la lista para obtener el ID del ejercicio.
      */
+    // esto ya recibe un StateFlow, aprovecha eso
     val exerciseBreadCrumb: StateFlow<BreadcrumbItem?> = breadcrumbsManager
         .getLastIem()
-        .filterNotNull()
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = null
-        )
 
     /**
      * Utiliza dos Flows combinados.
@@ -76,6 +73,7 @@ class ExerciseProgressViewModel @Inject constructor(
             exerciseId to currentFetchingMonth
         }.flatMapLatest { (exerciseId, minusMonth) ->
             Log.d("ExerciseProgressViewModel", "exerciseId: $exerciseId, minusMonth: $minusMonth")
+            Log.i("ExerciseProgressViewModel", "Thread: ${Thread.currentThread().name}")
             getProgressListUseCase(
                 minusMonth = minusMonth,
                 exerciseId = exerciseId?.id ?: "",
@@ -108,6 +106,7 @@ class ExerciseProgressViewModel @Inject constructor(
         viewModelScope.launch {
             exerciseBreadCrumb.value?.let { breadcrumbItem ->
                 Log.d("ExerciseProgressViewModel", "boton picado")
+
                 addProgressUseCase(
                     exerciseId = breadcrumbItem.id,
                     weight = progressStateForm.value.weight.trim(),
@@ -149,6 +148,7 @@ class ExerciseProgressViewModel @Inject constructor(
         }
     }
 
+    // mandar a otro viewmodel
     @MainThread
     private fun setFetchingMonth(month: Long) {
         viewModelScope.launch {

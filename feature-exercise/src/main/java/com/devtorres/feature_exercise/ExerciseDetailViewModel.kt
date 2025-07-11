@@ -10,12 +10,14 @@ import com.devtorres.core_model.ui.BreadcrumbItem
 import com.devtorres.core_model.ui.ExerciseDetail
 import com.devtorres.feature_exercise.nav.ExerciseArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -52,7 +54,9 @@ class ExerciseDetailViewModel @Inject constructor(
             delay(1000)
 
             _exerciseDetail.update {
-                getExerciseDetailUseCase(exerciseId = exerciseId)
+                withContext(Dispatchers.IO) {
+                    getExerciseDetailUseCase(exerciseId = exerciseId)
+                }
             }
 
             breadcrumbsManager.addItem(

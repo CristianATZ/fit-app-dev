@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -61,7 +62,11 @@ class ProgressRepositoryImp @Inject constructor(
         delay(1000)
 
         try {
-            progressDao.insertProgress(progressSummary.asEntity())
+            withContext(Dispatchers.IO) {
+                Log.i("ExerciseProgressViewModel", "Thread: ${Thread.currentThread().name}")
+
+                progressDao.insertProgress(progressSummary.asEntity())
+            }
             Log.d("ExerciseProgressViewModel", "insertado correctamente")
             onComplete()
         } catch (e: Exception) {

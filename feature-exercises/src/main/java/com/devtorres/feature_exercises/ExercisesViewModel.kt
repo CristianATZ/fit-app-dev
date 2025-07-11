@@ -12,7 +12,10 @@ import com.devtorres.core_model.enum.MuscleGroup
 import com.devtorres.core_model.ui.ExerciseSummaryUI
 import com.devtorres.core_model.ui.ExercisesFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,6 +27,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -81,17 +85,23 @@ class ExercisesViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _exerciseList.value = getExercisesUseCase()
+            _exerciseList.value = withContext(Dispatchers.IO) {
+                getExercisesUseCase()
+            }
         }
     }
 
     /** Actualiza un filtro individual */
     fun updateFilter(update: ExercisesFilter.() -> ExercisesFilter) {
-        _filter.update(update)
+        viewModelScope.launch {
+            _filter.update(update)
+        }
     }
 
     /** Abre el dialog para los filtros*/
     fun showFilterDialog() {
-        _showFilterDialog.value = !_showFilterDialog.value
+        viewModelScope.launch {
+            _showFilterDialog.value = !_showFilterDialog.value
+        }
     }
 }
