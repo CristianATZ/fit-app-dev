@@ -17,6 +17,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -50,12 +51,19 @@ import kotlinx.coroutines.launch
 @Composable
 fun ExerciseScreen(
     onNavigateBack: () -> Unit,
-    exerciseDetailViewModel: ExerciseDetailViewModel
+    exerciseDetailViewModel: ExerciseDetailViewModel,
+    progressViewModel: ExerciseProgressViewModel
 ) {
     val breadcrumbs by exerciseDetailViewModel.breadcrumbs.collectAsStateWithLifecycle()
     val exerciseId by exerciseDetailViewModel.exerciseId.collectAsStateWithLifecycle()
     val exerciseDetail by exerciseDetailViewModel.exerciseDetail.collectAsStateWithLifecycle()
     val isLoading by exerciseDetailViewModel.isLoading.collectAsStateWithLifecycle()
+
+    LaunchedEffect(exerciseId) {
+        progressViewModel.onEvent(
+            ProgressEvent.OnExerciseChange(exerciseId = exerciseId)
+        )
+    }
 
     BackHandler {
         if(breadcrumbs.size > 1) {
@@ -130,6 +138,7 @@ fun ExerciseScreen(
 
                     ExerciseContent(
                         exerciseDetailViewModel = exerciseDetailViewModel,
+                        progressViewModel = progressViewModel,
                         exercise = exercise
                     )
                 }
@@ -141,6 +150,7 @@ fun ExerciseScreen(
 @Composable
 private fun ExerciseContent(
     exerciseDetailViewModel: ExerciseDetailViewModel,
+    progressViewModel: ExerciseProgressViewModel,
     exercise: ExerciseDetail
 ) {
     val tabList = remember {
@@ -203,6 +213,7 @@ private fun ExerciseContent(
             }
             4 -> {
                 ExerciseProgressTab(
+                    progressViewModel = progressViewModel,
                     exerciseName = exercise.name
                 )
             }

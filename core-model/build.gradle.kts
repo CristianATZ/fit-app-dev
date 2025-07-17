@@ -33,4 +33,7 @@ dependencies {
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

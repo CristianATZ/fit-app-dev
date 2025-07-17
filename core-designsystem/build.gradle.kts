@@ -37,4 +37,7 @@ dependencies {
 
     // google fonts
     implementation(libs.androidx.ui.text.google.fonts)
+
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

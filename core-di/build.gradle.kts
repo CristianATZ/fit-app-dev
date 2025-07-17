@@ -1,15 +1,18 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    // ksp
     alias(libs.plugins.google.devtools.ksp)
+    /// hilt
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
-    namespace = "com.devtorres.core_domain"
-    compileSdk = 35
+    namespace = "com.devtorres.core_di"
+    compileSdk = 34
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 24
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -22,7 +25,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-model"))
 
     // hilt
     implementation(libs.hilt.android)

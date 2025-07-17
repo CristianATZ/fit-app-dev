@@ -19,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.devtorres.feature_exercise.ExerciseProgressViewModel
 import com.devtorres.feature_exercise.R
@@ -32,14 +31,13 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ExerciseProgressTab(
-    exerciseProgressViewModel: ExerciseProgressViewModel = hiltViewModel(),
+    progressViewModel: ExerciseProgressViewModel,
     exerciseName: String
 ) {
-    val progressList by exerciseProgressViewModel.progressList.collectAsStateWithLifecycle()
-    val progressExerciseBread by exerciseProgressViewModel.exerciseBreadCrumb.collectAsStateWithLifecycle()
+    val progressList by progressViewModel.progressList.collectAsStateWithLifecycle()
 
-    val isLoading by exerciseProgressViewModel::isLoading
-    val toastMessage by exerciseProgressViewModel::toastMessage
+    val isLoading by progressViewModel::isLoading
+    val toastMessage by progressViewModel::toastMessage
 
     val tabList = remember {
         listOf(
@@ -105,27 +103,23 @@ fun ExerciseProgressTab(
                 userScrollEnabled = false,
                 verticalAlignment = Alignment.Top
             ) { page ->
-                if(progressExerciseBread != null) {
-                    when(page) {
-                        0 -> {
-                            ProgressAddSerieTab(
-                                exerciseName = progressExerciseBread!!.name,
-                                exerciseProgressViewModel = exerciseProgressViewModel
-                            )
-                        }
-                        1 -> {
-                            ProgressChartTab(
-                                exerciseName = progressExerciseBread!!.name
-                            )
-                        }
-                        2 -> {
-                            ProgressHistoricalTab(
-                                exerciseName = progressExerciseBread!!.name,
-                            )
-                        }
+                when(page) {
+                    0 -> {
+                        ProgressAddSerieTab(
+                            exerciseName = exerciseName,
+                            exerciseProgressViewModel = progressViewModel
+                        )
                     }
-                } else {
-                    Text("Error al cargar")
+                    1 -> {
+                        ProgressChartTab(
+                            exerciseName = exerciseName
+                        )
+                    }
+                    2 -> {
+                        ProgressHistoricalTab(
+                            exerciseName = exerciseName
+                        )
+                    }
                 }
             }
         }

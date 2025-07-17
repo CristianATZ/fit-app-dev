@@ -1,6 +1,7 @@
 package com.devtorres.feature_exercise
 
 import android.util.Log
+import androidx.annotation.MainThread
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -69,6 +70,7 @@ class ExerciseDetailViewModel @Inject constructor(
         }
     }
 
+    @MainThread
     fun changeExercise(newId: String) {
         if(exerciseId.value == newId) return
 

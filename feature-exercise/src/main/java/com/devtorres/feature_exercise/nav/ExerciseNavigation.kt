@@ -35,10 +35,12 @@ fun NavGraphBuilder.exerciseScreen(
     ) { backStackEntry ->
         // inicializar viewmodel aqui
         val exerciseDetailViewModel: ExerciseDetailViewModel = hiltViewModel(backStackEntry)
+        val exerciseProgressViewModel: ExerciseProgressViewModel = hiltViewModel(backStackEntry)
 
         ExerciseScreen(
             exerciseDetailViewModel = exerciseDetailViewModel,
-            onNavigateBack = onNavigateBack
+            progressViewModel = exerciseProgressViewModel,
+            onNavigateBack = onNavigateBack,
         )
     }
 }

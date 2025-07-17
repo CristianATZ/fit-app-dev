@@ -59,6 +59,7 @@ android {
 dependencies {
     implementation(project(":feature-splash"))
     implementation(project(":feature-home"))
+    implementation(project(":core-designsystem"))
 
 
     implementation(libs.androidx.core.ktx)
@@ -77,7 +78,6 @@ dependencies {
 
     // hilt
     implementation(libs.hilt.android)
-    implementation(project(":core-designsystem"))
     ksp(libs.hilt.android.compiler)
 
     // navigation

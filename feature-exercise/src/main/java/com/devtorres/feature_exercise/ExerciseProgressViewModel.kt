@@ -5,16 +5,20 @@ import androidx.annotation.MainThread
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devtorres.core_di.IoDispatcher
+import com.devtorres.core_di.MainDispatcher
 import com.devtorres.core_domain.AddProgressUseCase
 import com.devtorres.core_domain.BreadcrumbsManager
 import com.devtorres.core_domain.GetProgressListUseCase
 import com.devtorres.core_model.ui.BreadcrumbItem
 import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.core_utils.Validators
+import com.devtorres.feature_exercise.nav.ExerciseArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -23,20 +27,21 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class ExerciseProgressViewModel @Inject constructor(
-    breadcrumbsManager: BreadcrumbsManager,
     private val getProgressListUseCase: GetProgressListUseCase,
-    private val addProgressUseCase: AddProgressUseCase
+    private val addProgressUseCase: AddProgressUseCase,
+    @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    private val exerciseId = MutableStateFlow(ExerciseArgs(savedStateHandle).exerciseId)
 
     private val _progressStateForm = MutableStateFlow(ProgressForm())
     val progressStateForm: StateFlow<ProgressForm> = _progressStateForm.asStateFlow()
@@ -49,34 +54,18 @@ class ExerciseProgressViewModel @Inject constructor(
     var toastMessage by mutableStateOf<String?>(null)
         private set
 
-    /**
-     * Se alimenta del historial del [BreadcrumbsManager].
-     *
-     * Obtiene el ultimo de la lista para obtener el ID del ejercicio.
-     */
-    // esto ya recibe un StateFlow, aprovecha eso
-    val exerciseBreadCrumb: StateFlow<BreadcrumbItem?> = breadcrumbsManager
-        .getLastIem()
 
-    /**
-     * Utiliza dos Flows combinados.
-     *
-     * [exerciseBreadCrumb] para obtener el ID del ejercicio.
-     * [currentFetchingMonth] para obtener la cantidad de meses a restar.
-     */
     @OptIn(ExperimentalCoroutinesApi::class)
     private val progressListFlow: Flow<List<ProgressSummary>> =
         combine(
-            exerciseBreadCrumb,
+            exerciseId,
             currentFetchingMonth
         ) { exerciseId, currentFetchingMonth ->
             exerciseId to currentFetchingMonth
         }.flatMapLatest { (exerciseId, minusMonth) ->
-            Log.d("ExerciseProgressViewModel", "exerciseId: $exerciseId, minusMonth: $minusMonth")
-            Log.i("ExerciseProgressViewModel", "Thread: ${Thread.currentThread().name}")
             getProgressListUseCase(
                 minusMonth = minusMonth,
-                exerciseId = exerciseId?.id ?: "",
+                exerciseId = exerciseId ?: "",
                 onStart = { isLoading = true },
                 onComplete = { isLoading = false },
                 onError = { toastMessage = it }
@@ -98,17 +87,16 @@ class ExerciseProgressViewModel @Inject constructor(
             is ProgressEvent.OnNotesChange -> updateNotes(event.notes)
             is ProgressEvent.OnRepsChange -> updateReps(event.reps)
             is ProgressEvent.OnWeightChange -> updateWeight(event.weight)
+            is ProgressEvent.OnExerciseChange -> updateExerciseId(event.exerciseId)
         }
     }
 
     // guardarlo en room
     private fun addProgress() {
         viewModelScope.launch {
-            exerciseBreadCrumb.value?.let { breadcrumbItem ->
-                Log.d("ExerciseProgressViewModel", "boton picado")
-
+            exerciseId.value?.let { exerciseId ->
                 addProgressUseCase(
-                    exerciseId = breadcrumbItem.id,
+                    exerciseId = exerciseId,
                     weight = progressStateForm.value.weight.trim(),
                     reps = progressStateForm.value.reps.trim(),
                     notes = progressStateForm.value.notes.trim(),
@@ -145,6 +133,14 @@ class ExerciseProgressViewModel @Inject constructor(
                     _progressStateForm.update { ProgressForm() }
                 }
             }
+        }
+    }
+
+    @MainThread
+    private fun updateExerciseId(newId: String) {
+        viewModelScope.launch(mainDispatcher) {
+            Log.d("ExerciseProgressViewModel", "updateExerciseId: $newId")
+            exerciseId.value = newId
         }
     }
 
@@ -195,6 +191,7 @@ class ExerciseProgressViewModel @Inject constructor(
 }
 
 sealed class ProgressEvent {
+    data class OnExerciseChange(val exerciseId: String) : ProgressEvent()
     data class OnWeightChange(val weight: String) : ProgressEvent()
     data class OnRepsChange(val reps: String) : ProgressEvent()
     data class OnNotesChange(val notes: String) : ProgressEvent()
