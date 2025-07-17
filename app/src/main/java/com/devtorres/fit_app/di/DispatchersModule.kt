@@ -1,7 +1,5 @@
-package com.devtorres.core_data.di
+package com.devtorres.fit_app.di
 
-import com.devtorres.core_data.dispatcher.Dispatcher
-import com.devtorres.core_data.dispatcher.FitAppDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +12,14 @@ import kotlinx.coroutines.Dispatchers
 interface DispatchersModule {
 
     @Provides
-    @Dispatcher(FitAppDispatchers.IO)
+    @IoDispatcher
     fun providesIODispatcher(): CoroutineDispatcher = Dispatchers.IO
+
+    @Provides
+    @MainDispatcher
+    fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+
+    @Provides
+    @DefaultDispatcher
+    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 }
