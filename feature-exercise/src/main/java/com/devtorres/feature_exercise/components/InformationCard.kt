@@ -13,6 +13,7 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -24,6 +25,7 @@ import com.devtorres.ui_common.typo.TitleMedium
 fun InformationCard(
     modifier: Modifier = Modifier,
     @StringRes titleResId: Int,
+    color: Color = Color.Unspecified,
     description: String,
     text: String
 ) {
@@ -50,6 +52,7 @@ fun InformationCard(
 
             TitleLarge(
                 text = text,
+                color = color,
                 fontWeight = FontWeight.Bold
             )
 

@@ -14,7 +14,7 @@
     <string name="lblTotalSeriesUpperCase">TOTAL DE SERIES</string>
     <string name="lblTotalSeriesDescription">series registradas</string>
     <string name="lblRmEstimatedUpperCase">1RM ESTIMADO</string>
-    <string name="lblRmEstimatedDescription">Máximo: %1$dkg × %2$dreps</string>
+    <string name="lblRmEstimatedDescription">Máximo: %1$skg × %2$sreps</string>
     <string name="lblRecentlyProgressUpperCase">PROGRESO RECIENTE</string>
     <string name="lblRecentlyProgressDescription">vs. entrenamiento anterior</string>
     <string name="tab_add_serie">Agregar</string>
@@ -35,4 +35,7 @@
     <string name="lblKg">%1$s kg</string>
     <string name="lblReps">%1$s reps</string>
     <string name="lblRmAprox">1RM: %1$s kg</string>
+    <string name="lblNoProgressHistory">Sin historial</string>
+    <string name="kg_count">%1$s kg</string>
+    <string name="percentage_count">%1$d%%</string>
 </resources>

@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -63,6 +64,7 @@ class ExerciseProgressViewModel @Inject constructor(
         ) { exerciseId, currentFetchingMonth ->
             exerciseId to currentFetchingMonth
         }.flatMapLatest { (exerciseId, minusMonth) ->
+            delay(1_000L)
             getProgressListUseCase(
                 minusMonth = minusMonth,
                 exerciseId = exerciseId ?: "",
@@ -94,44 +96,42 @@ class ExerciseProgressViewModel @Inject constructor(
     // guardarlo en room
     private fun addProgress() {
         viewModelScope.launch {
-            exerciseId.value?.let { exerciseId ->
-                addProgressUseCase(
-                    exerciseId = exerciseId,
-                    weight = progressStateForm.value.weight.trim(),
-                    reps = progressStateForm.value.reps.trim(),
-                    notes = progressStateForm.value.notes.trim(),
-                    onStart = {
-                        _progressStateForm.update {
-                            it.copy(
-                                isLoading = true
-                            )
-                        }
-                    },
-                    onComplete = {
-                        _progressStateForm.update {
-                            it.copy(
-                                isLoading = false,
-                                isComplete = true
-                            )
-                        }
-                    },
-                    onError = {
-                        _progressStateForm.update {
-                            it.copy(
-                                isLoading = false,
-                                isComplete = false,
-                                isError = true
-                            )
-                        }
-                        toastMessage = it
+            addProgressUseCase(
+                exerciseId = exerciseId.value,
+                weight = progressStateForm.value.weight.trim(),
+                reps = progressStateForm.value.reps.trim(),
+                notes = progressStateForm.value.notes.trim(),
+                onStart = {
+                    _progressStateForm.update {
+                        it.copy(
+                            isLoading = true
+                        )
                     }
-                )
-
-                if(_progressStateForm.value.isComplete) {
-                    delay(1500)
-
-                    _progressStateForm.update { ProgressForm() }
+                },
+                onComplete = {
+                    _progressStateForm.update {
+                        it.copy(
+                            isLoading = false,
+                            isComplete = true
+                        )
+                    }
+                },
+                onError = {
+                    _progressStateForm.update {
+                        it.copy(
+                            isLoading = false,
+                            isComplete = false,
+                            isError = true
+                        )
+                    }
+                    toastMessage = it
                 }
+            )
+
+            if(_progressStateForm.value.isComplete) {
+                delay(1500)
+
+                _progressStateForm.update { ProgressForm() }
             }
         }
     }

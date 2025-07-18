@@ -41,7 +41,6 @@ class ProgressRepositoryImp @Inject constructor(
             )
             .map { it.asDomain() }
 
-        Log.d("ExerciseProgressViewModel", "progressList: $progressList")
         emit(progressList)
     }
         .onStart { onStart() }
