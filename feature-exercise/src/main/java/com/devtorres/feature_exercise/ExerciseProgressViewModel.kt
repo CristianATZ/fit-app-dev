@@ -26,9 +26,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -64,19 +67,24 @@ class ExerciseProgressViewModel @Inject constructor(
         ) { exerciseId, currentFetchingMonth ->
             exerciseId to currentFetchingMonth
         }.flatMapLatest { (exerciseId, minusMonth) ->
-            delay(1_000L)
             getProgressListUseCase(
                 minusMonth = minusMonth,
-                exerciseId = exerciseId ?: "",
-                onStart = { isLoading = true },
-                onComplete = { isLoading = false },
-                onError = { toastMessage = it }
+                exerciseId = exerciseId
             )
+                .onStart {
+                    isLoading = true
+                }
+                .onEach {
+                    isLoading = false
+                }
+                .catch { e ->
+                    isLoading = false
+                    toastMessage = e.message
+                    emit(emptyList()) // opcional: evitar crash si falla
+                }
         }
 
-    /**
-     * Lista de progreso del ejercicio, depende directamente del Flow de [progressListFlow]
-     */
+
     val progressList: StateFlow<List<ProgressSummary>> = progressListFlow.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),

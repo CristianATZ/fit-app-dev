@@ -9,10 +9,7 @@ interface ProgressRepository {
     @WorkerThread
     fun fetchProgressList(
         date: Long,
-        exerciseId: String,
-        onStart: () -> Unit,
-        onComplete: () -> Unit,
-        onError: (String?) -> Unit
+        exerciseId: String
     ) : Flow<List<ProgressSummary>>
 
     @WorkerThread

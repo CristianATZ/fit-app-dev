@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.withContext
@@ -28,25 +29,12 @@ class ProgressRepositoryImp @Inject constructor(
     @WorkerThread
     override fun fetchProgressList(
         date: Long,
-        exerciseId: String,
-        onStart: () -> Unit,
-        onComplete: () -> Unit,
-        onError: (String?) -> Unit
-    ) : Flow<List<ProgressSummary>> = flow {
-
-        val progressList = progressDao
-            .getAllProgressList(
-                date = date,
-                exerciseId = exerciseId
-            )
-            .map { it.asDomain() }
-
-        emit(progressList)
+        exerciseId: String
+    ) : Flow<List<ProgressSummary>> {
+        return progressDao.getAllProgressList(date, exerciseId)
+            .map { it.map { entity -> entity.asDomain() } }
+            .flowOn(Dispatchers.IO)
     }
-        .onStart { onStart() }
-        .onCompletion { onComplete() }
-        .catch { onError(it.message) }
-        .flowOn(Dispatchers.IO)
 
     @WorkerThread
     override suspend fun addProgress(

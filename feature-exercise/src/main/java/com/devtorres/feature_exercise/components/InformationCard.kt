@@ -1,6 +1,12 @@
 package com.devtorres.feature_exercise.components
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +23,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.devtorres.ui_common.typo.HeadLineMedium
+import com.devtorres.ui_common.typo.HeadLineSmall
 import com.devtorres.ui_common.typo.LabelLarge
 import com.devtorres.ui_common.typo.TitleLarge
 import com.devtorres.ui_common.typo.TitleMedium
@@ -50,11 +58,20 @@ fun InformationCard(
 
             Spacer(Modifier.size(8.dp))
 
-            TitleLarge(
-                text = text,
-                color = color,
-                fontWeight = FontWeight.Bold
-            )
+            AnimatedContent(
+                targetState = text,
+                transitionSpec = {
+                    fadeIn(animationSpec = tween(1000)) togetherWith
+                            fadeOut(animationSpec = tween(300))
+                },
+                label = "Headline Text Animation"
+            ) { animatedText ->
+                HeadLineMedium(
+                    text = animatedText,
+                    color = color,
+                    fontWeight = FontWeight.Bold
+                )
+            }
 
             LabelLarge(
                 text = description,
