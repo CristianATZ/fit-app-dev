@@ -1,11 +1,9 @@
 package com.devtorres.feature_exercise.fragments.exerciseTab
 
-import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,16 +15,12 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.OutlinedCard
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -42,7 +36,6 @@ import com.devtorres.feature_exercise.fragments.progressTab.ProgressChartTab
 import com.devtorres.feature_exercise.fragments.progressTab.ProgressHistoricalTab
 import com.devtorres.ui_common.tab.CustomTabRow
 import com.devtorres.ui_common.typo.TitleMedium
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
@@ -150,6 +143,15 @@ fun ProgressCards(
     progressList: List<ProgressSummary>
 ) {
 
+    /**
+     * HACER UN CASO DE USO PARA CADA COSA:
+     *
+     * 1. PARA OBTENER EL TOTAL DE REGISTROS
+     * 2. PARA OBTENER EL MAXIMO DE ROOM
+     * 3. PARA OBTENER LOS ULTIMOS DOS
+     *
+     * 4. UN FLOW QUE OBSERVER LA DB Y ACTUALICE LA LISTA
+     */
     val oneRm = progressList.lastOrNull()?.calculateOneRM()
 
     val differencePercent = if (progressList.size >= 2) {

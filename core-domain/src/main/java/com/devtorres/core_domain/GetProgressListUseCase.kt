@@ -12,7 +12,10 @@ class GetProgressListUseCase @Inject constructor(
 ) {
     operator fun invoke(
         minusMonth: Long,
-        exerciseId: String
+        exerciseId: String,
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit
     ) : Flow<List<ProgressSummary>> {
         val fetchingMonth = LocalDateTime.now()
             .withDayOfMonth(1)
@@ -25,7 +28,10 @@ class GetProgressListUseCase @Inject constructor(
 
         return progressRepository.fetchProgressList(
             date = fetchingMonth,
-            exerciseId = exerciseId
+            exerciseId = exerciseId,
+            onStart = onStart,
+            onComplete = onComplete,
+            onError = onError
         )
     }
 }

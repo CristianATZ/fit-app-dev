@@ -45,8 +45,8 @@ interface ProgressDao {
         WHERE date >= :date
         AND exerciseId = :exerciseId
     """)
-    fun getAllProgressList(
+    suspend fun getAllProgressList(
         date: Long,
         exerciseId: String
-    ) : Flow<List<ProgressEntity>>
+    ) : List<ProgressEntity>
 }
