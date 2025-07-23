@@ -74,4 +74,8 @@ class ProgressRepositoryImp @Inject constructor(
         }
     }
 
+    @WorkerThread
+    override fun getTotalProgressCount(exerciseId: String): Flow<Int> =
+        progressDao.getTotalProgressCount(exerciseId = exerciseId)
+
 }

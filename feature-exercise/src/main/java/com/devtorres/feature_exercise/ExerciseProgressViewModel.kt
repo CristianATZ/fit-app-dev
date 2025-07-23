@@ -8,12 +8,10 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devtorres.core_di.IoDispatcher
 import com.devtorres.core_di.MainDispatcher
 import com.devtorres.core_domain.AddProgressUseCase
-import com.devtorres.core_domain.BreadcrumbsManager
 import com.devtorres.core_domain.GetProgressListUseCase
-import com.devtorres.core_model.ui.BreadcrumbItem
+import com.devtorres.core_domain.GetTotalProgressCountUseCase
 import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.core_utils.Validators
 import com.devtorres.feature_exercise.nav.ExerciseArgs
@@ -28,7 +26,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -37,6 +34,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ExerciseProgressViewModel @Inject constructor(
     private val getProgressListUseCase: GetProgressListUseCase,
+    private val getTotalProgressCountUseCase: GetTotalProgressCountUseCase,
     private val addProgressUseCase: AddProgressUseCase,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
     savedStateHandle: SavedStateHandle
@@ -82,6 +80,15 @@ class ExerciseProgressViewModel @Inject constructor(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = emptyList()
+    )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val totalProgressCount: StateFlow<Int> = exerciseId.flatMapLatest {
+        getTotalProgressCountUseCase(it)
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = 0
     )
 
     fun onEvent(event: ProgressEvent) {

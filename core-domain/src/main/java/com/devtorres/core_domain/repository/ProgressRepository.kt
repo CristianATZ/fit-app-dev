@@ -22,4 +22,9 @@ interface ProgressRepository {
         onComplete: () -> Unit,
         onError: (String?) -> Unit
     )
+
+    @WorkerThread
+    fun getTotalProgressCount(
+        exerciseId: String
+    ) : Flow<Int>
 }

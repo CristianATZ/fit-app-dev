@@ -44,6 +44,7 @@ fun ExerciseProgressTab(
     exerciseName: String
 ) {
     val progressList by progressViewModel.progressList.collectAsStateWithLifecycle()
+    val totalProgressCount by progressViewModel.totalProgressCount.collectAsStateWithLifecycle()
 
     val isLoading by progressViewModel::isLoading
     val toastMessage by progressViewModel::toastMessage
@@ -71,13 +72,10 @@ fun ExerciseProgressTab(
                 color = colorScheme.secondary
             )
         } else {
-            if(progressList.isEmpty()) {
-                NoProgressHistory()
-            } else {
-                ProgressCards(
-                    progressList = progressList
-                )
-            }
+            ProgressCards(
+                progressList = progressList,
+                totalProgressCount = totalProgressCount
+            )
         }
 
         CustomTabRow (
@@ -140,13 +138,13 @@ fun NoProgressHistory() {
 
 @Composable
 fun ProgressCards(
-    progressList: List<ProgressSummary>
+    progressList: List<ProgressSummary>,
+    totalProgressCount: Int
 ) {
 
     /**
      * HACER UN CASO DE USO PARA CADA COSA:
      *
-     * 1. PARA OBTENER EL TOTAL DE REGISTROS
      * 2. PARA OBTENER EL MAXIMO DE ROOM
      * 3. PARA OBTENER LOS ULTIMOS DOS
      *
@@ -163,41 +161,49 @@ fun ProgressCards(
 
     val differenceColor = setColorToPercentage(differencePercent)
 
-    AnimatedVisibility(progressList.isNotEmpty()) {
-        Column {
-            InformationCard(
-                titleResId = R.string.lblTotalSeriesUpperCase,
-                description = stringResource(R.string.lblTotalSeriesDescription),
-                text = progressList.size.toString(),
-                modifier = Modifier.fillMaxWidth()
-            )
+    if(progressList.isEmpty()) {
+        NoProgressHistory()
+    } else {
+        AnimatedVisibility(totalProgressCount != 0) {
+            Column {
+                InformationCard(
+                    titleResId = R.string.lblTotalSeriesUpperCase,
+                    description = stringResource(R.string.lblTotalSeriesDescription),
+                    text = totalProgressCount.toString(),
+                    modifier = Modifier.fillMaxWidth()
+                )
 
-            Spacer(Modifier.size(12.dp))
-
-            InformationCard(
-                titleResId = R.string.lblRmEstimatedUpperCase,
-                description = stringResource(
-                    R.string.lblRmEstimatedDescription,
-                    progressList.last().getWeightFormatted(),
-                    progressList.last().reps.toString()
-                ),
-                text = stringResource(R.string.kg_count, oneRm!!),
-                modifier = Modifier.fillMaxWidth()
-            )
+                Spacer(Modifier.size(12.dp))
+            }
         }
-    }
 
-    AnimatedVisibility(differencePercent != null) {
-        Column {
-            Spacer(Modifier.size(12.dp))
+        AnimatedVisibility(progressList.isNotEmpty()) {
+            Column {
+                InformationCard(
+                    titleResId = R.string.lblRmEstimatedUpperCase,
+                    description = stringResource(
+                        R.string.lblRmEstimatedDescription,
+                        progressList.last().getWeightFormatted(),
+                        progressList.last().reps.toString()
+                    ),
+                    text = stringResource(R.string.kg_count, oneRm!!),
+                    modifier = Modifier.fillMaxWidth()
+                )
 
-            InformationCard(
-                titleResId = R.string.lblRecentlyProgressUpperCase,
-                description = stringResource(R.string.lblRecentlyProgressDescription),
-                text = stringResource(R.string.percentage_count, differencePercent!!.toAbosulte()),
-                color = differenceColor,
-                modifier = Modifier.fillMaxWidth()
-            )
+                Spacer(Modifier.size(12.dp))
+            }
+        }
+
+        AnimatedVisibility(differencePercent != null) {
+            Column {
+                InformationCard(
+                    titleResId = R.string.lblRecentlyProgressUpperCase,
+                    description = stringResource(R.string.lblRecentlyProgressDescription),
+                    text = stringResource(R.string.percentage_count, differencePercent!!.toAbosulte()),
+                    color = differenceColor,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }

@@ -49,4 +49,11 @@ interface ProgressDao {
         date: Long,
         exerciseId: String
     ) : List<ProgressEntity>
+
+    @Query("""
+        SELECT COUNT(*)
+        FROM progress
+        WHERE exerciseId = :exerciseId
+    """)
+    fun getTotalProgressCount(exerciseId: String) : Flow<Int>
 }
