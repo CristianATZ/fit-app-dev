@@ -1,4 +1,4 @@
-package com.devtorres.core_domain
+package com.devtorres.core_domain.exercise
 
 import com.devtorres.core_domain.repository.ProgressRepository
 import com.devtorres.core_model.ui.ProgressSummary

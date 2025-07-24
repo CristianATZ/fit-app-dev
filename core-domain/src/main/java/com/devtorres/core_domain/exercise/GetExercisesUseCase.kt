@@ -1,4 +1,4 @@
-package com.devtorres.core_domain
+package com.devtorres.core_domain.exercise
 
 import com.devtorres.core_domain.repository.ExerciseRepository
 import com.devtorres.core_model.ui.ExerciseSummaryUI

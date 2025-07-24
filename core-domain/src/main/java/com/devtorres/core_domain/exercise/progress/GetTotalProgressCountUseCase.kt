@@ -1,4 +1,4 @@
-package com.devtorres.core_domain
+package com.devtorres.core_domain.exercise.progress
 
 import com.devtorres.core_domain.repository.ProgressRepository
 import kotlinx.coroutines.flow.Flow

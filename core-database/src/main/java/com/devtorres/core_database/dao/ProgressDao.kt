@@ -56,4 +56,21 @@ interface ProgressDao {
         WHERE exerciseId = :exerciseId
     """)
     fun getTotalProgressCount(exerciseId: String) : Flow<Int>
+
+    @Query("""
+        SELECT * FROM progress
+        WHERE exerciseId = :exerciseId
+        ORDER BY oneRm DESC
+        LIMIT 1
+    """)
+    fun getMaxProgressOneRm(exerciseId: String): Flow<ProgressEntity?>
+
+    @Query("""
+        SELECT oneRm FROM progress 
+        WHERE exerciseId = :exerciseId 
+        ORDER BY date DESC 
+        LIMIT 2
+    """)
+    fun getLastTwoProgress(exerciseId: String): Flow<List<Int>>
+
 }

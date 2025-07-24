@@ -10,8 +10,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devtorres.core_di.MainDispatcher
 import com.devtorres.core_domain.AddProgressUseCase
-import com.devtorres.core_domain.GetProgressListUseCase
-import com.devtorres.core_domain.GetTotalProgressCountUseCase
+import com.devtorres.core_domain.exercise.progress.GetLastTwoProgressOneRmUseCase
+import com.devtorres.core_domain.exercise.progress.GetMaxProgressOneRmUseCase
+import com.devtorres.core_domain.exercise.GetProgressListUseCase
+import com.devtorres.core_domain.exercise.progress.GetTotalProgressCountUseCase
 import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.core_utils.Validators
 import com.devtorres.feature_exercise.nav.ExerciseArgs
@@ -35,6 +37,8 @@ import javax.inject.Inject
 class ExerciseProgressViewModel @Inject constructor(
     private val getProgressListUseCase: GetProgressListUseCase,
     private val getTotalProgressCountUseCase: GetTotalProgressCountUseCase,
+    private val getMaxProgressOneRmUseCase: GetMaxProgressOneRmUseCase,
+    private val getLastTwoProgressOneRmUseCase: GetLastTwoProgressOneRmUseCase,
     private val addProgressUseCase: AddProgressUseCase,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
     savedStateHandle: SavedStateHandle
@@ -82,13 +86,22 @@ class ExerciseProgressViewModel @Inject constructor(
         initialValue = emptyList()
     )
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val totalProgressCount: StateFlow<Int> = exerciseId.flatMapLatest {
-        getTotalProgressCountUseCase(it)
+    val progressCardState: StateFlow<ProgressCardState> = exerciseId.flatMapLatest {
+        combine(
+            getTotalProgressCountUseCase(it),
+            getMaxProgressOneRmUseCase(it),
+            getLastTwoProgressOneRmUseCase(it)
+        ) { totalProgressCount, maxProgressOneRm, lastTwoProgressOneRm ->
+            ProgressCardState(
+                totalSeries = totalProgressCount,
+                maxOneRm = maxProgressOneRm,
+                lastTwoOneRm = lastTwoProgressOneRm
+            )
+        }
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = 0
+        initialValue = ProgressCardState()
     )
 
     fun onEvent(event: ProgressEvent) {
@@ -205,6 +218,12 @@ sealed class ProgressEvent {
     data class OnNotesChange(val notes: String) : ProgressEvent()
     data object OnAddProgress : ProgressEvent()
 }
+
+data class ProgressCardState(
+    val totalSeries: Int = 0,
+    val maxOneRm: ProgressSummary? = null,
+    val lastTwoOneRm: List<Int> = emptyList()
+)
 
 data class ProgressForm(
     val weight: String = "",

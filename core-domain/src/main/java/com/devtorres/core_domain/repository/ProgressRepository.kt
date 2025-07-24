@@ -27,4 +27,13 @@ interface ProgressRepository {
     fun getTotalProgressCount(
         exerciseId: String
     ) : Flow<Int>
+
+    @WorkerThread
+    fun getMaxProgressOneRm(
+        exerciseId: String
+    ) : Flow<ProgressSummary?>
+
+    fun getLastTwoOneRm(
+        exerciseId: String
+    ) : Flow<List<Int>>
 }

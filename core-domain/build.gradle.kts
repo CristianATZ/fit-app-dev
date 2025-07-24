@@ -23,6 +23,7 @@ android {
 
 dependencies {
     implementation(project(":core-model"))
+    implementation(project(":core-utils"))
 
     // hilt
     implementation(libs.hilt.android)

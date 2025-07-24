@@ -2,7 +2,7 @@ package com.devtorres.feature_exercises
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devtorres.core_domain.GetExercisesUseCase
+import com.devtorres.core_domain.exercise.GetExercisesUseCase
 import com.devtorres.core_model.enum.EquipmentType
 import com.devtorres.core_model.enum.ExerciseCategory
 import com.devtorres.core_model.enum.ForceType
@@ -12,10 +12,8 @@ import com.devtorres.core_model.enum.MuscleGroup
 import com.devtorres.core_model.ui.ExerciseSummaryUI
 import com.devtorres.core_model.ui.ExercisesFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

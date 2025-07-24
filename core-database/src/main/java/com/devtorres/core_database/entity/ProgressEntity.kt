@@ -12,6 +12,7 @@ import java.time.LocalDateTime
  * @property weight Peso del progreso (Kgs).
  * @property reps Número de repeticiones del progreso.
  * @property notes Notas adicionales del progreso.
+ * @property oneRm Peso máximo calculado del progreso (One RM).
  * @property date Fecha del progreso.
  */
 @Entity(
@@ -23,5 +24,6 @@ data class ProgressEntity (
     val weight:                 Float,
     val reps:                   Int,
     val notes:                  String,
+    val oneRm:                  Int,
     val date:                   LocalDateTime
 )

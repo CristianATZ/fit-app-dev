@@ -9,14 +9,14 @@ import com.devtorres.core_model.ui.ProgressSummary
 object StringUtils {
 
     fun calculateDifeferencePercent(
-        lastestExercise: ProgressSummary,
-        previousExercise: ProgressSummary
+        lastestExercise: Int,
+        previousExercise: Int
     ): Int {
-        val t = lastestExercise.calculateOneRM().toDouble()
-        val p = previousExercise.calculateOneRM().toDouble()
+        val t = lastestExercise.toDouble()
+        val p = previousExercise.toDouble()
 
         val res = ((t - p) / p) * 100
-        return res.toInt() // Por ejemplo: "5.0"
+        return res.toInt()
     }
 
     @Composable
@@ -28,5 +28,10 @@ object StringUtils {
             percent < 0 -> MaterialTheme.colorScheme.error
             else -> MaterialTheme.colorScheme.secondary
         }
+    }
+
+    fun calculateOneRM(weight: Float, reps: Int) : String {
+        val res = weight * (1f + (reps / 30f))
+        return Math.round(res).toString()
     }
 }

@@ -1,7 +1,16 @@
 package com.devtorres.feature_exercise.fragments.exerciseTab
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,6 +38,7 @@ import com.devtorres.core_utils.Extensions.toAbosulte
 import com.devtorres.core_utils.StringUtils
 import com.devtorres.core_utils.StringUtils.setColorToPercentage
 import com.devtorres.feature_exercise.ExerciseProgressViewModel
+import com.devtorres.feature_exercise.ProgressCardState
 import com.devtorres.feature_exercise.R
 import com.devtorres.feature_exercise.components.InformationCard
 import com.devtorres.feature_exercise.fragments.progressTab.ProgressAddSerieTab
@@ -44,7 +54,7 @@ fun ExerciseProgressTab(
     exerciseName: String
 ) {
     val progressList by progressViewModel.progressList.collectAsStateWithLifecycle()
-    val totalProgressCount by progressViewModel.totalProgressCount.collectAsStateWithLifecycle()
+    val progressCardState by progressViewModel.progressCardState.collectAsStateWithLifecycle()
 
     val isLoading by progressViewModel::isLoading
     val toastMessage by progressViewModel::toastMessage
@@ -67,16 +77,10 @@ fun ExerciseProgressTab(
     Column(
         modifier = Modifier.animateContentSize()
     ) {
-        if(isLoading) {
-            CircularProgressIndicator(
-                color = colorScheme.secondary
-            )
-        } else {
-            ProgressCards(
-                progressList = progressList,
-                totalProgressCount = totalProgressCount
-            )
-        }
+        ProgressCards(
+            isLoading = isLoading,
+            progressCardState = progressCardState
+        )
 
         CustomTabRow (
             tabList = tabList,
@@ -138,71 +142,81 @@ fun NoProgressHistory() {
 
 @Composable
 fun ProgressCards(
-    progressList: List<ProgressSummary>,
-    totalProgressCount: Int
+    isLoading: Boolean,
+    progressCardState: ProgressCardState
 ) {
-
-    /**
-     * HACER UN CASO DE USO PARA CADA COSA:
-     *
-     * 2. PARA OBTENER EL MAXIMO DE ROOM
-     * 3. PARA OBTENER LOS ULTIMOS DOS
-     *
-     * 4. UN FLOW QUE OBSERVER LA DB Y ACTUALICE LA LISTA
-     */
-    val oneRm = progressList.lastOrNull()?.calculateOneRM()
-
-    val differencePercent = if (progressList.size >= 2) {
-        StringUtils.calculateDifeferencePercent(
-            lastestExercise = progressList[progressList.size - 1],
-            previousExercise = progressList[progressList.size - 2]
-        )
-    } else null
-
-    val differenceColor = setColorToPercentage(differencePercent)
-
-    if(progressList.isEmpty()) {
-        NoProgressHistory()
-    } else {
-        AnimatedVisibility(totalProgressCount != 0) {
-            Column {
-                InformationCard(
-                    titleResId = R.string.lblTotalSeriesUpperCase,
-                    description = stringResource(R.string.lblTotalSeriesDescription),
-                    text = totalProgressCount.toString(),
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Spacer(Modifier.size(12.dp))
-            }
+    AnimatedContent(
+        targetState = isLoading to (progressCardState.totalSeries == 0),
+        transitionSpec = {
+            fadeIn(tween(1000)) + slideInVertically { -it / 2 } togetherWith
+                    fadeOut(tween(100))
         }
-
-        AnimatedVisibility(progressList.isNotEmpty()) {
-            Column {
-                InformationCard(
-                    titleResId = R.string.lblRmEstimatedUpperCase,
-                    description = stringResource(
-                        R.string.lblRmEstimatedDescription,
-                        progressList.last().getWeightFormatted(),
-                        progressList.last().reps.toString()
-                    ),
-                    text = stringResource(R.string.kg_count, oneRm!!),
-                    modifier = Modifier.fillMaxWidth()
+    ) { (showCircularProgress, progressListIsEmpty) ->
+        when {
+            showCircularProgress -> {
+                CircularProgressIndicator(
+                    color = colorScheme.secondary
                 )
-
-                Spacer(Modifier.size(12.dp))
             }
-        }
+            progressListIsEmpty -> {
+                NoProgressHistory()
+            }
+            else -> {
+                Column(
+                    modifier = Modifier.animateContentSize(
+                        animationSpec = tween(durationMillis = 1000)
+                    )
+                ) {
+                    InformationCard(
+                        titleResId = R.string.lblTotalSeriesUpperCase,
+                        description = stringResource(R.string.lblTotalSeriesDescription),
+                        text = progressCardState.totalSeries.toString(),
+                        modifier = Modifier.fillMaxWidth()
+                    )
 
-        AnimatedVisibility(differencePercent != null) {
-            Column {
-                InformationCard(
-                    titleResId = R.string.lblRecentlyProgressUpperCase,
-                    description = stringResource(R.string.lblRecentlyProgressDescription),
-                    text = stringResource(R.string.percentage_count, differencePercent!!.toAbosulte()),
-                    color = differenceColor,
-                    modifier = Modifier.fillMaxWidth()
-                )
+                    Spacer(Modifier.size(12.dp))
+
+                    AnimatedVisibility(progressCardState.maxOneRm != null) {
+                        Column {
+                            InformationCard(
+                                titleResId = R.string.lblRmEstimatedUpperCase,
+                                description = stringResource(
+                                    R.string.lblRmEstimatedDescription,
+                                    progressCardState.maxOneRm!!.getWeightFormatted(),
+                                    progressCardState.maxOneRm.reps.toString()
+                                ),
+                                text = stringResource(R.string.kg_count, progressCardState.maxOneRm.oneRm.toString()),
+                                modifier = Modifier.fillMaxWidth()
+                            )
+
+                            Spacer(Modifier.size(12.dp))
+                        }
+                    }
+
+                    AnimatedVisibility(progressCardState.lastTwoOneRm.size == 2) {
+                        val difference = StringUtils.calculateDifeferencePercent(
+                            progressCardState.lastTwoOneRm[0],
+                            progressCardState.lastTwoOneRm[1]
+                        )
+
+                        Column {
+                            InformationCard(
+                                titleResId = R.string.lblRecentlyProgressUpperCase,
+                                description = stringResource(
+                                    R.string.lblRecentlyProgressDescription,
+                                    progressCardState.lastTwoOneRm[1].toString(),
+                                    progressCardState.lastTwoOneRm[0].toString()
+                                ),
+                                text = stringResource(
+                                    R.string.percentage_count,
+                                    difference.toAbosulte()
+                                ),
+                                color = setColorToPercentage(difference),
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    }
+                }
             }
         }
     }

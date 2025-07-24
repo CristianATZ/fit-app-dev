@@ -1,28 +1,31 @@
 package com.devtorres.core_data
 
-import android.util.Log
-import android.widget.Toast
 import androidx.annotation.WorkerThread
 import com.devtorres.core_database.dao.ProgressDao
 import com.devtorres.core_database.entity.mapper.asDomain
 import com.devtorres.core_database.entity.mapper.asEntity
+import com.devtorres.core_di.IoDispatcher
 import com.devtorres.core_domain.repository.ProgressRepository
 import com.devtorres.core_model.ui.ProgressSummary
-import kotlinx.coroutines.Dispatchers
+import com.devtorres.core_utils.StringUtils
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.math.roundToInt
 
 @Singleton
 class ProgressRepositoryImp @Inject constructor(
-    private val progressDao: ProgressDao
+    private val progressDao: ProgressDao,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ProgressRepository {
 
     @WorkerThread
@@ -46,7 +49,7 @@ class ProgressRepositoryImp @Inject constructor(
         .onStart { onStart() }
         .onCompletion { onComplete() }
         .catch { onError(it.message) }
-        .flowOn(Dispatchers.IO)
+        .flowOn(ioDispatcher)
 
     @WorkerThread
     override suspend fun addProgress(
@@ -55,21 +58,17 @@ class ProgressRepositoryImp @Inject constructor(
         onComplete: () -> Unit,
         onError: (String?) -> Unit
     ) {
-        Log.d("ExerciseProgressViewModel", "inicio funcion")
         onStart()
 
         delay(1000)
 
         try {
-            withContext(Dispatchers.IO) {
-                Log.i("ExerciseProgressViewModel", "Thread: ${Thread.currentThread().name}")
-
+            withContext(ioDispatcher) {
                 progressDao.insertProgress(progressSummary.asEntity())
             }
-            Log.d("ExerciseProgressViewModel", "insertado correctamente")
+
             onComplete()
         } catch (e: Exception) {
-            Log.d("ExerciseProgressViewModel", "fallo")
             onError(e.message)
         }
     }
@@ -77,5 +76,17 @@ class ProgressRepositoryImp @Inject constructor(
     @WorkerThread
     override fun getTotalProgressCount(exerciseId: String): Flow<Int> =
         progressDao.getTotalProgressCount(exerciseId = exerciseId)
+            .flowOn(ioDispatcher)
+
+    @WorkerThread
+    override fun getMaxProgressOneRm(exerciseId: String): Flow<ProgressSummary?> =
+        progressDao.getMaxProgressOneRm(exerciseId = exerciseId)
+            .map { it?.asDomain() }
+            .flowOn(ioDispatcher)
+
+    @WorkerThread
+    override fun getLastTwoOneRm(exerciseId: String): Flow<List<Int>> =
+        progressDao.getLastTwoProgress(exerciseId = exerciseId)
+            .flowOn(ioDispatcher)
 
 }

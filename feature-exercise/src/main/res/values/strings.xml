@@ -16,7 +16,7 @@
     <string name="lblRmEstimatedUpperCase">1RM ESTIMADO</string>
     <string name="lblRmEstimatedDescription">Máximo: %1$skg × %2$sreps</string>
     <string name="lblRecentlyProgressUpperCase">PROGRESO RECIENTE</string>
-    <string name="lblRecentlyProgressDescription">vs. entrenamiento anterior</string>
+    <string name="lblRecentlyProgressDescription">%1$skg → %2$skg (1RM)</string>
     <string name="tab_add_serie">Agregar</string>
     <string name="tab_chart">Grafico</string>
     <string name="tab_historical">Historial</string>
