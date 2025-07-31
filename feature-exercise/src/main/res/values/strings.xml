@@ -32,10 +32,12 @@
     <string name="historical_description"><![CDATA[Registro detallado de todas tus series de %1$s]]></string>
     <string name="lblWeight">Peso:</string>
     <string name="lblRepetitions">Reps:</string>
+    <string name="lblNoProgressHistory">Sin historial</string>
+
+    <!-- Values -->
+    <string name="kg_count">%1$s kg</string>
+    <string name="percentage_count">%1$d%%</string>
     <string name="lblKg">%1$s kg</string>
     <string name="lblReps">%1$s reps</string>
     <string name="lblRmAprox">1RM: %1$s kg</string>
-    <string name="lblNoProgressHistory">Sin historial</string>
-    <string name="kg_count">%1$s kg</string>
-    <string name="percentage_count">%1$d%%</string>
 </resources>

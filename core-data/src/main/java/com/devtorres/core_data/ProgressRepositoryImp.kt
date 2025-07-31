@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -35,21 +36,19 @@ class ProgressRepositoryImp @Inject constructor(
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit
-    ) : Flow<List<ProgressSummary>> = flow {
-
-        val progressList = progressDao
-            .getAllProgressList(
-                date = date,
-                exerciseId = exerciseId
-            )
-            .map { it.asDomain() }
-
-        emit(progressList)
-    }
-        .onStart { onStart() }
-        .onCompletion { onComplete() }
-        .catch { onError(it.message) }
-        .flowOn(ioDispatcher)
+    ) : Flow<List<ProgressSummary>> =
+        progressDao.getAllProgressList(date, exerciseId)
+            .map { entityList ->
+                onStart() // Se llama en cada emisión
+                entityList.map { it.asDomain() }
+            }
+            .onEach {
+                onComplete() // También se llama en cada emisión exitosa
+            }
+            .catch { exception ->
+                onError(exception.message)
+            }
+            .flowOn(ioDispatcher)
 
     @WorkerThread
     override suspend fun addProgress(

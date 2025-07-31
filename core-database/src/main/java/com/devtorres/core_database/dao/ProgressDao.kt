@@ -44,11 +44,12 @@ interface ProgressDao {
         FROM progress
         WHERE date >= :date
         AND exerciseId = :exerciseId
+        ORDER BY date DESC
     """)
-    suspend fun getAllProgressList(
+    fun getAllProgressList(
         date: Long,
         exerciseId: String
-    ) : List<ProgressEntity>
+    ) : Flow<List<ProgressEntity>>
 
     @Query("""
         SELECT COUNT(*)

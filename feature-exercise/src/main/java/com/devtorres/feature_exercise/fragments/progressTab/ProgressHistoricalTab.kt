@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.shapes
@@ -15,6 +18,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.feature_exercise.R
 import com.devtorres.feature_exercise.components.ProgressCard
 import com.devtorres.ui_common.typo.HeadLineSmall
@@ -22,7 +26,8 @@ import com.devtorres.ui_common.typo.LabelLarge
 
 @Composable
 fun ProgressHistoricalTab(
-    exerciseName: String
+    exerciseName: String,
+    progressList: List<ProgressSummary>
 ) {
     OutlinedCard (
         colors = CardDefaults.outlinedCardColors(
@@ -51,7 +56,13 @@ fun ProgressHistoricalTab(
 
             Spacer(Modifier.size(16.dp))
 
-            ProgressCard()
+            progressList.forEach {
+                ProgressCard(
+                    progressSummary = it
+                )
+
+                Spacer(Modifier.size(8.dp))
+            }
         }
     }
 }

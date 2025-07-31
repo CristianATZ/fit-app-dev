@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lb_today">Hoy</string>
+    <string name="lb_yesterday">Ayer</string>
+    <string name="lb_few_days_ago">%1$d</string>
+</resources>

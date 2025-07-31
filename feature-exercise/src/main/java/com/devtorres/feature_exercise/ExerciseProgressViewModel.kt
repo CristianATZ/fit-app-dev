@@ -60,10 +60,7 @@ class ExerciseProgressViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private val progressListFlow: Flow<List<ProgressSummary>> =
-        combine(
-            exerciseId,
-            currentFetchingMonth
-        ) { exerciseId, currentFetchingMonth ->
+        combine(exerciseId, currentFetchingMonth) { exerciseId, currentFetchingMonth ->
             exerciseId to currentFetchingMonth
         }.flatMapLatest { (exerciseId, minusMonth) ->
             delay(1_000L)

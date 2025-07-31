@@ -4,12 +4,9 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -33,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.core_utils.Extensions.toAbosulte
 import com.devtorres.core_utils.StringUtils
 import com.devtorres.core_utils.StringUtils.setColorToPercentage
@@ -107,12 +103,14 @@ fun ExerciseProgressTab(
                 }
                 1 -> {
                     ProgressChartTab(
-                        exerciseName = exerciseName
+                        exerciseName = exerciseName,
+                        progressList = progressList
                     )
                 }
                 2 -> {
                     ProgressHistoricalTab(
-                        exerciseName = exerciseName
+                        exerciseName = exerciseName,
+                        progressList = progressList
                     )
                 }
             }

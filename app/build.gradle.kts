@@ -78,6 +78,8 @@ dependencies {
 
     // hilt
     implementation(libs.hilt.android)
+    implementation(libs.jaikeerthick.compoasble.graphs)
+    implementation(libs.jaikeerthick.compoasble.graphs)
     ksp(libs.hilt.android.compiler)
 
     // navigation

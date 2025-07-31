@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.devtorres.core_model.chart.ExerciseProgressPoint
+import com.devtorres.core_model.ui.ProgressSummary
 import com.devtorres.feature_exercise.R
 import com.devtorres.ui_common.chart.CustomLineGraph
 import com.devtorres.ui_common.typo.HeadLineSmall
@@ -31,7 +32,9 @@ import com.devtorres.ui_common.typo.LabelLarge
 @Composable
 fun ProgressChartTab(
     exerciseName: String,
+    progressList: List<ProgressSummary>,
 ) {
+
     OutlinedCard (
         colors = CardDefaults.outlinedCardColors(
             containerColor = colorScheme.surface
@@ -69,56 +72,7 @@ fun ProgressChartTab(
             Spacer(Modifier.size(32.dp))
 
             CustomLineGraph(
-                // estos datos se recuperaran del viewmodel
-                data = listOf(
-                    ExerciseProgressPoint(
-                        weight = 1.0,
-                        reps = 10
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 2.0,
-                        reps = 20
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 3.0,
-                        reps = 30
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 4.0,
-                        reps = 10
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 5.0,
-                        reps = 20
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 5.5,
-                        reps = 30
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 5.3,
-                        reps = 10
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 5.0,
-                        reps = 20
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 10.0,
-                        reps = 30
-                    ),ExerciseProgressPoint(
-                        weight = 10.1,
-                        reps = 10
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 10.2,
-                        reps = 20
-                    ),
-                    ExerciseProgressPoint(
-                        weight = 10.3,
-                        reps = 30
-                    )
-                ),
+                data = progressList,
                 lineColor = colorScheme.secondary,
                 pointColor = colorScheme.secondary,
                 highlightColor = Color.Black,
